@@ -1,0 +1,66 @@
+overlay: 1.0.0
+x-speakeasy-jsonpath: rfc9535
+info:
+  title: Speakeasy Modifications
+  version: 0.0.1
+  x-speakeasy-metadata:
+    type: speakeasy-modifications
+    before: ""
+    after: ""
+actions:
+  - target: $["paths"]["/api/v1/create"]["post"]["responses"]
+    update:
+      '200':
+        description: 'unknown return type: ReturnStatement'
+        content:
+          application/json: {}
+    x-speakeasy-metadata:
+      created_at: 1758008158506
+      type: user-edit
+  - target: $["paths"]["/api/v1/create"]["post"]["responses"]["unknown"]
+    remove: true
+    x-speakeasy-metadata:
+      created_at: 1758008158506
+      type: user-edit
+  - target: $["paths"]["/api/v1/state"]["get"]["responses"]
+    update:
+      '200':
+        description: 'unknown return type: ReturnStatement'
+        content:
+          application/json: {}
+    x-speakeasy-metadata:
+      created_at: 1758008158506
+      type: user-edit
+  - target: $["paths"]["/api/v1/state"]["get"]["responses"]["unknown"]
+    remove: true
+    x-speakeasy-metadata:
+      created_at: 1758008158506
+      type: user-edit
+  - target: $["paths"]["/api/v1/state"]["post"]["responses"]
+    update:
+      '200':
+        description: 'unknown return type: ReturnStatement'
+        content:
+          application/json: {}
+    x-speakeasy-metadata:
+      created_at: 1758008158506
+      type: user-edit
+  - target: $["paths"]["/api/v1/state"]["post"]["responses"]["unknown"]
+    remove: true
+    x-speakeasy-metadata:
+      created_at: 1758008158506
+      type: user-edit
+  - target: $["paths"]["/api/v1/x"]["post"]["responses"]
+    update:
+      '500':
+        description: 'unknown return type: ReturnStatement'
+        content:
+          application/json: {}
+    x-speakeasy-metadata:
+      created_at: 1758008158506
+      type: user-edit
+  - target: $["paths"]["/api/v1/x"]["post"]["responses"]["unknown"]
+    remove: true
+    x-speakeasy-metadata:
+      created_at: 1758008158506
+      type: user-edit

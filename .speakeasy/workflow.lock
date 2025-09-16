@@ -1,0 +1,39 @@
+speakeasyVersion: 1.615.2
+sources:
+    undefined - Next.js OpenAPI Spec by Scalar:
+        sourceNamespace: undefined---next-js-open-api-spec-by-scalar
+        sourceRevisionDigest: sha256:599c06cfb0182cf5e6534ca5471702b567fb0d6903cb45d0ef16daeaf72cd314
+        sourceBlobDigest: sha256:c26b60bf31e17099fdb2ff14abd0dc8f1b6ed1d9c2b18647448348cd5cc62bcc
+        tags:
+            - latest
+            - 0.0.0
+targets:
+    typescript:
+        source: undefined - Next.js OpenAPI Spec by Scalar
+        sourceNamespace: undefined---next-js-open-api-spec-by-scalar
+        sourceRevisionDigest: sha256:599c06cfb0182cf5e6534ca5471702b567fb0d6903cb45d0ef16daeaf72cd314
+        sourceBlobDigest: sha256:c26b60bf31e17099fdb2ff14abd0dc8f1b6ed1d9c2b18647448348cd5cc62bcc
+        codeSamplesNamespace: undefined---next-js-open-api-spec-by-scalar-typescript-code-samples
+        codeSamplesRevisionDigest: sha256:c14fba3ffc975452b16d1021f9c94eb7701f1baadc078988d5e657debebf47bd
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        undefined - Next.js OpenAPI Spec by Scalar:
+            inputs:
+                - location: https://www.linkage.dev/api/openapi/schema.json
+            overlays:
+                - location: .speakeasy\speakeasy-modifications-overlay.yaml
+            output: .speakeasy/out.openapi.yaml
+            registry:
+                location: registry.speakeasyapi.dev/linkage/open/undefined---next-js-open-api-spec-by-scalar
+    targets:
+        typescript:
+            target: typescript
+            source: undefined - Next.js OpenAPI Spec by Scalar
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/linkage/open/undefined---next-js-open-api-spec-by-scalar-typescript-code-samples
+                labelOverride:
+                    fixedValue: Typescript (SDK)
+                blocking: false

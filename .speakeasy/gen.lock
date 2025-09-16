@@ -1,0 +1,97 @@
+lockVersion: 2.0.0
+id: 637732e2-0106-4de1-8934-f7e16bfd3abc
+management:
+  docChecksum: 44442b6467053be1f4c6cdca7615427d
+  docVersion: 0.0.0
+  speakeasyVersion: 1.615.2
+  generationVersion: 2.698.4
+  releaseVersion: 0.0.3
+  configChecksum: e4868345602b684bccf13b52f8bf623d
+features:
+  typescript:
+    additionalDependencies: 0.1.0
+    core: 3.21.22
+    defaultEnabledRetries: 0.1.0
+    devContainers: 2.90.0
+    envVarSecurityUsage: 0.1.2
+    globalSecurityCallbacks: 0.1.0
+    globalServerURLs: 2.82.5
+    methodArguments: 0.1.2
+    nullables: 0.1.1
+    responseFormat: 0.2.3
+    retries: 2.83.0
+    sdkHooks: 0.3.0
+generatedFiles:
+  - .devcontainer/README.md
+  - .devcontainer/devcontainer.json
+  - .devcontainer/setup.sh
+  - .gitattributes
+  - .npmignore
+  - FUNCTIONS.md
+  - RUNTIMES.md
+  - USAGE.md
+  - docs/lib/utils/retryconfig.md
+  - docs/models/operations/postapiv1xresponse.md
+  - docs/sdks/linkage/README.md
+  - eslint.config.mjs
+  - examples/.env.template
+  - examples/README.md
+  - examples/package.json
+  - examples/postApiV1Create.example.ts
+  - jsr.json
+  - package.json
+  - src/core.ts
+  - src/funcs/getApiV1State.ts
+  - src/funcs/postApiV1Create.ts
+  - src/funcs/postApiV1State.ts
+  - src/funcs/postApiV1X.ts
+  - src/hooks/hooks.ts
+  - src/hooks/index.ts
+  - src/hooks/types.ts
+  - src/index.ts
+  - src/lib/base64.ts
+  - src/lib/config.ts
+  - src/lib/dlv.ts
+  - src/lib/encodings.ts
+  - src/lib/env.ts
+  - src/lib/files.ts
+  - src/lib/http.ts
+  - src/lib/is-plain-object.ts
+  - src/lib/logger.ts
+  - src/lib/matchers.ts
+  - src/lib/primitives.ts
+  - src/lib/retries.ts
+  - src/lib/schemas.ts
+  - src/lib/sdks.ts
+  - src/lib/security.ts
+  - src/lib/url.ts
+  - src/models/errors/httpclienterrors.ts
+  - src/models/errors/index.ts
+  - src/models/errors/linkagedefaulterror.ts
+  - src/models/errors/linkageerror.ts
+  - src/models/errors/responsevalidationerror.ts
+  - src/models/errors/sdkvalidationerror.ts
+  - src/models/operations/index.ts
+  - src/models/operations/postapiv1x.ts
+  - src/sdk/index.ts
+  - src/sdk/sdk.ts
+  - src/types/async.ts
+  - src/types/blobs.ts
+  - src/types/constdatetime.ts
+  - src/types/enums.ts
+  - src/types/fp.ts
+  - src/types/index.ts
+  - src/types/operations.ts
+  - src/types/rfcdate.ts
+  - src/types/streams.ts
+  - tsconfig.json
+examples:
+  post_/api/v1/create: {}
+  get_/api/v1/state: {}
+  post_/api/v1/state: {}
+  post_/api/v1/x:
+    speakeasy-default-post-/api/v1-/x:
+      responses:
+        "200":
+          application/json: {}
+examplesVersion: 1.0.2
