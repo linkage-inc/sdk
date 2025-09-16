@@ -1,6 +1,6 @@
 {
   "name": "@linkage-open/sdk",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Speakeasy",
   "type": "module",
   "tshy": {
@@ -18,6 +18,10 @@
     }
   },
   "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/linkage-inc/sdk.git"
+  },
   "scripts": {
     "lint": "eslint --cache --max-warnings=0 src",
     "build": "tshy",
