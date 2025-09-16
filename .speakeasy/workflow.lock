@@ -23,7 +23,7 @@ workflow:
             inputs:
                 - location: https://www.linkage.dev/api/openapi/schema.json
             overlays:
-                - location: .speakeasy\speakeasy-modifications-overlay.yaml
+                - location: .speakeasy/speakeasy-modifications-overlay.yaml
             output: .speakeasy/out.openapi.yaml
             registry:
                 location: registry.speakeasyapi.dev/linkage/open/undefined---next-js-open-api-spec-by-scalar
