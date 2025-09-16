@@ -5,8 +5,10 @@ management:
   docVersion: 0.0.0
   speakeasyVersion: 1.615.2
   generationVersion: 2.698.4
-  releaseVersion: 0.0.3
-  configChecksum: e4868345602b684bccf13b52f8bf623d
+  releaseVersion: 0.0.4
+  configChecksum: 295460c7127e8b1cf7cc58ea8a43782b
+  repoURL: https://github.com/linkage-inc/sdk.git
+  installationURL: https://github.com/linkage-inc/sdk
 features:
   typescript:
     additionalDependencies: 0.1.0
