@@ -49,5 +49,101 @@ paths:
           description: "unknown return type: ReturnStatement"
           content:
             "application/json": {}
+  "/api/v1/trigger/{triggerId}":
+    post:
+      summary: "use to set the summary"
+      description: "use jsdoc tag to set the description"
+      parameters:
+        - name: "triggerId"
+          schema:
+            type: "string"
+          in: "path"
+      responses:
+        "200":
+          description: "TODO: grab this from jsdoc and add a default"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "success":
+                    type: "boolean"
+                    example: true
+                  "executionId":
+                    type: "null"
+                    description: "TODO: This is an unknown type"
+                  "triggerExecutionId":
+                    type: "null"
+                    description: "TODO: This is an unknown type"
+        "unknown":
+          description: "unknown return type: ReturnStatement"
+          content:
+            "application/json": {}
+    get:
+      summary: "use to set the summary"
+      description: "use jsdoc tag to set the description"
+      parameters:
+        - name: "triggerId"
+          schema:
+            type: "string"
+          in: "path"
+      responses:
+        "200":
+          description: "TODO: grab this from jsdoc and add a default"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "id":
+                    type: "null"
+                    description: "TODO: This is an unknown type"
+                  "name":
+                    type: "null"
+                    description: "TODO: This is an unknown type"
+                  "type":
+                    type: "null"
+                    description: "TODO: This is an unknown type"
+                  "enabled":
+                    type: "null"
+                    description: "TODO: This is an unknown type"
+                  "workflowId":
+                    type: "null"
+                    description: "TODO: This is an unknown type"
+                  "workflowName":
+                    type: "null"
+                    description: "TODO: This is an unknown type"
+        "unknown":
+          description: "unknown return type: ReturnStatement"
+          content:
+            "application/json": {}
+  "/api/v1/trigger/manual":
+    post:
+      summary: "Manual trigger endpoint for executing workflows on-demand"
+      description: "This endpoint requires authentication via client credentials"
+      responses:
+        "200":
+          description: "TODO: grab this from jsdoc and add a default"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "success":
+                    type: "boolean"
+                    example: true
+                  "executionId":
+                    type: "null"
+                    description: "TODO: This is an unknown type"
+                  "triggerExecutionId":
+                    type: "null"
+                    description: "TODO: This is an unknown type"
+                  "message":
+                    type: "string"
+                    example: "Workflow execution started successfully"
+        "unknown":
+          description: "unknown return type: ReturnStatement"
+          content:
+            "application/json": {}
 servers:
   - url: "https://www.linkage.dev"

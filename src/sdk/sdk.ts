@@ -3,8 +3,11 @@
  */
 
 import { getApiV1State } from "../funcs/getApiV1State.js";
+import { getApiV1TriggerTriggerId } from "../funcs/getApiV1TriggerTriggerId.js";
 import { postApiV1Create } from "../funcs/postApiV1Create.js";
 import { postApiV1State } from "../funcs/postApiV1State.js";
+import { postApiV1TriggerManual } from "../funcs/postApiV1TriggerManual.js";
+import { postApiV1TriggerTriggerId } from "../funcs/postApiV1TriggerTriggerId.js";
 import { postApiV1X } from "../funcs/postApiV1X.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
@@ -66,6 +69,55 @@ export class Linkage extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.PostApiV1XResponse> {
     return unwrapAsync(postApiV1X(
+      this,
+      options,
+    ));
+  }
+
+  /**
+   * use to set the summary
+   *
+   * @remarks
+   * use jsdoc tag to set the description
+   */
+  async postApiV1TriggerTriggerId(
+    request: operations.PostApiV1TriggerTriggerIdRequest,
+    options?: RequestOptions,
+  ): Promise<operations.PostApiV1TriggerTriggerIdResponse | undefined> {
+    return unwrapAsync(postApiV1TriggerTriggerId(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * use to set the summary
+   *
+   * @remarks
+   * use jsdoc tag to set the description
+   */
+  async getApiV1TriggerTriggerId(
+    request: operations.GetApiV1TriggerTriggerIdRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetApiV1TriggerTriggerIdResponse | undefined> {
+    return unwrapAsync(getApiV1TriggerTriggerId(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Manual trigger endpoint for executing workflows on-demand
+   *
+   * @remarks
+   * This endpoint requires authentication via client credentials
+   */
+  async postApiV1TriggerManual(
+    options?: RequestOptions,
+  ): Promise<operations.PostApiV1TriggerManualResponse | undefined> {
+    return unwrapAsync(postApiV1TriggerManual(
       this,
       options,
     ));
