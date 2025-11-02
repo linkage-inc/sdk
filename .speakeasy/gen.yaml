@@ -17,8 +17,8 @@ generation:
     securityFeb2025: true
     sharedErrorComponentsApr2025: true
   auth:
-    oAuth2ClientCredentialsEnabled: true
-    oAuth2PasswordEnabled: true
+    oAuth2ClientCredentialsEnabled: false
+    oAuth2PasswordEnabled: false
     hoistGlobalSecurity: true
   inferSSEOverload: true
   sdkHooksConfigAccess: true
@@ -26,8 +26,11 @@ generation:
     generateTests: false
     generateNewTests: true
     skipResponseBodyAssertions: false
+  schemas:
+    allOfMergeStrategy: shallowMerge
 typescript:
-  version: 0.0.4
+  version: 0.0.5
+  acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -58,6 +61,7 @@ typescript:
   jsonpath: rfc9535
   maxMethodParams: 0
   methodArguments: infer-optional-args
+  modelPropertyCasing: camel
   moduleFormat: dual
   outputModelSuffix: output
   packageName: '@linkage-open/sdk'
@@ -66,3 +70,4 @@ typescript:
   templateVersion: v2
   usageSDKInitImports: []
   useIndexModules: true
+  zodVersion: v3
