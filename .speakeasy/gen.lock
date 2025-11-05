@@ -1,23 +1,23 @@
 lockVersion: 2.0.0
 id: 637732e2-0106-4de1-8934-f7e16bfd3abc
 management:
-  docChecksum: 44442b6467053be1f4c6cdca7615427d
+  docChecksum: 3d9fa81050de1182d259e09b74c305ed
   docVersion: 0.0.0
-  speakeasyVersion: 1.615.2
-  generationVersion: 2.698.4
-  releaseVersion: 0.0.4
-  configChecksum: 295460c7127e8b1cf7cc58ea8a43782b
+  speakeasyVersion: 1.648.1
+  generationVersion: 2.739.1
+  releaseVersion: 0.1.0
+  configChecksum: dab80f87647f30aa02cca3a1edd5f933
   repoURL: https://github.com/linkage-inc/sdk.git
   installationURL: https://github.com/linkage-inc/sdk
 features:
   typescript:
     additionalDependencies: 0.1.0
-    core: 3.21.22
+    core: 3.26.0
     defaultEnabledRetries: 0.1.0
-    devContainers: 2.90.0
+    devContainers: 2.90.1
     envVarSecurityUsage: 0.1.2
     globalSecurityCallbacks: 0.1.0
-    globalServerURLs: 2.82.5
+    globalServerURLs: 2.83.0
     methodArguments: 0.1.2
     nullables: 0.1.1
     responseFormat: 0.2.3
@@ -33,6 +33,11 @@ generatedFiles:
   - RUNTIMES.md
   - USAGE.md
   - docs/lib/utils/retryconfig.md
+  - docs/models/operations/getapiv1triggertriggeridrequest.md
+  - docs/models/operations/getapiv1triggertriggeridresponse.md
+  - docs/models/operations/postapiv1triggermanualresponse.md
+  - docs/models/operations/postapiv1triggertriggeridrequest.md
+  - docs/models/operations/postapiv1triggertriggeridresponse.md
   - docs/models/operations/postapiv1xresponse.md
   - docs/sdks/linkage/README.md
   - eslint.config.mjs
@@ -44,8 +49,11 @@ generatedFiles:
   - package.json
   - src/core.ts
   - src/funcs/getApiV1State.ts
+  - src/funcs/getApiV1TriggerTriggerId.ts
   - src/funcs/postApiV1Create.ts
   - src/funcs/postApiV1State.ts
+  - src/funcs/postApiV1TriggerManual.ts
+  - src/funcs/postApiV1TriggerTriggerId.ts
   - src/funcs/postApiV1X.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
@@ -73,7 +81,10 @@ generatedFiles:
   - src/models/errors/linkageerror.ts
   - src/models/errors/responsevalidationerror.ts
   - src/models/errors/sdkvalidationerror.ts
+  - src/models/operations/getapiv1triggertriggerid.ts
   - src/models/operations/index.ts
+  - src/models/operations/postapiv1triggermanual.ts
+  - src/models/operations/postapiv1triggertriggerid.ts
   - src/models/operations/postapiv1x.ts
   - src/sdk/index.ts
   - src/sdk/sdk.ts
@@ -96,4 +107,25 @@ examples:
       responses:
         "200":
           application/json: {}
+  post_/api/v1/trigger/{triggerId}:
+    speakeasy-default-post-/api/v1-/trigger/{trigger-id}:
+      parameters:
+        path:
+          triggerId: "<id>"
+      responses:
+        "200":
+          application/json: {"success": true}
+  get_/api/v1/trigger/{triggerId}:
+    speakeasy-default-get-/api/v1-/trigger/{trigger-id}:
+      parameters:
+        path:
+          triggerId: "<id>"
+      responses:
+        "200":
+          application/json: {}
+  post_/api/v1/trigger/manual:
+    speakeasy-default-post-/api/v1-/trigger/manual:
+      responses:
+        "200":
+          application/json: {"success": true, "message": "Workflow execution started successfully"}
 examplesVersion: 1.0.2
