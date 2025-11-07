@@ -22,17 +22,17 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * use to set the summary
+ * Manual trigger endpoint for executing workflows on-demand
  *
  * @remarks
- * use jsdoc tag to set the description
+ * This endpoint requires authentication via client credentials
  */
-export function postApiV1X(
+export function postApiV1TriggerManual(
   client: LinkageCore,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.PostApiV1XResponse,
+    operations.PostApiV1TriggerManualResponse | undefined,
     | LinkageError
     | ResponseValidationError
     | ConnectionError
@@ -55,7 +55,7 @@ async function $do(
 ): Promise<
   [
     Result<
-      operations.PostApiV1XResponse,
+      operations.PostApiV1TriggerManualResponse | undefined,
       | LinkageError
       | ResponseValidationError
       | ConnectionError
@@ -68,7 +68,7 @@ async function $do(
     APICall,
   ]
 > {
-  const path = pathToFunc("/api/v1/x")();
+  const path = pathToFunc("/api/v1/trigger/manual")();
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
@@ -77,7 +77,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "post_/api/v1/x",
+    operationID: "post_/api/v1/trigger/manual",
     oAuth2Scopes: null,
 
     resolvedSecurity: null,
@@ -104,7 +104,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["4XX", "500", "5XX"],
+    errorCodes: ["4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -114,7 +114,7 @@ async function $do(
   const response = doResult.value;
 
   const [result] = await M.match<
-    operations.PostApiV1XResponse,
+    operations.PostApiV1TriggerManualResponse | undefined,
     | LinkageError
     | ResponseValidationError
     | ConnectionError
@@ -124,9 +124,16 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, operations.PostApiV1XResponse$inboundSchema),
+    M.json(
+      200,
+      operations.PostApiV1TriggerManualResponse$inboundSchema.optional(),
+    ),
     M.fail("4XX"),
-    M.fail([500, "5XX"]),
+    M.fail("5XX"),
+    M.nil(
+      "unknown",
+      operations.PostApiV1TriggerManualResponse$inboundSchema.optional(),
+    ),
   )(response, req);
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

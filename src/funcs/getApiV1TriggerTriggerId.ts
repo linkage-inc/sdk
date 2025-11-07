@@ -3,8 +3,10 @@
  */
 
 import { LinkageCore } from "../core.js";
+import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { pathToFunc } from "../lib/url.js";
 import {
@@ -27,12 +29,13 @@ import { Result } from "../types/fp.js";
  * @remarks
  * use jsdoc tag to set the description
  */
-export function postApiV1X(
+export function getApiV1TriggerTriggerId(
   client: LinkageCore,
+  request: operations.GetApiV1TriggerTriggerIdRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.PostApiV1XResponse,
+    operations.GetApiV1TriggerTriggerIdResponse | undefined,
     | LinkageError
     | ResponseValidationError
     | ConnectionError
@@ -45,17 +48,19 @@ export function postApiV1X(
 > {
   return new APIPromise($do(
     client,
+    request,
     options,
   ));
 }
 
 async function $do(
   client: LinkageCore,
+  request: operations.GetApiV1TriggerTriggerIdRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      operations.PostApiV1XResponse,
+      operations.GetApiV1TriggerTriggerIdResponse | undefined,
       | LinkageError
       | ResponseValidationError
       | ConnectionError
@@ -68,7 +73,26 @@ async function $do(
     APICall,
   ]
 > {
-  const path = pathToFunc("/api/v1/x")();
+  const parsed = safeParse(
+    request,
+    (value) =>
+      operations.GetApiV1TriggerTriggerIdRequest$outboundSchema.parse(value),
+    "Input validation failed",
+  );
+  if (!parsed.ok) {
+    return [parsed, { status: "invalid" }];
+  }
+  const payload = parsed.value;
+  const body = null;
+
+  const pathParams = {
+    triggerId: encodeSimple("triggerId", payload.triggerId, {
+      explode: false,
+      charEncoding: "percent",
+    }),
+  };
+
+  const path = pathToFunc("/api/v1/trigger/{triggerId}")(pathParams);
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
@@ -77,7 +101,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "post_/api/v1/x",
+    operationID: "get_/api/v1/trigger/{triggerId}",
     oAuth2Scopes: null,
 
     resolvedSecurity: null,
@@ -90,10 +114,11 @@ async function $do(
   };
 
   const requestRes = client._createRequest(context, {
-    method: "POST",
+    method: "GET",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
@@ -104,7 +129,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["4XX", "500", "5XX"],
+    errorCodes: ["4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -114,7 +139,7 @@ async function $do(
   const response = doResult.value;
 
   const [result] = await M.match<
-    operations.PostApiV1XResponse,
+    operations.GetApiV1TriggerTriggerIdResponse | undefined,
     | LinkageError
     | ResponseValidationError
     | ConnectionError
@@ -124,9 +149,16 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, operations.PostApiV1XResponse$inboundSchema),
+    M.json(
+      200,
+      operations.GetApiV1TriggerTriggerIdResponse$inboundSchema.optional(),
+    ),
     M.fail("4XX"),
-    M.fail([500, "5XX"]),
+    M.fail("5XX"),
+    M.nil(
+      "unknown",
+      operations.GetApiV1TriggerTriggerIdResponse$inboundSchema.optional(),
+    ),
   )(response, req);
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];
