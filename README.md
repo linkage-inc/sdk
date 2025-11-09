@@ -70,10 +70,7 @@ bun add https://github.com/linkage-inc/sdk
 ### Yarn
 
 ```bash
-yarn add https://github.com/linkage-inc/sdk zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
+yarn add https://github.com/linkage-inc/sdk
 ```
 
 > [!NOTE]
@@ -117,6 +114,9 @@ run();
 * [getApiV1State](docs/sdks/linkage/README.md#getapiv1state) - use to set the summary
 * [postApiV1State](docs/sdks/linkage/README.md#postapiv1state) - use to set the summary
 * [postApiV1X](docs/sdks/linkage/README.md#postapiv1x) - use to set the summary
+* [postApiV1TriggerTriggerId](docs/sdks/linkage/README.md#postapiv1triggertriggerid) - use to set the summary
+* [getApiV1TriggerTriggerId](docs/sdks/linkage/README.md#getapiv1triggertriggerid) - use to set the summary
+* [postApiV1TriggerManual](docs/sdks/linkage/README.md#postapiv1triggermanual) - Manual trigger endpoint for executing workflows on-demand
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -137,8 +137,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 <summary>Available standalone functions</summary>
 
 - [`getApiV1State`](docs/sdks/linkage/README.md#getapiv1state) - use to set the summary
+- [`getApiV1TriggerTriggerId`](docs/sdks/linkage/README.md#getapiv1triggertriggerid) - use to set the summary
 - [`postApiV1Create`](docs/sdks/linkage/README.md#postapiv1create) - use to set the summary
 - [`postApiV1State`](docs/sdks/linkage/README.md#postapiv1state) - use to set the summary
+- [`postApiV1TriggerManual`](docs/sdks/linkage/README.md#postapiv1triggermanual) - Manual trigger endpoint for executing workflows on-demand
+- [`postApiV1TriggerTriggerId`](docs/sdks/linkage/README.md#postapiv1triggertriggerid) - use to set the summary
 - [`postApiV1X`](docs/sdks/linkage/README.md#postapiv1x) - use to set the summary
 
 </details>
@@ -326,7 +329,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new Linkage({ httpClient });
+const sdk = new Linkage({ httpClient: httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 

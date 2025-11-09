@@ -1,4 +1,4 @@
-speakeasyVersion: 1.615.2
+speakeasyVersion: 1.651.0
 sources:
     undefined - Next.js OpenAPI Spec by Scalar:
         sourceNamespace: undefined---next-js-open-api-spec-by-scalar
@@ -14,8 +14,6 @@ targets:
         sourceNamespace: undefined---next-js-open-api-spec-by-scalar
         sourceRevisionDigest: sha256:28f777c9bf5219bfc6701833f3e161af6ee31ea7b077ae907baf9c5166b92dcc
         sourceBlobDigest: sha256:1e9ad39c2a2e71932e172e2aff2a6f494fe5474d6dd7aef93a9f6e3dca0df401
-        codeSamplesNamespace: undefined---next-js-open-api-spec-by-scalar-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:7f0c63191376c8fc4096e42c5125c0bd84c8d68fc3199a939f4a7f0c8b23d0ad
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

@@ -4,5 +4,6 @@
 
 export * from "./httpclienterrors.js";
 export * from "./linkagedefaulterror.js";
+export * from "./linkageerror.js";
 export * from "./responsevalidationerror.js";
 export * from "./sdkvalidationerror.js";
