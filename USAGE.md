@@ -5,7 +5,7 @@ import { Linkage } from "@linkage-open/sdk";
 const linkage = new Linkage();
 
 async function run() {
-  await linkage.postApiV1Create();
+  await linkage.resources.create();
 }
 
 run();

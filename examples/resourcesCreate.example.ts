@@ -8,7 +8,7 @@ dotenv.config();
  * Example usage of the @linkage-open/sdk SDK
  *
  * To run this example from the examples directory:
- * npm run build && npx tsx postApiV1Create.example.ts
+ * npm run build && npx tsx resourcesCreate.example.ts
  */
 
 import { Linkage } from "@linkage-open/sdk";
@@ -16,7 +16,7 @@ import { Linkage } from "@linkage-open/sdk";
 const linkage = new Linkage();
 
 async function main() {
-  await linkage.postApiV1Create();
+  await linkage.resources.create();
 }
 
 main().catch(console.error);

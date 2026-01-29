@@ -70,10 +70,7 @@ bun add https://github.com/linkage-inc/sdk
 ### Yarn
 
 ```bash
-yarn add https://github.com/linkage-inc/sdk zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
+yarn add https://github.com/linkage-inc/sdk
 ```
 
 > [!NOTE]
@@ -97,7 +94,7 @@ import { Linkage } from "@linkage-open/sdk";
 const linkage = new Linkage();
 
 async function run() {
-  await linkage.postApiV1Create();
+  await linkage.resources.create();
 }
 
 run();
@@ -111,12 +108,34 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-### [Linkage SDK](docs/sdks/linkage/README.md)
+### [Features](docs/sdks/features/README.md)
 
-* [postApiV1Create](docs/sdks/linkage/README.md#postapiv1create) - use to set the summary
-* [getApiV1State](docs/sdks/linkage/README.md#getapiv1state) - use to set the summary
-* [postApiV1State](docs/sdks/linkage/README.md#postapiv1state) - use to set the summary
-* [postApiV1X](docs/sdks/linkage/README.md#postapiv1x) - use to set the summary
+* [get](docs/sdks/features/README.md#get) - use to set the summary
+
+### [Nodes](docs/sdks/nodes/README.md)
+
+* [getOverlays](docs/sdks/nodes/README.md#getoverlays) - use to set the summary
+
+### [NodeTypes](docs/sdks/nodetypes/README.md)
+
+* [get](docs/sdks/nodetypes/README.md#get) - use to set the summary
+
+### [Resources](docs/sdks/resources/README.md)
+
+* [create](docs/sdks/resources/README.md#create) - use to set the summary
+* [postX](docs/sdks/resources/README.md#postx) - use to set the summary
+
+### [State](docs/sdks/state/README.md)
+
+* [options](docs/sdks/state/README.md#options) - use to set the summary
+* [get](docs/sdks/state/README.md#get) - use to set the summary
+* [update](docs/sdks/state/README.md#update) - use to set the summary
+
+### [Triggers](docs/sdks/triggers/README.md)
+
+* [executeById](docs/sdks/triggers/README.md#executebyid) - use to set the summary
+* [getById](docs/sdks/triggers/README.md#getbyid) - use to set the summary
+* [manual](docs/sdks/triggers/README.md#manual) - Manual trigger endpoint for executing workflows on-demand
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -136,10 +155,17 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`getApiV1State`](docs/sdks/linkage/README.md#getapiv1state) - use to set the summary
-- [`postApiV1Create`](docs/sdks/linkage/README.md#postapiv1create) - use to set the summary
-- [`postApiV1State`](docs/sdks/linkage/README.md#postapiv1state) - use to set the summary
-- [`postApiV1X`](docs/sdks/linkage/README.md#postapiv1x) - use to set the summary
+- [`featuresGet`](docs/sdks/features/README.md#get) - use to set the summary
+- [`nodesGetOverlays`](docs/sdks/nodes/README.md#getoverlays) - use to set the summary
+- [`nodeTypesGet`](docs/sdks/nodetypes/README.md#get) - use to set the summary
+- [`resourcesCreate`](docs/sdks/resources/README.md#create) - use to set the summary
+- [`resourcesPostX`](docs/sdks/resources/README.md#postx) - use to set the summary
+- [`stateGet`](docs/sdks/state/README.md#get) - use to set the summary
+- [`stateOptions`](docs/sdks/state/README.md#options) - use to set the summary
+- [`stateUpdate`](docs/sdks/state/README.md#update) - use to set the summary
+- [`triggersExecuteById`](docs/sdks/triggers/README.md#executebyid) - use to set the summary
+- [`triggersGetById`](docs/sdks/triggers/README.md#getbyid) - use to set the summary
+- [`triggersManual`](docs/sdks/triggers/README.md#manual) - Manual trigger endpoint for executing workflows on-demand
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -156,7 +182,7 @@ import { Linkage } from "@linkage-open/sdk";
 const linkage = new Linkage();
 
 async function run() {
-  await linkage.postApiV1Create({
+  await linkage.resources.create({
     retries: {
       strategy: "backoff",
       backoff: {
@@ -192,7 +218,7 @@ const linkage = new Linkage({
 });
 
 async function run() {
-  await linkage.postApiV1Create();
+  await linkage.resources.create();
 }
 
 run();
@@ -222,7 +248,7 @@ const linkage = new Linkage();
 
 async function run() {
   try {
-    await linkage.postApiV1Create();
+    await linkage.resources.create();
   } catch (error) {
     if (error instanceof errors.LinkageError) {
       console.log(error.message);
@@ -273,7 +299,7 @@ const linkage = new Linkage({
 });
 
 async function run() {
-  await linkage.postApiV1Create();
+  await linkage.resources.create();
 }
 
 run();
@@ -326,7 +352,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new Linkage({ httpClient });
+const sdk = new Linkage({ httpClient: httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 

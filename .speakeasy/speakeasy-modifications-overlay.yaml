@@ -2,11 +2,11 @@ overlay: 1.0.0
 x-speakeasy-jsonpath: rfc9535
 info:
   title: Speakeasy Modifications
-  version: 0.0.1
+  version: 0.0.6
   x-speakeasy-metadata:
-    type: speakeasy-modifications
-    before: ""
     after: ""
+    before: ""
+    type: speakeasy-modifications
 actions:
   - target: $["paths"]["/api/v1/create"]["post"]["responses"]
     update:
@@ -63,4 +63,212 @@ actions:
     remove: true
     x-speakeasy-metadata:
       created_at: 1758008158506
+      type: user-edit
+  - target: $["paths"]["/api/v1/state"]["get"]
+    update:
+      x-speakeasy-group: state
+      x-speakeasy-name-override: get
+    x-speakeasy-metadata:
+      after: sdk.state.get()
+      before: sdk.<no_group>.get_/api/v1/state()
+      created_at: 1769714135993
+      reviewed_at: 1769714392631
+      type: method-name
+  - target: $["paths"]["/api/v1/x"]["post"]
+    update:
+      x-speakeasy-group: resources
+      x-speakeasy-name-override: postX
+    x-speakeasy-metadata:
+      after: sdk.resources.postX()
+      before: sdk.<no_group>.post_/api/v1/x()
+      created_at: 1769714135993
+      reviewed_at: 1769714392631
+      type: method-name
+  - target: $["paths"]["/api/v1/node-types"]["get"]
+    update:
+      x-speakeasy-group: nodeTypes
+      x-speakeasy-name-override: get
+    x-speakeasy-metadata:
+      after: sdk.nodeTypes.get()
+      before: sdk.<no_group>.get_/api/v1/node-types()
+      created_at: 1769714135993
+      reviewed_at: 1769714392631
+      type: method-name
+  - target: $["paths"]["/api/v1/node-overlays"]["get"]
+    update:
+      x-speakeasy-group: nodes
+      x-speakeasy-name-override: getOverlays
+    x-speakeasy-metadata:
+      after: sdk.nodes.getOverlays()
+      before: sdk.<no_group>.get_/api/v1/node-overlays()
+      created_at: 1769714135993
+      reviewed_at: 1769714392631
+      type: method-name
+  - target: $["paths"]["/api/v1/state"]["options"]
+    update:
+      x-speakeasy-group: state
+      x-speakeasy-name-override: options
+    x-speakeasy-metadata:
+      after: sdk.state.options()
+      before: sdk.<no_group>.options_/api/v1/state()
+      created_at: 1769714135993
+      reviewed_at: 1769714392631
+      type: method-name
+  - target: $["paths"]["/api/v1/features"]["get"]
+    update:
+      x-speakeasy-group: features
+      x-speakeasy-name-override: get
+    x-speakeasy-metadata:
+      after: sdk.features.get()
+      before: sdk.<no_group>.get_/api/v1/features()
+      created_at: 1769714135993
+      reviewed_at: 1769714392631
+      type: method-name
+  - target: $["paths"]["/api/v1/trigger/{triggerId}"]["post"]
+    update:
+      x-speakeasy-group: triggers
+      x-speakeasy-name-override: executeById
+    x-speakeasy-metadata:
+      after: sdk.triggers.executeById()
+      before: sdk.<no_group>.post_/api/v1/trigger/{triggerId}()
+      created_at: 1769714135993
+      reviewed_at: 1769714392631
+      type: method-name
+  - target: $["paths"]["/api/v1/create"]["post"]
+    update:
+      x-speakeasy-group: resources
+      x-speakeasy-name-override: create
+    x-speakeasy-metadata:
+      after: sdk.resources.create()
+      before: sdk.<no_group>.post_/api/v1/create()
+      created_at: 1769714135993
+      reviewed_at: 1769714392631
+      type: method-name
+  - target: $["paths"]["/api/v1/state"]["post"]
+    update:
+      x-speakeasy-group: state
+      x-speakeasy-name-override: update
+    x-speakeasy-metadata:
+      after: sdk.state.update()
+      before: sdk.<no_group>.post_/api/v1/state()
+      created_at: 1769714135993
+      reviewed_at: 1769714392631
+      type: method-name
+  - target: $["paths"]["/api/v1/trigger/{triggerId}"]["get"]
+    update:
+      x-speakeasy-group: triggers
+      x-speakeasy-name-override: getById
+    x-speakeasy-metadata:
+      after: sdk.triggers.getById()
+      before: sdk.<no_group>.get_/api/v1/trigger/{triggerId}()
+      created_at: 1769714135993
+      reviewed_at: 1769714392631
+      type: method-name
+  - target: $["paths"]["/api/v1/trigger/manual"]["post"]
+    update:
+      x-speakeasy-group: triggers
+      x-speakeasy-name-override: manual
+    x-speakeasy-metadata:
+      after: sdk.triggers.manual()
+      before: sdk.<no_group>.post_/api/v1/trigger/manual()
+      created_at: 1769714135993
+      reviewed_at: 1769714392631
+      type: method-name
+  - target: $["paths"]["/api/v1/state"]["options"]["responses"]
+    update:
+      '200':
+        description: 'unknown return type: ReturnStatement'
+        content:
+          application/json: {}
+    x-speakeasy-metadata:
+      created_at: 1769714366899
+      type: user-edit
+  - target: $["paths"]["/api/v1/state"]["options"]["responses"]["unknown"]
+    remove: true
+    x-speakeasy-metadata:
+      created_at: 1769714366899
+      type: user-edit
+  - target: $["paths"]["/api/v1/features"]["get"]["responses"]
+    update:
+      default:
+        description: 'unknown return type: ReturnStatement'
+        content:
+          application/json: {}
+    x-speakeasy-metadata:
+      created_at: 1769714385477
+      type: user-edit
+  - target: $["paths"]["/api/v1/features"]["get"]["responses"]["unknown"]
+    remove: true
+    x-speakeasy-metadata:
+      created_at: 1769714385477
+      type: user-edit
+  - target: $["paths"]["/api/v1/node-overlays"]["get"]["responses"]
+    update:
+      default:
+        description: 'unknown return type: ReturnStatement'
+        content:
+          application/json: {}
+    x-speakeasy-metadata:
+      created_at: 1769714413478
+      type: user-edit
+  - target: $["paths"]["/api/v1/node-overlays"]["get"]["responses"]["unknown"]
+    remove: true
+    x-speakeasy-metadata:
+      created_at: 1769714413478
+      type: user-edit
+  - target: $["paths"]["/api/v1/node-types"]["get"]["responses"]
+    update:
+      default:
+        description: 'unknown return type: ReturnStatement'
+        content:
+          application/json: {}
+    x-speakeasy-metadata:
+      created_at: 1769714413478
+      type: user-edit
+  - target: $["paths"]["/api/v1/node-types"]["get"]["responses"]["unknown"]
+    remove: true
+    x-speakeasy-metadata:
+      created_at: 1769714413478
+      type: user-edit
+  - target: $["paths"]["/api/v1/trigger/{triggerId}"]["post"]["responses"]
+    update:
+      default:
+        description: 'unknown return type: ReturnStatement'
+        content:
+          application/json: {}
+    x-speakeasy-metadata:
+      created_at: 1769714413478
+      type: user-edit
+  - target: $["paths"]["/api/v1/trigger/{triggerId}"]["post"]["responses"]["unknown"]
+    remove: true
+    x-speakeasy-metadata:
+      created_at: 1769714413478
+      type: user-edit
+  - target: $["paths"]["/api/v1/trigger/{triggerId}"]["get"]["responses"]
+    update:
+      default:
+        description: 'unknown return type: ReturnStatement'
+        content:
+          application/json: {}
+    x-speakeasy-metadata:
+      created_at: 1769714413478
+      type: user-edit
+  - target: $["paths"]["/api/v1/trigger/{triggerId}"]["get"]["responses"]["unknown"]
+    remove: true
+    x-speakeasy-metadata:
+      created_at: 1769714413478
+      type: user-edit
+  - target: $["paths"]["/api/v1/trigger/manual"]["post"]["responses"]
+    update:
+      default:
+        description: 'unknown return type: ReturnStatement'
+        content:
+          application/json: {}
+    x-speakeasy-metadata:
+      created_at: 1769714413478
+      type: user-edit
+  - target: $["paths"]["/api/v1/trigger/manual"]["post"]["responses"]["unknown"]
+    remove: true
+    x-speakeasy-metadata:
+      created_at: 1769714413478
       type: user-edit

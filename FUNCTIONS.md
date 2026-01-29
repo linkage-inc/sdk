@@ -20,19 +20,19 @@ specific category of applications.
 
 ```typescript
 import { LinkageCore } from "@linkage-open/sdk/core.js";
-import { postApiV1Create } from "@linkage-open/sdk/funcs/postApiV1Create.js";
+import { resourcesCreate } from "@linkage-open/sdk/funcs/resourcesCreate.js";
 
 // Use `LinkageCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const linkage = new LinkageCore();
 
 async function run() {
-  const res = await postApiV1Create(linkage);
+  const res = await resourcesCreate(linkage);
   if (res.ok) {
     const { value: result } = res;
     
   } else {
-    console.log("postApiV1Create failed:", res.error);
+    console.log("resourcesCreate failed:", res.error);
   }
 }
 
