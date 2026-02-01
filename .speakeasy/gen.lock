@@ -5,15 +5,15 @@ management:
   docVersion: 0.1.0
   speakeasyVersion: 1.700.2
   generationVersion: 2.801.2
-  releaseVersion: 0.5.6
-  configChecksum: 6cd34e606ed4c91fda160234a8d29873
+  releaseVersion: 0.5.7
+  configChecksum: 5559aead450bec2fde5c09c1dbae0a49
   repoURL: https://github.com/linkage-inc/sdk.git
   installationURL: https://github.com/linkage-inc/sdk
   published: true
 persistentEdits:
-  generation_id: 8c2c1213-328d-4b7b-96bc-f5f9a4c81117
-  pristine_commit_hash: 9bdc123a2b0b74965a0625821e962da764fb7e51
-  pristine_tree_hash: d6121ff47242d50297af48c7f68aa0662731a94e
+  generation_id: d0edd782-576a-457c-93ea-eb55241c090d
+  pristine_commit_hash: 9c6c30986fb4da2d818e3a0aa417a4cb2de8878f
+  pristine_tree_hash: ac8bb12a18c00748c0c43ea254dcd5bd224c2c3c
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -521,12 +521,12 @@ trackedFiles:
     pristine_git_object: 2a63483da6b6f754a2c95de4bca7b0087b44928b
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:a87173dfa66d7a2419c74257150915a6a5fb36df
-    pristine_git_object: 143ee587afa4c3e7261e87a1a7271610445a4f5f
+    last_write_checksum: sha1:2b5a7a61d48d9ef4af0a1671ef3b8f37ded1887b
+    pristine_git_object: 1124cf608bbd23893da12f7823ad395c6dca666b
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:92b026ee8db314b62aa2d9869111f18625de96c9
-    pristine_git_object: edfacef4430138cdc32360d9616d74e77c7fef7d
+    last_write_checksum: sha1:a2419df2d5d9e90e249ba1a6e834dd82c58048b8
+    pristine_git_object: 12ab8bd22de57d165e7bffdee5db571d3dd375bd
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:30a5a8f671f4017497ab4d2067146c2405460086
@@ -617,8 +617,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:b97083997eb48c8c3a478e555a517cc915596c05
-    pristine_git_object: d5155d0ee1259a92121003387317a8301d2d5123
+    last_write_checksum: sha1:5942e5926abb47869f1ebf5c342bdb44f93e5312
+    pristine_git_object: 572a3c2990e1f9eb0e2707729ad5ea778591a02f
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250

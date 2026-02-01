@@ -1,7 +1,7 @@
 workflowVersion: 1.0.0
 speakeasyVersion: latest
 sources:
-    undefined - Next.js OpenAPI Spec by Scalar:
+    linkage-v1-api:
         inputs:
             - location: http://localhost:3000/api/openapi/schema.json
         overlays:
@@ -12,7 +12,7 @@ sources:
 targets:
     typescript:
         target: typescript
-        source: undefined - Next.js OpenAPI Spec by Scalar
+        source: linkage-v1-api
         publish:
             npm:
                 token: $npm_token
