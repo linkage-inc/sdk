@@ -1,10 +1,9 @@
 {
   "name": "@linkage-open/sdk",
-  "version": "0.5.4",
+  "version": "0.5.6",
   "author": "Speakeasy",
   "type": "module",
   "tshy": {
-    "private": false,
     "sourceDialects": [
       "@linkage-open/sdk/source"
     ],

@@ -3,7 +3,7 @@ speakeasyVersion: latest
 sources:
     undefined - Next.js OpenAPI Spec by Scalar:
         inputs:
-            - location: https://linkage.dev/api/openapi/schema.json
+            - location: http://localhost:3000/api/openapi/schema.json
         overlays:
             - location: .speakeasy/speakeasy-modifications-overlay.yaml
         output: .speakeasy/out.openapi.yaml

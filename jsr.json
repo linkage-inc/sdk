@@ -1,11 +1,12 @@
+
+
 {
   "name": "@linkage-open/sdk",
-  "version": "0.5.4",
-  "private": false,
+  "version": "0.5.6",
   "exports": {
-    ".": "./src/index.ts",
-    "./models/errors": "./src/models/errors/index.ts",
-    "./models": "./src/models/index.ts",
+    ".": "./src/index.ts",    
+    "./models/errors": "./src/models/errors/index.ts",    
+    "./models": "./src/models/index.ts",    
     "./models/operations": "./src/models/operations/index.ts",
     "./lib/config": "./src/lib/config.ts",
     "./lib/http": "./src/lib/http.ts",

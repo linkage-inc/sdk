@@ -14,7 +14,7 @@ targets:
         sourceRevisionDigest: sha256:d58295c94269e6a1c4f5a328ca16c7b2f140e19f5e1bdb77787fa44de90afcfd
         sourceBlobDigest: sha256:67853dd3291a1bcc3dd079138e6f7405416507eeb8d225b465fcadca4e126e2b
         codeSamplesNamespace: undefined---next-js-open-api-spec-by-scalar-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:d11043e75d559fca456749ffb7515d87f1bd51ca00b0e82eeea189c5454385bb
+        codeSamplesRevisionDigest: sha256:8f148995785cd813a6f20b39a7e6bec0744449e0bbe1aa1485f8d6c3d51b80a7
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -31,6 +31,9 @@ workflow:
         typescript:
             target: typescript
             source: undefined - Next.js OpenAPI Spec by Scalar
+            publish:
+                npm:
+                    token: $npm_token
             codeSamples:
                 registry:
                     location: registry.speakeasyapi.dev/linkage/open/undefined---next-js-open-api-spec-by-scalar-typescript-code-samples
