@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -11,19 +12,114 @@ export type PostApiV1TriggerTriggerIdRequest = {
   triggerId: string;
 };
 
+export const PostApiV1TriggerTriggerIdNotFoundMessage = {
+  TriggerNotFound: "Trigger not found",
+  WorkflowNotFound: "Workflow not found",
+} as const;
+export type PostApiV1TriggerTriggerIdNotFoundMessage = ClosedEnum<
+  typeof PostApiV1TriggerTriggerIdNotFoundMessage
+>;
+
+export type PostApiV1TriggerTriggerIdNotFoundError = {
+  message?: PostApiV1TriggerTriggerIdNotFoundMessage | undefined;
+  details?: any | undefined;
+};
+
+export const PostApiV1TriggerTriggerIdForbiddenMessage = {
+  TriggerIsDisabled: "Trigger is disabled",
+} as const;
+export type PostApiV1TriggerTriggerIdForbiddenMessage = ClosedEnum<
+  typeof PostApiV1TriggerTriggerIdForbiddenMessage
+>;
+
+export type PostApiV1TriggerTriggerIdForbiddenError = {
+  message?: PostApiV1TriggerTriggerIdForbiddenMessage | undefined;
+  details?: any | undefined;
+};
+
+export const PostApiV1TriggerTriggerIdUnauthorizedMessage = {
+  Unauthorized: "Unauthorized",
+} as const;
+export type PostApiV1TriggerTriggerIdUnauthorizedMessage = ClosedEnum<
+  typeof PostApiV1TriggerTriggerIdUnauthorizedMessage
+>;
+
+export type PostApiV1TriggerTriggerIdUnauthorizedError = {
+  message?: PostApiV1TriggerTriggerIdUnauthorizedMessage | undefined;
+  details?: any | undefined;
+};
+
+export const PostApiV1TriggerTriggerIdBadRequestMessage = {
+  TriggerIDIsRequired: "Trigger ID is required",
+  InvalidTriggerTypeForThisEndpoint: "Invalid trigger type for this endpoint",
+  InvalidJSONPayload: "Invalid JSON payload",
+} as const;
+export type PostApiV1TriggerTriggerIdBadRequestMessage = ClosedEnum<
+  typeof PostApiV1TriggerTriggerIdBadRequestMessage
+>;
+
+export type PostApiV1TriggerTriggerIdBadRequestError = {
+  message?: PostApiV1TriggerTriggerIdBadRequestMessage | undefined;
+  details?: any | undefined;
+};
+
 /**
- * TODO: grab this from jsdoc and add a default
+ * Validates the webhook trigger and starts a workflow execution.
  */
 export type PostApiV1TriggerTriggerIdResponse = {
   success?: boolean | undefined;
   /**
-   * TODO: This is an unknown type
+   * Unknown type
    */
-  executionId?: any | null | undefined;
+  executionId?: any | undefined;
   /**
-   * TODO: This is an unknown type
+   * Unknown type
    */
-  triggerExecutionId?: any | null | undefined;
+  triggerExecutionId?: any | undefined;
+};
+
+export const PostApiV1TriggerManualUnauthorizedMessage = {
+  ClientCredentialsRequired: "Client credentials required",
+  Unauthorized: "Unauthorized",
+} as const;
+export type PostApiV1TriggerManualUnauthorizedMessage = ClosedEnum<
+  typeof PostApiV1TriggerManualUnauthorizedMessage
+>;
+
+export type PostApiV1TriggerManualUnauthorizedError = {
+  message?: PostApiV1TriggerManualUnauthorizedMessage | undefined;
+  details?: any | undefined;
+};
+
+export const PostApiV1TriggerManualBadRequestMessage = {
+  InvalidJSONBody: "Invalid JSON body",
+  TriggerIDIsRequired: "Trigger ID is required",
+  ThisEndpointOnlySupportsManualTriggers:
+    "This endpoint only supports manual triggers",
+} as const;
+export type PostApiV1TriggerManualBadRequestMessage = ClosedEnum<
+  typeof PostApiV1TriggerManualBadRequestMessage
+>;
+
+export type PostApiV1TriggerManualBadRequestError = {
+  message?: PostApiV1TriggerManualBadRequestMessage | undefined;
+  details?: any | undefined;
+};
+
+/**
+ * Executes a workflow on-demand using client credentials and an optional payload.
+ */
+export type PostApiV1TriggerManualResponse = {
+  success?: boolean | undefined;
+  /**
+   * Unknown type
+   */
+  executionId?: any | undefined;
+  /**
+   * Unknown type
+   */
+  triggerExecutionId?: any | undefined;
+  message?: string | undefined;
 };
 
 /** @internal */
@@ -51,14 +147,132 @@ export function postApiV1TriggerTriggerIdRequestToJSON(
 }
 
 /** @internal */
+export const PostApiV1TriggerTriggerIdNotFoundMessage$inboundSchema:
+  z.ZodNativeEnum<typeof PostApiV1TriggerTriggerIdNotFoundMessage> = z
+    .nativeEnum(PostApiV1TriggerTriggerIdNotFoundMessage);
+
+/** @internal */
+export const PostApiV1TriggerTriggerIdNotFoundError$inboundSchema: z.ZodType<
+  PostApiV1TriggerTriggerIdNotFoundError,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  message: PostApiV1TriggerTriggerIdNotFoundMessage$inboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function postApiV1TriggerTriggerIdNotFoundErrorFromJSON(
+  jsonString: string,
+): SafeParseResult<PostApiV1TriggerTriggerIdNotFoundError, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      PostApiV1TriggerTriggerIdNotFoundError$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostApiV1TriggerTriggerIdNotFoundError' from JSON`,
+  );
+}
+
+/** @internal */
+export const PostApiV1TriggerTriggerIdForbiddenMessage$inboundSchema:
+  z.ZodNativeEnum<typeof PostApiV1TriggerTriggerIdForbiddenMessage> = z
+    .nativeEnum(PostApiV1TriggerTriggerIdForbiddenMessage);
+
+/** @internal */
+export const PostApiV1TriggerTriggerIdForbiddenError$inboundSchema: z.ZodType<
+  PostApiV1TriggerTriggerIdForbiddenError,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  message: PostApiV1TriggerTriggerIdForbiddenMessage$inboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function postApiV1TriggerTriggerIdForbiddenErrorFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  PostApiV1TriggerTriggerIdForbiddenError,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      PostApiV1TriggerTriggerIdForbiddenError$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'PostApiV1TriggerTriggerIdForbiddenError' from JSON`,
+  );
+}
+
+/** @internal */
+export const PostApiV1TriggerTriggerIdUnauthorizedMessage$inboundSchema:
+  z.ZodNativeEnum<typeof PostApiV1TriggerTriggerIdUnauthorizedMessage> = z
+    .nativeEnum(PostApiV1TriggerTriggerIdUnauthorizedMessage);
+
+/** @internal */
+export const PostApiV1TriggerTriggerIdUnauthorizedError$inboundSchema:
+  z.ZodType<PostApiV1TriggerTriggerIdUnauthorizedError, z.ZodTypeDef, unknown> =
+    z.object({
+      message: PostApiV1TriggerTriggerIdUnauthorizedMessage$inboundSchema
+        .optional(),
+      details: z.any().optional(),
+    });
+
+export function postApiV1TriggerTriggerIdUnauthorizedErrorFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  PostApiV1TriggerTriggerIdUnauthorizedError,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      PostApiV1TriggerTriggerIdUnauthorizedError$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'PostApiV1TriggerTriggerIdUnauthorizedError' from JSON`,
+  );
+}
+
+/** @internal */
+export const PostApiV1TriggerTriggerIdBadRequestMessage$inboundSchema:
+  z.ZodNativeEnum<typeof PostApiV1TriggerTriggerIdBadRequestMessage> = z
+    .nativeEnum(PostApiV1TriggerTriggerIdBadRequestMessage);
+
+/** @internal */
+export const PostApiV1TriggerTriggerIdBadRequestError$inboundSchema: z.ZodType<
+  PostApiV1TriggerTriggerIdBadRequestError,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  message: PostApiV1TriggerTriggerIdBadRequestMessage$inboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function postApiV1TriggerTriggerIdBadRequestErrorFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  PostApiV1TriggerTriggerIdBadRequestError,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      PostApiV1TriggerTriggerIdBadRequestError$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'PostApiV1TriggerTriggerIdBadRequestError' from JSON`,
+  );
+}
+
+/** @internal */
 export const PostApiV1TriggerTriggerIdResponse$inboundSchema: z.ZodType<
   PostApiV1TriggerTriggerIdResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({
   success: z.boolean().optional(),
-  executionId: z.nullable(z.any()).optional(),
-  triggerExecutionId: z.nullable(z.any()).optional(),
+  executionId: z.any().optional(),
+  triggerExecutionId: z.any().optional(),
 });
 
 export function postApiV1TriggerTriggerIdResponseFromJSON(
@@ -68,5 +282,84 @@ export function postApiV1TriggerTriggerIdResponseFromJSON(
     jsonString,
     (x) => PostApiV1TriggerTriggerIdResponse$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'PostApiV1TriggerTriggerIdResponse' from JSON`,
+  );
+}
+
+/** @internal */
+export const PostApiV1TriggerManualUnauthorizedMessage$inboundSchema:
+  z.ZodNativeEnum<typeof PostApiV1TriggerManualUnauthorizedMessage> = z
+    .nativeEnum(PostApiV1TriggerManualUnauthorizedMessage);
+
+/** @internal */
+export const PostApiV1TriggerManualUnauthorizedError$inboundSchema: z.ZodType<
+  PostApiV1TriggerManualUnauthorizedError,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  message: PostApiV1TriggerManualUnauthorizedMessage$inboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function postApiV1TriggerManualUnauthorizedErrorFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  PostApiV1TriggerManualUnauthorizedError,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      PostApiV1TriggerManualUnauthorizedError$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'PostApiV1TriggerManualUnauthorizedError' from JSON`,
+  );
+}
+
+/** @internal */
+export const PostApiV1TriggerManualBadRequestMessage$inboundSchema:
+  z.ZodNativeEnum<typeof PostApiV1TriggerManualBadRequestMessage> = z
+    .nativeEnum(PostApiV1TriggerManualBadRequestMessage);
+
+/** @internal */
+export const PostApiV1TriggerManualBadRequestError$inboundSchema: z.ZodType<
+  PostApiV1TriggerManualBadRequestError,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  message: PostApiV1TriggerManualBadRequestMessage$inboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function postApiV1TriggerManualBadRequestErrorFromJSON(
+  jsonString: string,
+): SafeParseResult<PostApiV1TriggerManualBadRequestError, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      PostApiV1TriggerManualBadRequestError$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostApiV1TriggerManualBadRequestError' from JSON`,
+  );
+}
+
+/** @internal */
+export const PostApiV1TriggerManualResponse$inboundSchema: z.ZodType<
+  PostApiV1TriggerManualResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  success: z.boolean().optional(),
+  executionId: z.any().optional(),
+  triggerExecutionId: z.any().optional(),
+  message: z.string().optional(),
+});
+
+export function postApiV1TriggerManualResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<PostApiV1TriggerManualResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PostApiV1TriggerManualResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostApiV1TriggerManualResponse' from JSON`,
   );
 }

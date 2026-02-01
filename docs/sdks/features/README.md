@@ -4,11 +4,11 @@
 
 ### Available Operations
 
-* [get](#get) - use to set the summary
+* [get](#get) - Get project features
 
 ## get
 
-use jsdoc tag to set the description
+Returns enabled feature flags for the project, including billing-gated features.
 
 ### Example Usage
 
@@ -66,6 +66,8 @@ run();
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.LinkageDefaultError | 4XX, 5XX                   | \*/\*                      |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| errors.GetApiV1FeaturesUnauthorizedError   | 401                                        | application/json                           |
+| errors.GetApiV1FeaturesInternalServerError | 500                                        | application/json                           |
+| errors.LinkageDefaultError                 | 4XX, 5XX                                   | \*/\*                                      |

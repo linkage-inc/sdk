@@ -1,6 +1,6 @@
 # GetApiV1NodeOverlaysResponse
 
-TODO: grab this from jsdoc and add a default
+Returns node overlay metadata configured for a project.
 
 ## Example Usage
 
@@ -12,6 +12,6 @@ let value: GetApiV1NodeOverlaysResponse = {};
 
 ## Fields
 
-| Field                         | Type                          | Required                      | Description                   |
-| ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- |
-| `overlays`                    | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `overlays`         | *any*              | :heavy_minus_sign: | N/A                |

@@ -5,7 +5,9 @@ import { Linkage } from "@linkage-open/sdk";
 const linkage = new Linkage();
 
 async function run() {
-  await linkage.resources.create();
+  const result = await linkage.workflows.create();
+
+  console.log(result);
 }
 
 run();

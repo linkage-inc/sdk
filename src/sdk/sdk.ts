@@ -4,16 +4,19 @@
 
 import { ClientSDK } from "../lib/sdks.js";
 import { Features } from "./features.js";
-import { Nodes } from "./nodes.js";
+import { ManualTrigger } from "./manualtrigger.js";
+import { NodeOverlays } from "./nodeoverlays.js";
 import { NodeTypes } from "./nodetypes.js";
-import { Resources } from "./resources.js";
+import { Runs } from "./runs.js";
 import { State } from "./state.js";
-import { Triggers } from "./triggers.js";
+import { Trigger } from "./trigger.js";
+import { Workflow } from "./workflow.js";
+import { Workflows } from "./workflows.js";
 
 export class Linkage extends ClientSDK {
-  private _resources?: Resources;
-  get resources(): Resources {
-    return (this._resources ??= new Resources(this._options));
+  private _workflows?: Workflows;
+  get workflows(): Workflows {
+    return (this._workflows ??= new Workflows(this._options));
   }
 
   private _features?: Features;
@@ -21,9 +24,9 @@ export class Linkage extends ClientSDK {
     return (this._features ??= new Features(this._options));
   }
 
-  private _nodes?: Nodes;
-  get nodes(): Nodes {
-    return (this._nodes ??= new Nodes(this._options));
+  private _nodeOverlays?: NodeOverlays;
+  get nodeOverlays(): NodeOverlays {
+    return (this._nodeOverlays ??= new NodeOverlays(this._options));
   }
 
   private _nodeTypes?: NodeTypes;
@@ -31,13 +34,28 @@ export class Linkage extends ClientSDK {
     return (this._nodeTypes ??= new NodeTypes(this._options));
   }
 
+  private _runs?: Runs;
+  get runs(): Runs {
+    return (this._runs ??= new Runs(this._options));
+  }
+
   private _state?: State;
   get state(): State {
     return (this._state ??= new State(this._options));
   }
 
-  private _triggers?: Triggers;
-  get triggers(): Triggers {
-    return (this._triggers ??= new Triggers(this._options));
+  private _workflow?: Workflow;
+  get workflow(): Workflow {
+    return (this._workflow ??= new Workflow(this._options));
+  }
+
+  private _trigger?: Trigger;
+  get trigger(): Trigger {
+    return (this._trigger ??= new Trigger(this._options));
+  }
+
+  private _manualTrigger?: ManualTrigger;
+  get manualTrigger(): ManualTrigger {
+    return (this._manualTrigger ??= new ManualTrigger(this._options));
   }
 }

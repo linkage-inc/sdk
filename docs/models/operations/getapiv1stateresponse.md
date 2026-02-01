@@ -1,6 +1,6 @@
 # GetApiV1StateResponse
 
-unknown return type: ReturnStatement
+Fetches workflow nodes/edges and hashes for a workflow.
 
 ## Example Usage
 
@@ -12,11 +12,11 @@ let value: GetApiV1StateResponse = {};
 
 ## Fields
 
-| Field                         | Type                          | Required                      | Description                   |
-| ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- |
-| `nodes`                       | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |
-| `edges`                       | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |
-| `nodesById`                   | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |
-| `edgesById`                   | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |
-| `nodesHash`                   | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |
-| `edgesHash`                   | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `nodes`            | *any*              | :heavy_minus_sign: | N/A                |
+| `edges`            | *any*              | :heavy_minus_sign: | Circular type      |
+| `nodesById`        | *any*              | :heavy_minus_sign: | Circular type      |
+| `edgesById`        | *any*              | :heavy_minus_sign: | Circular type      |
+| `nodesHash`        | *string*           | :heavy_minus_sign: | N/A                |
+| `edgesHash`        | *any*              | :heavy_minus_sign: | Circular type      |

@@ -1,24 +1,19 @@
 # GetApiV1NodeTypesResponse
 
-TODO: grab this from jsdoc and add a default
+Returns the available node types for the project, optionally narrowed by schema version.
 
 ## Example Usage
 
 ```typescript
 import { GetApiV1NodeTypesResponse } from "@linkage-open/sdk/models/operations";
 
-let value: GetApiV1NodeTypesResponse = {
-  versions: [
-    "<value 1>",
-    "<value 2>",
-  ],
-};
+let value: GetApiV1NodeTypesResponse = {};
 ```
 
 ## Fields
 
-| Field                         | Type                          | Required                      | Description                   | Example                       |
-| ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- |
-| `version`                     | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |                               |
-| `versions`                    | *any*[]                       | :heavy_minus_sign:            | N/A                           | [<br/>null,<br/>null<br/>]    |
-| `nodes`                       | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |                               |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `version`          | *any*              | :heavy_minus_sign: | N/A                |
+| `versions`         | *any*              | :heavy_minus_sign: | Unknown type       |
+| `nodes`            | *any*              | :heavy_minus_sign: | Unknown type       |

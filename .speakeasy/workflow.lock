@@ -2,27 +2,26 @@ speakeasyVersion: 1.700.2
 sources:
     undefined - Next.js OpenAPI Spec by Scalar:
         sourceNamespace: undefined---next-js-open-api-spec-by-scalar
-        sourceRevisionDigest: sha256:28f777c9bf5219bfc6701833f3e161af6ee31ea7b077ae907baf9c5166b92dcc
-        sourceBlobDigest: sha256:1e9ad39c2a2e71932e172e2aff2a6f494fe5474d6dd7aef93a9f6e3dca0df401
+        sourceRevisionDigest: sha256:d58295c94269e6a1c4f5a328ca16c7b2f140e19f5e1bdb77787fa44de90afcfd
+        sourceBlobDigest: sha256:67853dd3291a1bcc3dd079138e6f7405416507eeb8d225b465fcadca4e126e2b
         tags:
             - latest
-            - speakeasy-sdk-regen-1758008986
-            - 0.0.0
+            - 0.1.0
 targets:
     typescript:
         source: undefined - Next.js OpenAPI Spec by Scalar
         sourceNamespace: undefined---next-js-open-api-spec-by-scalar
-        sourceRevisionDigest: sha256:28f777c9bf5219bfc6701833f3e161af6ee31ea7b077ae907baf9c5166b92dcc
-        sourceBlobDigest: sha256:1e9ad39c2a2e71932e172e2aff2a6f494fe5474d6dd7aef93a9f6e3dca0df401
+        sourceRevisionDigest: sha256:d58295c94269e6a1c4f5a328ca16c7b2f140e19f5e1bdb77787fa44de90afcfd
+        sourceBlobDigest: sha256:67853dd3291a1bcc3dd079138e6f7405416507eeb8d225b465fcadca4e126e2b
         codeSamplesNamespace: undefined---next-js-open-api-spec-by-scalar-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:23e5a4c2570e4874e7d173a779e5d95181082453366201584061b33b01a8cbb4
+        codeSamplesRevisionDigest: sha256:9100e93d5da2cb4718a94c1ac9495f8b4921b0a429f660d1e418d34ca1d8e9fe
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
         undefined - Next.js OpenAPI Spec by Scalar:
             inputs:
-                - location: https://www.linkage.dev/api/openapi/schema.json
+                - location: http://localhost:3000/api/openapi/schema.json
             overlays:
                 - location: .speakeasy/speakeasy-modifications-overlay.yaml
             output: .speakeasy/out.openapi.yaml

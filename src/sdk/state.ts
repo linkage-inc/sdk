@@ -11,10 +11,10 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class State extends ClientSDK {
   /**
-   * use to set the summary
+   * Preflight workflow state requests
    *
    * @remarks
-   * use jsdoc tag to set the description
+   * Returns CORS headers for workflow state GET/POST requests.
    */
   async options(
     options?: RequestOptions,
@@ -26,29 +26,31 @@ export class State extends ClientSDK {
   }
 
   /**
-   * use to set the summary
+   * Get workflow state
    *
    * @remarks
-   * use jsdoc tag to set the description
+   * Fetches workflow nodes/edges and hashes for a workflow.
    */
   async get(
+    request?: operations.GetApiV1StateRequest | undefined,
     options?: RequestOptions,
   ): Promise<operations.GetApiV1StateResponse> {
     return unwrapAsync(stateGet(
       this,
+      request,
       options,
     ));
   }
 
   /**
-   * use to set the summary
+   * Update workflow state
    *
    * @remarks
-   * use jsdoc tag to set the description
+   * Persists workflow nodes/edges when the payload hash changes.
    */
   async update(
     options?: RequestOptions,
-  ): Promise<operations.PostApiV1StateResponse> {
+  ): Promise<operations.PostApiV1StateResponse | undefined> {
     return unwrapAsync(stateUpdate(
       this,
       options,

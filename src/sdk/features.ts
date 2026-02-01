@@ -9,14 +9,14 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Features extends ClientSDK {
   /**
-   * use to set the summary
+   * Get project features
    *
    * @remarks
-   * use jsdoc tag to set the description
+   * Returns enabled feature flags for the project, including billing-gated features.
    */
   async get(
     options?: RequestOptions,
-  ): Promise<operations.GetApiV1FeaturesResponse | undefined> {
+  ): Promise<operations.GetApiV1FeaturesResponse> {
     return unwrapAsync(featuresGet(
       this,
       options,

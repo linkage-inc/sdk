@@ -10,7 +10,7 @@ let value: Updated = {};
 
 ## Fields
 
-| Field                         | Type                          | Required                      | Description                   |
-| ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- |
-| `nodes`                       | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |
-| `edges`                       | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `nodes`            | *boolean*          | :heavy_minus_sign: | N/A                |
+| `edges`            | *boolean*          | :heavy_minus_sign: | N/A                |

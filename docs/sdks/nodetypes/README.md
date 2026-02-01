@@ -4,11 +4,11 @@
 
 ### Available Operations
 
-* [get](#get) - use to set the summary
+* [get](#get) - Get node types
 
 ## get
 
-use jsdoc tag to set the description
+Returns the available node types for the project, optionally narrowed by schema version.
 
 ### Example Usage
 
@@ -66,6 +66,9 @@ run();
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.LinkageDefaultError | 4XX, 5XX                   | \*/\*                      |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| errors.GetApiV1FeaturesUnauthorizedError   | 401                                        | application/json                           |
+| errors.GetApiV1NodeTypesNotFoundError      | 404                                        | application/json                           |
+| errors.GetApiV1FeaturesInternalServerError | 500                                        | application/json                           |
+| errors.LinkageDefaultError                 | 4XX, 5XX                                   | \*/\*                                      |

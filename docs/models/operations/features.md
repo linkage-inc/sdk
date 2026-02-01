@@ -10,7 +10,7 @@ let value: Features = {};
 
 ## Fields
 
-| Field                         | Type                          | Required                      | Description                   |
-| ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- |
-| `controlBlocks`               | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |
-| `realtimeCollaboration`       | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |
+| Field                   | Type                    | Required                | Description             |
+| ----------------------- | ----------------------- | ----------------------- | ----------------------- |
+| `controlBlocks`         | *any*                   | :heavy_minus_sign:      | N/A                     |
+| `realtimeCollaboration` | *any*                   | :heavy_minus_sign:      | Circular type           |

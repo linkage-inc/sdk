@@ -4,26 +4,143 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export const GetApiV1FeaturesMessageProjectHasAnInvalidConfiguration = {
+  ProjectHasAnInvalidConfiguration: "Project has an invalid configuration",
+} as const;
+export type GetApiV1FeaturesMessageProjectHasAnInvalidConfiguration =
+  ClosedEnum<typeof GetApiV1FeaturesMessageProjectHasAnInvalidConfiguration>;
+
+export type GetApiV1FeaturesErrorProjectHasAnInvalidConfiguration = {
+  message?: GetApiV1FeaturesMessageProjectHasAnInvalidConfiguration | undefined;
+  details?: any | undefined;
+};
+
+export const GetApiV1FeaturesUnauthorizedMessage = {
+  RequiresValidClientIdAndClientSecret:
+    "Requires valid client id and client secret",
+  InvalidClientIdOrSecret: "Invalid client id or secret",
+} as const;
+export type GetApiV1FeaturesUnauthorizedMessage = ClosedEnum<
+  typeof GetApiV1FeaturesUnauthorizedMessage
+>;
+
+export type GetApiV1FeaturesUnauthorizedError = {
+  message?: GetApiV1FeaturesUnauthorizedMessage | undefined;
+  details?: any | undefined;
+};
+
 export type Features = {
+  controlBlocks?: any | undefined;
   /**
-   * TODO: This is an unknown type
+   * Circular type
    */
-  controlBlocks?: any | null | undefined;
-  /**
-   * TODO: This is an unknown type
-   */
-  realtimeCollaboration?: any | null | undefined;
+  realtimeCollaboration?: any | undefined;
 };
 
 /**
- * TODO: grab this from jsdoc and add a default
+ * Returns enabled feature flags for the project, including billing-gated features.
  */
 export type GetApiV1FeaturesResponse = {
   features?: Features | undefined;
 };
+
+/**
+ * Returns node overlay metadata configured for a project.
+ */
+export type GetApiV1NodeOverlaysResponse = {
+  overlays?: any | undefined;
+};
+
+export const MessageSchemaVersionNotFound = {
+  SchemaVersionNotFound: "Schema version not found",
+} as const;
+export type MessageSchemaVersionNotFound = ClosedEnum<
+  typeof MessageSchemaVersionNotFound
+>;
+
+export type ErrorSchemaVersionNotFound = {
+  message?: MessageSchemaVersionNotFound | undefined;
+  details?: any | undefined;
+};
+
+/**
+ * Returns the available node types for the project, optionally narrowed by schema version.
+ */
+export type GetApiV1NodeTypesResponse = {
+  version?: any | undefined;
+  /**
+   * Unknown type
+   */
+  versions?: any | undefined;
+  /**
+   * Unknown type
+   */
+  nodes?: any | undefined;
+};
+
+/** @internal */
+export const GetApiV1FeaturesMessageProjectHasAnInvalidConfiguration$inboundSchema:
+  z.ZodNativeEnum<
+    typeof GetApiV1FeaturesMessageProjectHasAnInvalidConfiguration
+  > = z.nativeEnum(GetApiV1FeaturesMessageProjectHasAnInvalidConfiguration);
+
+/** @internal */
+export const GetApiV1FeaturesErrorProjectHasAnInvalidConfiguration$inboundSchema:
+  z.ZodType<
+    GetApiV1FeaturesErrorProjectHasAnInvalidConfiguration,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    message:
+      GetApiV1FeaturesMessageProjectHasAnInvalidConfiguration$inboundSchema
+        .optional(),
+    details: z.any().optional(),
+  });
+
+export function getApiV1FeaturesErrorProjectHasAnInvalidConfigurationFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  GetApiV1FeaturesErrorProjectHasAnInvalidConfiguration,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      GetApiV1FeaturesErrorProjectHasAnInvalidConfiguration$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'GetApiV1FeaturesErrorProjectHasAnInvalidConfiguration' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetApiV1FeaturesUnauthorizedMessage$inboundSchema: z.ZodNativeEnum<
+  typeof GetApiV1FeaturesUnauthorizedMessage
+> = z.nativeEnum(GetApiV1FeaturesUnauthorizedMessage);
+
+/** @internal */
+export const GetApiV1FeaturesUnauthorizedError$inboundSchema: z.ZodType<
+  GetApiV1FeaturesUnauthorizedError,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  message: GetApiV1FeaturesUnauthorizedMessage$inboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function getApiV1FeaturesUnauthorizedErrorFromJSON(
+  jsonString: string,
+): SafeParseResult<GetApiV1FeaturesUnauthorizedError, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetApiV1FeaturesUnauthorizedError$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetApiV1FeaturesUnauthorizedError' from JSON`,
+  );
+}
 
 /** @internal */
 export const Features$inboundSchema: z.ZodType<
@@ -31,8 +148,8 @@ export const Features$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  controlBlocks: z.nullable(z.any()).optional(),
-  realtimeCollaboration: z.nullable(z.any()).optional(),
+  controlBlocks: z.any().optional(),
+  realtimeCollaboration: z.any().optional(),
 });
 
 export function featuresFromJSON(
@@ -61,5 +178,70 @@ export function getApiV1FeaturesResponseFromJSON(
     jsonString,
     (x) => GetApiV1FeaturesResponse$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'GetApiV1FeaturesResponse' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetApiV1NodeOverlaysResponse$inboundSchema: z.ZodType<
+  GetApiV1NodeOverlaysResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  overlays: z.any().optional(),
+});
+
+export function getApiV1NodeOverlaysResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetApiV1NodeOverlaysResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetApiV1NodeOverlaysResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetApiV1NodeOverlaysResponse' from JSON`,
+  );
+}
+
+/** @internal */
+export const MessageSchemaVersionNotFound$inboundSchema: z.ZodNativeEnum<
+  typeof MessageSchemaVersionNotFound
+> = z.nativeEnum(MessageSchemaVersionNotFound);
+
+/** @internal */
+export const ErrorSchemaVersionNotFound$inboundSchema: z.ZodType<
+  ErrorSchemaVersionNotFound,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  message: MessageSchemaVersionNotFound$inboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function errorSchemaVersionNotFoundFromJSON(
+  jsonString: string,
+): SafeParseResult<ErrorSchemaVersionNotFound, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ErrorSchemaVersionNotFound$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ErrorSchemaVersionNotFound' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetApiV1NodeTypesResponse$inboundSchema: z.ZodType<
+  GetApiV1NodeTypesResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  version: z.any().optional(),
+  versions: z.any().optional(),
+  nodes: z.any().optional(),
+});
+
+export function getApiV1NodeTypesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetApiV1NodeTypesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetApiV1NodeTypesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetApiV1NodeTypesResponse' from JSON`,
   );
 }

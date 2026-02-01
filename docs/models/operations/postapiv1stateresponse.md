@@ -1,6 +1,6 @@
 # PostApiV1StateResponse
 
-unknown return type: ReturnStatement
+Persists workflow nodes/edges when the payload hash changes.
 
 ## Example Usage
 
@@ -14,6 +14,6 @@ let value: PostApiV1StateResponse = {};
 
 | Field                                                    | Type                                                     | Required                                                 | Description                                              |
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `nodesHash`                                              | *any*                                                    | :heavy_minus_sign:                                       | TODO: This is an unknown type                            |
-| `edgesHash`                                              | *any*                                                    | :heavy_minus_sign:                                       | TODO: This is an unknown type                            |
+| `nodesHash`                                              | *string*                                                 | :heavy_minus_sign:                                       | N/A                                                      |
+| `edgesHash`                                              | *string*                                                 | :heavy_minus_sign:                                       | N/A                                                      |
 | `updated`                                                | [operations.Updated](../../models/operations/updated.md) | :heavy_minus_sign:                                       | N/A                                                      |

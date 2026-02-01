@@ -1,6 +1,6 @@
 # GetApiV1TriggerTriggerIdResponse
 
-TODO: grab this from jsdoc and add a default
+Returns metadata about a trigger for testing or debugging.
 
 ## Example Usage
 
@@ -12,11 +12,11 @@ let value: GetApiV1TriggerTriggerIdResponse = {};
 
 ## Fields
 
-| Field                         | Type                          | Required                      | Description                   |
-| ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- |
-| `id`                          | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |
-| `name`                        | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |
-| `type`                        | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |
-| `enabled`                     | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |
-| `workflowId`                  | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |
-| `workflowName`                | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `id`               | *any*              | :heavy_minus_sign: | Unknown type       |
+| `name`             | *any*              | :heavy_minus_sign: | Unknown type       |
+| `type`             | *any*              | :heavy_minus_sign: | Unknown type       |
+| `enabled`          | *any*              | :heavy_minus_sign: | Unknown type       |
+| `workflowId`       | *any*              | :heavy_minus_sign: | Unknown type       |
+| `workflowName`     | *any*              | :heavy_minus_sign: | Unknown type       |

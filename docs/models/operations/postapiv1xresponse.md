@@ -1,6 +1,6 @@
 # PostApiV1XResponse
 
-TODO: grab this from jsdoc and add a default
+Validates client credentials and schema version, persists execution state, forwards the payload to the deployed app, and returns the execution id.
 
 ## Example Usage
 
@@ -12,6 +12,6 @@ let value: PostApiV1XResponse = {};
 
 ## Fields
 
-| Field                         | Type                          | Required                      | Description                   |
-| ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- |
-| `executionId`                 | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `executionId`      | *any*              | :heavy_minus_sign: | Unknown type       |

@@ -1,6 +1,6 @@
 # GetApiV1FeaturesResponse
 
-TODO: grab this from jsdoc and add a default
+Returns enabled feature flags for the project, including billing-gated features.
 
 ## Example Usage
 

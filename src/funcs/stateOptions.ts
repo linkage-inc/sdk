@@ -22,10 +22,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * use to set the summary
+ * Preflight workflow state requests
  *
  * @remarks
- * use jsdoc tag to set the description
+ * Returns CORS headers for workflow state GET/POST requests.
  */
 export function stateOptions(
   client: LinkageCore,
@@ -124,7 +124,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.nil(200, z.void()),
+    M.nil(204, z.void()),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req);

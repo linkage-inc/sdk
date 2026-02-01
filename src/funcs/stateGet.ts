@@ -3,8 +3,10 @@
  */
 
 import { LinkageCore } from "../core.js";
+import { encodeFormQuery } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { pathToFunc } from "../lib/url.js";
 import {
@@ -14,6 +16,7 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
+import * as errors from "../models/errors/index.js";
 import { LinkageError } from "../models/errors/linkageerror.js";
 import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
@@ -22,17 +25,20 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * use to set the summary
+ * Get workflow state
  *
  * @remarks
- * use jsdoc tag to set the description
+ * Fetches workflow nodes/edges and hashes for a workflow.
  */
 export function stateGet(
   client: LinkageCore,
+  request?: operations.GetApiV1StateRequest | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
     operations.GetApiV1StateResponse,
+    | errors.GetApiV1StateBadRequestError
+    | errors.GetApiV1StateNotFoundError
     | LinkageError
     | ResponseValidationError
     | ConnectionError
@@ -45,17 +51,21 @@ export function stateGet(
 > {
   return new APIPromise($do(
     client,
+    request,
     options,
   ));
 }
 
 async function $do(
   client: LinkageCore,
+  request?: operations.GetApiV1StateRequest | undefined,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
       operations.GetApiV1StateResponse,
+      | errors.GetApiV1StateBadRequestError
+      | errors.GetApiV1StateNotFoundError
       | LinkageError
       | ResponseValidationError
       | ConnectionError
@@ -68,7 +78,27 @@ async function $do(
     APICall,
   ]
 > {
+  const parsed = safeParse(
+    request,
+    (value) =>
+      operations.GetApiV1StateRequest$outboundSchema.optional().parse(value),
+    "Input validation failed",
+  );
+  if (!parsed.ok) {
+    return [parsed, { status: "invalid" }];
+  }
+  const payload = parsed.value;
+  const body = null;
+
   const path = pathToFunc("/api/v1/state")();
+
+  const query = encodeFormQuery({
+    "apiKey": payload?.apiKey,
+    "appClientSecret": payload?.appClientSecret,
+    "appId": payload?.appId,
+    "appSecret": payload?.appSecret,
+    "workflowId": payload?.workflowId,
+  });
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
@@ -94,6 +124,8 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    query: query,
+    body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
@@ -104,7 +136,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["4XX", "5XX"],
+    errorCodes: ["400", "404", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -113,8 +145,14 @@ async function $do(
   }
   const response = doResult.value;
 
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
   const [result] = await M.match<
     operations.GetApiV1StateResponse,
+    | errors.GetApiV1StateBadRequestError
+    | errors.GetApiV1StateNotFoundError
     | LinkageError
     | ResponseValidationError
     | ConnectionError
@@ -125,9 +163,11 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, operations.GetApiV1StateResponse$inboundSchema),
+    M.jsonErr(400, errors.GetApiV1StateBadRequestError$inboundSchema),
+    M.jsonErr(404, errors.GetApiV1StateNotFoundError$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
-  )(response, req);
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];
   }

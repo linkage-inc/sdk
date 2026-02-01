@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -11,34 +12,56 @@ export type GetApiV1TriggerTriggerIdRequest = {
   triggerId: string;
 };
 
+export const MessageTriggerNotFound = {
+  TriggerNotFound: "Trigger not found",
+} as const;
+export type MessageTriggerNotFound = ClosedEnum<typeof MessageTriggerNotFound>;
+
+export type ErrorTriggerNotFound = {
+  message?: MessageTriggerNotFound | undefined;
+  details?: any | undefined;
+};
+
+export const MessageTriggerIDIsRequired = {
+  TriggerIDIsRequired: "Trigger ID is required",
+} as const;
+export type MessageTriggerIDIsRequired = ClosedEnum<
+  typeof MessageTriggerIDIsRequired
+>;
+
+export type ErrorTriggerIDIsRequired = {
+  message?: MessageTriggerIDIsRequired | undefined;
+  details?: any | undefined;
+};
+
 /**
- * TODO: grab this from jsdoc and add a default
+ * Returns metadata about a trigger for testing or debugging.
  */
 export type GetApiV1TriggerTriggerIdResponse = {
   /**
-   * TODO: This is an unknown type
+   * Unknown type
    */
-  id?: any | null | undefined;
+  id?: any | undefined;
   /**
-   * TODO: This is an unknown type
+   * Unknown type
    */
-  name?: any | null | undefined;
+  name?: any | undefined;
   /**
-   * TODO: This is an unknown type
+   * Unknown type
    */
-  type?: any | null | undefined;
+  type?: any | undefined;
   /**
-   * TODO: This is an unknown type
+   * Unknown type
    */
-  enabled?: any | null | undefined;
+  enabled?: any | undefined;
   /**
-   * TODO: This is an unknown type
+   * Unknown type
    */
-  workflowId?: any | null | undefined;
+  workflowId?: any | undefined;
   /**
-   * TODO: This is an unknown type
+   * Unknown type
    */
-  workflowName?: any | null | undefined;
+  workflowName?: any | undefined;
 };
 
 /** @internal */
@@ -66,17 +89,67 @@ export function getApiV1TriggerTriggerIdRequestToJSON(
 }
 
 /** @internal */
+export const MessageTriggerNotFound$inboundSchema: z.ZodNativeEnum<
+  typeof MessageTriggerNotFound
+> = z.nativeEnum(MessageTriggerNotFound);
+
+/** @internal */
+export const ErrorTriggerNotFound$inboundSchema: z.ZodType<
+  ErrorTriggerNotFound,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  message: MessageTriggerNotFound$inboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function errorTriggerNotFoundFromJSON(
+  jsonString: string,
+): SafeParseResult<ErrorTriggerNotFound, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ErrorTriggerNotFound$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ErrorTriggerNotFound' from JSON`,
+  );
+}
+
+/** @internal */
+export const MessageTriggerIDIsRequired$inboundSchema: z.ZodNativeEnum<
+  typeof MessageTriggerIDIsRequired
+> = z.nativeEnum(MessageTriggerIDIsRequired);
+
+/** @internal */
+export const ErrorTriggerIDIsRequired$inboundSchema: z.ZodType<
+  ErrorTriggerIDIsRequired,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  message: MessageTriggerIDIsRequired$inboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function errorTriggerIDIsRequiredFromJSON(
+  jsonString: string,
+): SafeParseResult<ErrorTriggerIDIsRequired, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ErrorTriggerIDIsRequired$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ErrorTriggerIDIsRequired' from JSON`,
+  );
+}
+
+/** @internal */
 export const GetApiV1TriggerTriggerIdResponse$inboundSchema: z.ZodType<
   GetApiV1TriggerTriggerIdResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  id: z.nullable(z.any()).optional(),
-  name: z.nullable(z.any()).optional(),
-  type: z.nullable(z.any()).optional(),
-  enabled: z.nullable(z.any()).optional(),
-  workflowId: z.nullable(z.any()).optional(),
-  workflowName: z.nullable(z.any()).optional(),
+  id: z.any().optional(),
+  name: z.any().optional(),
+  type: z.any().optional(),
+  enabled: z.any().optional(),
+  workflowId: z.any().optional(),
+  workflowName: z.any().optional(),
 });
 
 export function getApiV1TriggerTriggerIdResponseFromJSON(

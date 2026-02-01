@@ -1,6 +1,6 @@
 # PostApiV1TriggerTriggerIdResponse
 
-TODO: grab this from jsdoc and add a default
+Validates the webhook trigger and starts a workflow execution.
 
 ## Example Usage
 
@@ -14,8 +14,8 @@ let value: PostApiV1TriggerTriggerIdResponse = {
 
 ## Fields
 
-| Field                         | Type                          | Required                      | Description                   | Example                       |
-| ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- |
-| `success`                     | *boolean*                     | :heavy_minus_sign:            | N/A                           | true                          |
-| `executionId`                 | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |                               |
-| `triggerExecutionId`          | *any*                         | :heavy_minus_sign:            | TODO: This is an unknown type |                               |
+| Field                | Type                 | Required             | Description          | Example              |
+| -------------------- | -------------------- | -------------------- | -------------------- | -------------------- |
+| `success`            | *boolean*            | :heavy_minus_sign:   | N/A                  | true                 |
+| `executionId`        | *any*                | :heavy_minus_sign:   | Unknown type         |                      |
+| `triggerExecutionId` | *any*                | :heavy_minus_sign:   | Unknown type         |                      |

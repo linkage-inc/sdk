@@ -4,38 +4,176 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type GetApiV1StateRequest = {
+  appId?: string | undefined;
+  appSecret?: string | undefined;
+  workflowId?: string | undefined;
+  apiKey?: string | undefined;
+  appClientSecret?: string | undefined;
+};
+
+export const GetApiV1StateNotFoundMessage = {
+  BadConfiguration: "Bad Configuration",
+  WorkflowNotFound: "Workflow not found",
+} as const;
+export type GetApiV1StateNotFoundMessage = ClosedEnum<
+  typeof GetApiV1StateNotFoundMessage
+>;
+
+export type GetApiV1StateNotFoundError = {
+  message?: GetApiV1StateNotFoundMessage | undefined;
+  details?: any | undefined;
+};
+
+export const GetApiV1StateBadRequestMessage = {
+  MissingAppIdOrAppSecretOrWorkflowId:
+    "Missing appId or appSecret or workflowId",
+  MissingWorkflowClientSecret: "Missing workflow client secret",
+} as const;
+export type GetApiV1StateBadRequestMessage = ClosedEnum<
+  typeof GetApiV1StateBadRequestMessage
+>;
+
+export type GetApiV1StateBadRequestError = {
+  message?: GetApiV1StateBadRequestMessage | undefined;
+  details?: any | undefined;
+};
+
 /**
- * unknown return type: ReturnStatement
+ * Fetches workflow nodes/edges and hashes for a workflow.
  */
 export type GetApiV1StateResponse = {
+  nodes?: any | undefined;
   /**
-   * TODO: This is an unknown type
+   * Circular type
    */
-  nodes?: any | null | undefined;
+  edges?: any | undefined;
   /**
-   * TODO: This is an unknown type
+   * Circular type
    */
-  edges?: any | null | undefined;
+  nodesById?: any | undefined;
   /**
-   * TODO: This is an unknown type
+   * Circular type
    */
-  nodesById?: any | null | undefined;
+  edgesById?: any | undefined;
+  nodesHash?: string | undefined;
   /**
-   * TODO: This is an unknown type
+   * Circular type
    */
-  edgesById?: any | null | undefined;
-  /**
-   * TODO: This is an unknown type
-   */
-  nodesHash?: any | null | undefined;
-  /**
-   * TODO: This is an unknown type
-   */
-  edgesHash?: any | null | undefined;
+  edgesHash?: any | undefined;
 };
+
+export const PostApiV1StateBadRequestMessage = {
+  MissingPreliminaryConfig: "Missing preliminary config",
+  MissingWorkflowClientSecret: "Missing workflow client secret",
+  IncorrectWorkflowClientSecret: "Incorrect workflow client secret",
+} as const;
+export type PostApiV1StateBadRequestMessage = ClosedEnum<
+  typeof PostApiV1StateBadRequestMessage
+>;
+
+export type PostApiV1StateBadRequestError = {
+  message?: PostApiV1StateBadRequestMessage | undefined;
+  details?: any | undefined;
+};
+
+export type Updated = {
+  nodes?: boolean | undefined;
+  edges?: boolean | undefined;
+};
+
+/**
+ * Persists workflow nodes/edges when the payload hash changes.
+ */
+export type PostApiV1StateResponse = {
+  nodesHash?: string | undefined;
+  edgesHash?: string | undefined;
+  updated?: Updated | undefined;
+};
+
+/** @internal */
+export type GetApiV1StateRequest$Outbound = {
+  appId?: string | undefined;
+  appSecret?: string | undefined;
+  workflowId?: string | undefined;
+  apiKey?: string | undefined;
+  appClientSecret?: string | undefined;
+};
+
+/** @internal */
+export const GetApiV1StateRequest$outboundSchema: z.ZodType<
+  GetApiV1StateRequest$Outbound,
+  z.ZodTypeDef,
+  GetApiV1StateRequest
+> = z.object({
+  appId: z.string().optional(),
+  appSecret: z.string().optional(),
+  workflowId: z.string().optional(),
+  apiKey: z.string().optional(),
+  appClientSecret: z.string().optional(),
+});
+
+export function getApiV1StateRequestToJSON(
+  getApiV1StateRequest: GetApiV1StateRequest,
+): string {
+  return JSON.stringify(
+    GetApiV1StateRequest$outboundSchema.parse(getApiV1StateRequest),
+  );
+}
+
+/** @internal */
+export const GetApiV1StateNotFoundMessage$inboundSchema: z.ZodNativeEnum<
+  typeof GetApiV1StateNotFoundMessage
+> = z.nativeEnum(GetApiV1StateNotFoundMessage);
+
+/** @internal */
+export const GetApiV1StateNotFoundError$inboundSchema: z.ZodType<
+  GetApiV1StateNotFoundError,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  message: GetApiV1StateNotFoundMessage$inboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function getApiV1StateNotFoundErrorFromJSON(
+  jsonString: string,
+): SafeParseResult<GetApiV1StateNotFoundError, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetApiV1StateNotFoundError$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetApiV1StateNotFoundError' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetApiV1StateBadRequestMessage$inboundSchema: z.ZodNativeEnum<
+  typeof GetApiV1StateBadRequestMessage
+> = z.nativeEnum(GetApiV1StateBadRequestMessage);
+
+/** @internal */
+export const GetApiV1StateBadRequestError$inboundSchema: z.ZodType<
+  GetApiV1StateBadRequestError,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  message: GetApiV1StateBadRequestMessage$inboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function getApiV1StateBadRequestErrorFromJSON(
+  jsonString: string,
+): SafeParseResult<GetApiV1StateBadRequestError, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetApiV1StateBadRequestError$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetApiV1StateBadRequestError' from JSON`,
+  );
+}
 
 /** @internal */
 export const GetApiV1StateResponse$inboundSchema: z.ZodType<
@@ -43,12 +181,12 @@ export const GetApiV1StateResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  nodes: z.nullable(z.any()).optional(),
-  edges: z.nullable(z.any()).optional(),
-  nodesById: z.nullable(z.any()).optional(),
-  edgesById: z.nullable(z.any()).optional(),
-  nodesHash: z.nullable(z.any()).optional(),
-  edgesHash: z.nullable(z.any()).optional(),
+  nodes: z.any().optional(),
+  edges: z.any().optional(),
+  nodesById: z.any().optional(),
+  edgesById: z.any().optional(),
+  nodesHash: z.string().optional(),
+  edgesHash: z.any().optional(),
 });
 
 export function getApiV1StateResponseFromJSON(
@@ -58,5 +196,68 @@ export function getApiV1StateResponseFromJSON(
     jsonString,
     (x) => GetApiV1StateResponse$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'GetApiV1StateResponse' from JSON`,
+  );
+}
+
+/** @internal */
+export const PostApiV1StateBadRequestMessage$inboundSchema: z.ZodNativeEnum<
+  typeof PostApiV1StateBadRequestMessage
+> = z.nativeEnum(PostApiV1StateBadRequestMessage);
+
+/** @internal */
+export const PostApiV1StateBadRequestError$inboundSchema: z.ZodType<
+  PostApiV1StateBadRequestError,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  message: PostApiV1StateBadRequestMessage$inboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function postApiV1StateBadRequestErrorFromJSON(
+  jsonString: string,
+): SafeParseResult<PostApiV1StateBadRequestError, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PostApiV1StateBadRequestError$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostApiV1StateBadRequestError' from JSON`,
+  );
+}
+
+/** @internal */
+export const Updated$inboundSchema: z.ZodType<Updated, z.ZodTypeDef, unknown> =
+  z.object({
+    nodes: z.boolean().optional(),
+    edges: z.boolean().optional(),
+  });
+
+export function updatedFromJSON(
+  jsonString: string,
+): SafeParseResult<Updated, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Updated$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Updated' from JSON`,
+  );
+}
+
+/** @internal */
+export const PostApiV1StateResponse$inboundSchema: z.ZodType<
+  PostApiV1StateResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  nodesHash: z.string().optional(),
+  edgesHash: z.string().optional(),
+  updated: z.lazy(() => Updated$inboundSchema).optional(),
+});
+
+export function postApiV1StateResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<PostApiV1StateResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PostApiV1StateResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostApiV1StateResponse' from JSON`,
   );
 }

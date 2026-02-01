@@ -20,19 +20,19 @@ specific category of applications.
 
 ```typescript
 import { LinkageCore } from "@linkage-open/sdk/core.js";
-import { resourcesCreate } from "@linkage-open/sdk/funcs/resourcesCreate.js";
+import { workflowsCreate } from "@linkage-open/sdk/funcs/workflowsCreate.js";
 
 // Use `LinkageCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const linkage = new LinkageCore();
 
 async function run() {
-  const res = await resourcesCreate(linkage);
+  const res = await workflowsCreate(linkage);
   if (res.ok) {
     const { value: result } = res;
-    
+    console.log(result);
   } else {
-    console.log("resourcesCreate failed:", res.error);
+    console.log("workflowsCreate failed:", res.error);
   }
 }
 

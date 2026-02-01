@@ -4,18 +4,136 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export const PostApiV1XInternalServerErrorMessage = {
+  ProjectHasAnInvalidConfiguration: "Project has an invalid configuration",
+  ProjectHasNoDeploymentForThisSchemaVersion:
+    "Project has no deployment for this schema version",
+} as const;
+export type PostApiV1XInternalServerErrorMessage = ClosedEnum<
+  typeof PostApiV1XInternalServerErrorMessage
+>;
+
+export type PostApiV1XInternalServerErrorError = {
+  message?: PostApiV1XInternalServerErrorMessage | undefined;
+  details?: any | undefined;
+};
+
+export const TooManyRequestsMessage = {
+  UsageLimitExceeded: "Usage limit exceeded",
+} as const;
+export type TooManyRequestsMessage = ClosedEnum<typeof TooManyRequestsMessage>;
+
+export type TooManyRequestsError = {
+  message?: TooManyRequestsMessage | undefined;
+  details?: any | undefined;
+};
+
+export const PostApiV1XUnauthorizedMessage = {
+  RequiresValidClientIdClientSecretAndSchemaVersion:
+    "Requires valid client id, client secret, and schema version",
+  InvalidClientIdOrSecret: "Invalid client id or secret",
+  Unauthenticated: "Unauthenticated",
+  Unauthorized: "Unauthorized",
+} as const;
+export type PostApiV1XUnauthorizedMessage = ClosedEnum<
+  typeof PostApiV1XUnauthorizedMessage
+>;
+
+export type PostApiV1XUnauthorizedError = {
+  message?: PostApiV1XUnauthorizedMessage | undefined;
+  details?: any | undefined;
+};
+
 /**
- * TODO: grab this from jsdoc and add a default
+ * Validates client credentials and schema version, persists execution state, forwards the payload to the deployed app, and returns the execution id.
  */
 export type PostApiV1XResponse = {
   /**
-   * TODO: This is an unknown type
+   * Unknown type
    */
-  executionId?: any | null | undefined;
+  executionId?: any | undefined;
 };
+
+/** @internal */
+export const PostApiV1XInternalServerErrorMessage$inboundSchema:
+  z.ZodNativeEnum<typeof PostApiV1XInternalServerErrorMessage> = z.nativeEnum(
+    PostApiV1XInternalServerErrorMessage,
+  );
+
+/** @internal */
+export const PostApiV1XInternalServerErrorError$inboundSchema: z.ZodType<
+  PostApiV1XInternalServerErrorError,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  message: PostApiV1XInternalServerErrorMessage$inboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function postApiV1XInternalServerErrorErrorFromJSON(
+  jsonString: string,
+): SafeParseResult<PostApiV1XInternalServerErrorError, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      PostApiV1XInternalServerErrorError$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostApiV1XInternalServerErrorError' from JSON`,
+  );
+}
+
+/** @internal */
+export const TooManyRequestsMessage$inboundSchema: z.ZodNativeEnum<
+  typeof TooManyRequestsMessage
+> = z.nativeEnum(TooManyRequestsMessage);
+
+/** @internal */
+export const TooManyRequestsError$inboundSchema: z.ZodType<
+  TooManyRequestsError,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  message: TooManyRequestsMessage$inboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function tooManyRequestsErrorFromJSON(
+  jsonString: string,
+): SafeParseResult<TooManyRequestsError, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TooManyRequestsError$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TooManyRequestsError' from JSON`,
+  );
+}
+
+/** @internal */
+export const PostApiV1XUnauthorizedMessage$inboundSchema: z.ZodNativeEnum<
+  typeof PostApiV1XUnauthorizedMessage
+> = z.nativeEnum(PostApiV1XUnauthorizedMessage);
+
+/** @internal */
+export const PostApiV1XUnauthorizedError$inboundSchema: z.ZodType<
+  PostApiV1XUnauthorizedError,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  message: PostApiV1XUnauthorizedMessage$inboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function postApiV1XUnauthorizedErrorFromJSON(
+  jsonString: string,
+): SafeParseResult<PostApiV1XUnauthorizedError, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PostApiV1XUnauthorizedError$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostApiV1XUnauthorizedError' from JSON`,
+  );
+}
 
 /** @internal */
 export const PostApiV1XResponse$inboundSchema: z.ZodType<
@@ -23,7 +141,7 @@ export const PostApiV1XResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  executionId: z.nullable(z.any()).optional(),
+  executionId: z.any().optional(),
 });
 
 export function postApiV1XResponseFromJSON(

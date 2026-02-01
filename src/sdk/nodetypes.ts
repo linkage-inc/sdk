@@ -9,14 +9,14 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class NodeTypes extends ClientSDK {
   /**
-   * use to set the summary
+   * Get node types
    *
    * @remarks
-   * use jsdoc tag to set the description
+   * Returns the available node types for the project, optionally narrowed by schema version.
    */
   async get(
     options?: RequestOptions,
-  ): Promise<operations.GetApiV1NodeTypesResponse | undefined> {
+  ): Promise<operations.GetApiV1NodeTypesResponse> {
     return unwrapAsync(nodeTypesGet(
       this,
       options,
