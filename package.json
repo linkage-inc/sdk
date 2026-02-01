@@ -4,6 +4,7 @@
   "author": "Speakeasy",
   "type": "module",
   "tshy": {
+    "private": false,
     "sourceDialects": [
       "@linkage-open/sdk/source"
     ],
