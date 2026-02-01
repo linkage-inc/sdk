@@ -33,7 +33,7 @@ generation:
     generateNewTests: true
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.5.8
+  version: 0.6.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -48,7 +48,7 @@ typescript:
   constFieldsAlwaysOptional: false
   defaultErrorName: LinkageDefaultError
   enableCustomCodeRegions: false
-  enableMCPServer: false
+  enableMCPServer: true
   enableReactQuery: false
   enumFormat: union
   envVarPrefix: LINKAGE

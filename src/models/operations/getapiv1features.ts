@@ -88,6 +88,20 @@ export type GetApiV1NodeTypesResponse = {
 };
 
 /** @internal */
+export const GetApiV1FeaturesRequest$inboundSchema: z.ZodType<
+  GetApiV1FeaturesRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "x-client-id": z.string().optional(),
+  "x-client-secret": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "x-client-id": "xClientId",
+    "x-client-secret": "xClientSecret",
+  });
+});
+/** @internal */
 export type GetApiV1FeaturesRequest$Outbound = {
   "x-client-id"?: string | undefined;
   "x-client-secret"?: string | undefined;
@@ -115,12 +129,26 @@ export function getApiV1FeaturesRequestToJSON(
     GetApiV1FeaturesRequest$outboundSchema.parse(getApiV1FeaturesRequest),
   );
 }
+export function getApiV1FeaturesRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetApiV1FeaturesRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetApiV1FeaturesRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetApiV1FeaturesRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const GetApiV1FeaturesMessageProjectHasAnInvalidConfiguration$inboundSchema:
   z.ZodNativeEnum<
     typeof GetApiV1FeaturesMessageProjectHasAnInvalidConfiguration
   > = z.nativeEnum(GetApiV1FeaturesMessageProjectHasAnInvalidConfiguration);
+/** @internal */
+export const GetApiV1FeaturesMessageProjectHasAnInvalidConfiguration$outboundSchema:
+  z.ZodNativeEnum<
+    typeof GetApiV1FeaturesMessageProjectHasAnInvalidConfiguration
+  > = GetApiV1FeaturesMessageProjectHasAnInvalidConfiguration$inboundSchema;
 
 /** @internal */
 export const GetApiV1FeaturesErrorProjectHasAnInvalidConfiguration$inboundSchema:
@@ -134,7 +162,35 @@ export const GetApiV1FeaturesErrorProjectHasAnInvalidConfiguration$inboundSchema
         .optional(),
     details: z.any().optional(),
   });
+/** @internal */
+export type GetApiV1FeaturesErrorProjectHasAnInvalidConfiguration$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const GetApiV1FeaturesErrorProjectHasAnInvalidConfiguration$outboundSchema:
+  z.ZodType<
+    GetApiV1FeaturesErrorProjectHasAnInvalidConfiguration$Outbound,
+    z.ZodTypeDef,
+    GetApiV1FeaturesErrorProjectHasAnInvalidConfiguration
+  > = z.object({
+    message:
+      GetApiV1FeaturesMessageProjectHasAnInvalidConfiguration$outboundSchema
+        .optional(),
+    details: z.any().optional(),
+  });
+
+export function getApiV1FeaturesErrorProjectHasAnInvalidConfigurationToJSON(
+  getApiV1FeaturesErrorProjectHasAnInvalidConfiguration:
+    GetApiV1FeaturesErrorProjectHasAnInvalidConfiguration,
+): string {
+  return JSON.stringify(
+    GetApiV1FeaturesErrorProjectHasAnInvalidConfiguration$outboundSchema.parse(
+      getApiV1FeaturesErrorProjectHasAnInvalidConfiguration,
+    ),
+  );
+}
 export function getApiV1FeaturesErrorProjectHasAnInvalidConfigurationFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -155,6 +211,10 @@ export function getApiV1FeaturesErrorProjectHasAnInvalidConfigurationFromJSON(
 export const GetApiV1FeaturesUnauthorizedMessage$inboundSchema: z.ZodNativeEnum<
   typeof GetApiV1FeaturesUnauthorizedMessage
 > = z.nativeEnum(GetApiV1FeaturesUnauthorizedMessage);
+/** @internal */
+export const GetApiV1FeaturesUnauthorizedMessage$outboundSchema:
+  z.ZodNativeEnum<typeof GetApiV1FeaturesUnauthorizedMessage> =
+    GetApiV1FeaturesUnauthorizedMessage$inboundSchema;
 
 /** @internal */
 export const GetApiV1FeaturesUnauthorizedError$inboundSchema: z.ZodType<
@@ -165,7 +225,31 @@ export const GetApiV1FeaturesUnauthorizedError$inboundSchema: z.ZodType<
   message: GetApiV1FeaturesUnauthorizedMessage$inboundSchema.optional(),
   details: z.any().optional(),
 });
+/** @internal */
+export type GetApiV1FeaturesUnauthorizedError$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const GetApiV1FeaturesUnauthorizedError$outboundSchema: z.ZodType<
+  GetApiV1FeaturesUnauthorizedError$Outbound,
+  z.ZodTypeDef,
+  GetApiV1FeaturesUnauthorizedError
+> = z.object({
+  message: GetApiV1FeaturesUnauthorizedMessage$outboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function getApiV1FeaturesUnauthorizedErrorToJSON(
+  getApiV1FeaturesUnauthorizedError: GetApiV1FeaturesUnauthorizedError,
+): string {
+  return JSON.stringify(
+    GetApiV1FeaturesUnauthorizedError$outboundSchema.parse(
+      getApiV1FeaturesUnauthorizedError,
+    ),
+  );
+}
 export function getApiV1FeaturesUnauthorizedErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<GetApiV1FeaturesUnauthorizedError, SDKValidationError> {
@@ -185,7 +269,25 @@ export const Features$inboundSchema: z.ZodType<
   controlBlocks: z.any().optional(),
   realtimeCollaboration: z.any().optional(),
 });
+/** @internal */
+export type Features$Outbound = {
+  controlBlocks?: any | undefined;
+  realtimeCollaboration?: any | undefined;
+};
 
+/** @internal */
+export const Features$outboundSchema: z.ZodType<
+  Features$Outbound,
+  z.ZodTypeDef,
+  Features
+> = z.object({
+  controlBlocks: z.any().optional(),
+  realtimeCollaboration: z.any().optional(),
+});
+
+export function featuresToJSON(features: Features): string {
+  return JSON.stringify(Features$outboundSchema.parse(features));
+}
 export function featuresFromJSON(
   jsonString: string,
 ): SafeParseResult<Features, SDKValidationError> {
@@ -204,7 +306,27 @@ export const GetApiV1FeaturesResponse$inboundSchema: z.ZodType<
 > = z.object({
   features: z.lazy(() => Features$inboundSchema).optional(),
 });
+/** @internal */
+export type GetApiV1FeaturesResponse$Outbound = {
+  features?: Features$Outbound | undefined;
+};
 
+/** @internal */
+export const GetApiV1FeaturesResponse$outboundSchema: z.ZodType<
+  GetApiV1FeaturesResponse$Outbound,
+  z.ZodTypeDef,
+  GetApiV1FeaturesResponse
+> = z.object({
+  features: z.lazy(() => Features$outboundSchema).optional(),
+});
+
+export function getApiV1FeaturesResponseToJSON(
+  getApiV1FeaturesResponse: GetApiV1FeaturesResponse,
+): string {
+  return JSON.stringify(
+    GetApiV1FeaturesResponse$outboundSchema.parse(getApiV1FeaturesResponse),
+  );
+}
 export function getApiV1FeaturesResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<GetApiV1FeaturesResponse, SDKValidationError> {
@@ -215,6 +337,22 @@ export function getApiV1FeaturesResponseFromJSON(
   );
 }
 
+/** @internal */
+export const GetApiV1NodeTypesRequest$inboundSchema: z.ZodType<
+  GetApiV1NodeTypesRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "x-client-id": z.string().optional(),
+  "x-client-secret": z.string().optional(),
+  "x-schema-version": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "x-client-id": "xClientId",
+    "x-client-secret": "xClientSecret",
+    "x-schema-version": "xSchemaVersion",
+  });
+});
 /** @internal */
 export type GetApiV1NodeTypesRequest$Outbound = {
   "x-client-id"?: string | undefined;
@@ -246,11 +384,24 @@ export function getApiV1NodeTypesRequestToJSON(
     GetApiV1NodeTypesRequest$outboundSchema.parse(getApiV1NodeTypesRequest),
   );
 }
+export function getApiV1NodeTypesRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetApiV1NodeTypesRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetApiV1NodeTypesRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetApiV1NodeTypesRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const MessageSchemaVersionNotFound$inboundSchema: z.ZodNativeEnum<
   typeof MessageSchemaVersionNotFound
 > = z.nativeEnum(MessageSchemaVersionNotFound);
+/** @internal */
+export const MessageSchemaVersionNotFound$outboundSchema: z.ZodNativeEnum<
+  typeof MessageSchemaVersionNotFound
+> = MessageSchemaVersionNotFound$inboundSchema;
 
 /** @internal */
 export const ErrorSchemaVersionNotFound$inboundSchema: z.ZodType<
@@ -261,7 +412,29 @@ export const ErrorSchemaVersionNotFound$inboundSchema: z.ZodType<
   message: MessageSchemaVersionNotFound$inboundSchema.optional(),
   details: z.any().optional(),
 });
+/** @internal */
+export type ErrorSchemaVersionNotFound$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const ErrorSchemaVersionNotFound$outboundSchema: z.ZodType<
+  ErrorSchemaVersionNotFound$Outbound,
+  z.ZodTypeDef,
+  ErrorSchemaVersionNotFound
+> = z.object({
+  message: MessageSchemaVersionNotFound$outboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function errorSchemaVersionNotFoundToJSON(
+  errorSchemaVersionNotFound: ErrorSchemaVersionNotFound,
+): string {
+  return JSON.stringify(
+    ErrorSchemaVersionNotFound$outboundSchema.parse(errorSchemaVersionNotFound),
+  );
+}
 export function errorSchemaVersionNotFoundFromJSON(
   jsonString: string,
 ): SafeParseResult<ErrorSchemaVersionNotFound, SDKValidationError> {
@@ -282,7 +455,31 @@ export const GetApiV1NodeTypesResponse$inboundSchema: z.ZodType<
   versions: z.any().optional(),
   nodes: z.any().optional(),
 });
+/** @internal */
+export type GetApiV1NodeTypesResponse$Outbound = {
+  version?: any | undefined;
+  versions?: any | undefined;
+  nodes?: any | undefined;
+};
 
+/** @internal */
+export const GetApiV1NodeTypesResponse$outboundSchema: z.ZodType<
+  GetApiV1NodeTypesResponse$Outbound,
+  z.ZodTypeDef,
+  GetApiV1NodeTypesResponse
+> = z.object({
+  version: z.any().optional(),
+  versions: z.any().optional(),
+  nodes: z.any().optional(),
+});
+
+export function getApiV1NodeTypesResponseToJSON(
+  getApiV1NodeTypesResponse: GetApiV1NodeTypesResponse,
+): string {
+  return JSON.stringify(
+    GetApiV1NodeTypesResponse$outboundSchema.parse(getApiV1NodeTypesResponse),
+  );
+}
 export function getApiV1NodeTypesResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<GetApiV1NodeTypesResponse, SDKValidationError> {

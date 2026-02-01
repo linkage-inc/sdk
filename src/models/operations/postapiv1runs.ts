@@ -71,6 +71,10 @@ export type PostApiV1RunsResponse = {
 export const MessageFailedToCreateRun$inboundSchema: z.ZodNativeEnum<
   typeof MessageFailedToCreateRun
 > = z.nativeEnum(MessageFailedToCreateRun);
+/** @internal */
+export const MessageFailedToCreateRun$outboundSchema: z.ZodNativeEnum<
+  typeof MessageFailedToCreateRun
+> = MessageFailedToCreateRun$inboundSchema;
 
 /** @internal */
 export const ErrorFailedToCreateRun$inboundSchema: z.ZodType<
@@ -81,7 +85,29 @@ export const ErrorFailedToCreateRun$inboundSchema: z.ZodType<
   message: MessageFailedToCreateRun$inboundSchema.optional(),
   details: z.any().optional(),
 });
+/** @internal */
+export type ErrorFailedToCreateRun$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const ErrorFailedToCreateRun$outboundSchema: z.ZodType<
+  ErrorFailedToCreateRun$Outbound,
+  z.ZodTypeDef,
+  ErrorFailedToCreateRun
+> = z.object({
+  message: MessageFailedToCreateRun$outboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function errorFailedToCreateRunToJSON(
+  errorFailedToCreateRun: ErrorFailedToCreateRun,
+): string {
+  return JSON.stringify(
+    ErrorFailedToCreateRun$outboundSchema.parse(errorFailedToCreateRun),
+  );
+}
 export function errorFailedToCreateRunFromJSON(
   jsonString: string,
 ): SafeParseResult<ErrorFailedToCreateRun, SDKValidationError> {
@@ -96,6 +122,10 @@ export function errorFailedToCreateRunFromJSON(
 export const MessageInvalidRunPayload$inboundSchema: z.ZodNativeEnum<
   typeof MessageInvalidRunPayload
 > = z.nativeEnum(MessageInvalidRunPayload);
+/** @internal */
+export const MessageInvalidRunPayload$outboundSchema: z.ZodNativeEnum<
+  typeof MessageInvalidRunPayload
+> = MessageInvalidRunPayload$inboundSchema;
 
 /** @internal */
 export const ErrorInvalidRunPayload$inboundSchema: z.ZodType<
@@ -106,7 +136,29 @@ export const ErrorInvalidRunPayload$inboundSchema: z.ZodType<
   message: MessageInvalidRunPayload$inboundSchema.optional(),
   details: z.any().optional(),
 });
+/** @internal */
+export type ErrorInvalidRunPayload$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const ErrorInvalidRunPayload$outboundSchema: z.ZodType<
+  ErrorInvalidRunPayload$Outbound,
+  z.ZodTypeDef,
+  ErrorInvalidRunPayload
+> = z.object({
+  message: MessageInvalidRunPayload$outboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function errorInvalidRunPayloadToJSON(
+  errorInvalidRunPayload: ErrorInvalidRunPayload,
+): string {
+  return JSON.stringify(
+    ErrorInvalidRunPayload$outboundSchema.parse(errorInvalidRunPayload),
+  );
+}
 export function errorInvalidRunPayloadFromJSON(
   jsonString: string,
 ): SafeParseResult<ErrorInvalidRunPayload, SDKValidationError> {
@@ -132,7 +184,41 @@ export const PostApiV1RunsResponse$inboundSchema: z.ZodType<
   metadata: z.any().optional(),
   lastEventId: z.any().optional(),
 });
+/** @internal */
+export type PostApiV1RunsResponse$Outbound = {
+  runId?: any | undefined;
+  workflowId?: any | undefined;
+  status?: any | undefined;
+  nodeStatuses?: any | undefined;
+  startedAt?: any | undefined;
+  finishedAt?: any | undefined;
+  metadata?: any | undefined;
+  lastEventId?: any | undefined;
+};
 
+/** @internal */
+export const PostApiV1RunsResponse$outboundSchema: z.ZodType<
+  PostApiV1RunsResponse$Outbound,
+  z.ZodTypeDef,
+  PostApiV1RunsResponse
+> = z.object({
+  runId: z.any().optional(),
+  workflowId: z.any().optional(),
+  status: z.any().optional(),
+  nodeStatuses: z.any().optional(),
+  startedAt: z.any().optional(),
+  finishedAt: z.any().optional(),
+  metadata: z.any().optional(),
+  lastEventId: z.any().optional(),
+});
+
+export function postApiV1RunsResponseToJSON(
+  postApiV1RunsResponse: PostApiV1RunsResponse,
+): string {
+  return JSON.stringify(
+    PostApiV1RunsResponse$outboundSchema.parse(postApiV1RunsResponse),
+  );
+}
 export function postApiV1RunsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<PostApiV1RunsResponse, SDKValidationError> {

@@ -69,6 +69,20 @@ export type PostApiV1CreateResponse = {
 };
 
 /** @internal */
+export const PostApiV1CreateRequest$inboundSchema: z.ZodType<
+  PostApiV1CreateRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "x-app-id": z.string().optional(),
+  "x-app-secret": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "x-app-id": "xAppId",
+    "x-app-secret": "xAppSecret",
+  });
+});
+/** @internal */
 export type PostApiV1CreateRequest$Outbound = {
   "x-app-id"?: string | undefined;
   "x-app-secret"?: string | undefined;
@@ -96,11 +110,24 @@ export function postApiV1CreateRequestToJSON(
     PostApiV1CreateRequest$outboundSchema.parse(postApiV1CreateRequest),
   );
 }
+export function postApiV1CreateRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<PostApiV1CreateRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PostApiV1CreateRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostApiV1CreateRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const MessageFailedToCreateWorkflow$inboundSchema: z.ZodNativeEnum<
   typeof MessageFailedToCreateWorkflow
 > = z.nativeEnum(MessageFailedToCreateWorkflow);
+/** @internal */
+export const MessageFailedToCreateWorkflow$outboundSchema: z.ZodNativeEnum<
+  typeof MessageFailedToCreateWorkflow
+> = MessageFailedToCreateWorkflow$inboundSchema;
 
 /** @internal */
 export const ErrorFailedToCreateWorkflow$inboundSchema: z.ZodType<
@@ -111,7 +138,31 @@ export const ErrorFailedToCreateWorkflow$inboundSchema: z.ZodType<
   message: MessageFailedToCreateWorkflow$inboundSchema.optional(),
   details: z.any().optional(),
 });
+/** @internal */
+export type ErrorFailedToCreateWorkflow$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const ErrorFailedToCreateWorkflow$outboundSchema: z.ZodType<
+  ErrorFailedToCreateWorkflow$Outbound,
+  z.ZodTypeDef,
+  ErrorFailedToCreateWorkflow
+> = z.object({
+  message: MessageFailedToCreateWorkflow$outboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function errorFailedToCreateWorkflowToJSON(
+  errorFailedToCreateWorkflow: ErrorFailedToCreateWorkflow,
+): string {
+  return JSON.stringify(
+    ErrorFailedToCreateWorkflow$outboundSchema.parse(
+      errorFailedToCreateWorkflow,
+    ),
+  );
+}
 export function errorFailedToCreateWorkflowFromJSON(
   jsonString: string,
 ): SafeParseResult<ErrorFailedToCreateWorkflow, SDKValidationError> {
@@ -126,6 +177,10 @@ export function errorFailedToCreateWorkflowFromJSON(
 export const MessageProjectNotFound$inboundSchema: z.ZodNativeEnum<
   typeof MessageProjectNotFound
 > = z.nativeEnum(MessageProjectNotFound);
+/** @internal */
+export const MessageProjectNotFound$outboundSchema: z.ZodNativeEnum<
+  typeof MessageProjectNotFound
+> = MessageProjectNotFound$inboundSchema;
 
 /** @internal */
 export const ErrorProjectNotFound$inboundSchema: z.ZodType<
@@ -136,7 +191,29 @@ export const ErrorProjectNotFound$inboundSchema: z.ZodType<
   message: MessageProjectNotFound$inboundSchema.optional(),
   details: z.any().optional(),
 });
+/** @internal */
+export type ErrorProjectNotFound$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const ErrorProjectNotFound$outboundSchema: z.ZodType<
+  ErrorProjectNotFound$Outbound,
+  z.ZodTypeDef,
+  ErrorProjectNotFound
+> = z.object({
+  message: MessageProjectNotFound$outboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function errorProjectNotFoundToJSON(
+  errorProjectNotFound: ErrorProjectNotFound,
+): string {
+  return JSON.stringify(
+    ErrorProjectNotFound$outboundSchema.parse(errorProjectNotFound),
+  );
+}
 export function errorProjectNotFoundFromJSON(
   jsonString: string,
 ): SafeParseResult<ErrorProjectNotFound, SDKValidationError> {
@@ -151,6 +228,10 @@ export function errorProjectNotFoundFromJSON(
 export const PostApiV1CreateBadRequestMessage$inboundSchema: z.ZodNativeEnum<
   typeof PostApiV1CreateBadRequestMessage
 > = z.nativeEnum(PostApiV1CreateBadRequestMessage);
+/** @internal */
+export const PostApiV1CreateBadRequestMessage$outboundSchema: z.ZodNativeEnum<
+  typeof PostApiV1CreateBadRequestMessage
+> = PostApiV1CreateBadRequestMessage$inboundSchema;
 
 /** @internal */
 export const PostApiV1CreateBadRequestError$inboundSchema: z.ZodType<
@@ -161,7 +242,31 @@ export const PostApiV1CreateBadRequestError$inboundSchema: z.ZodType<
   message: PostApiV1CreateBadRequestMessage$inboundSchema.optional(),
   details: z.any().optional(),
 });
+/** @internal */
+export type PostApiV1CreateBadRequestError$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const PostApiV1CreateBadRequestError$outboundSchema: z.ZodType<
+  PostApiV1CreateBadRequestError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1CreateBadRequestError
+> = z.object({
+  message: PostApiV1CreateBadRequestMessage$outboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function postApiV1CreateBadRequestErrorToJSON(
+  postApiV1CreateBadRequestError: PostApiV1CreateBadRequestError,
+): string {
+  return JSON.stringify(
+    PostApiV1CreateBadRequestError$outboundSchema.parse(
+      postApiV1CreateBadRequestError,
+    ),
+  );
+}
 export function postApiV1CreateBadRequestErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<PostApiV1CreateBadRequestError, SDKValidationError> {
@@ -182,7 +287,31 @@ export const PostApiV1CreateResponse$inboundSchema: z.ZodType<
   nodes: z.any().optional(),
   edges: z.any().optional(),
 });
+/** @internal */
+export type PostApiV1CreateResponse$Outbound = {
+  workflow?: any | undefined;
+  nodes?: any | undefined;
+  edges?: any | undefined;
+};
 
+/** @internal */
+export const PostApiV1CreateResponse$outboundSchema: z.ZodType<
+  PostApiV1CreateResponse$Outbound,
+  z.ZodTypeDef,
+  PostApiV1CreateResponse
+> = z.object({
+  workflow: z.any().optional(),
+  nodes: z.any().optional(),
+  edges: z.any().optional(),
+});
+
+export function postApiV1CreateResponseToJSON(
+  postApiV1CreateResponse: PostApiV1CreateResponse,
+): string {
+  return JSON.stringify(
+    PostApiV1CreateResponse$outboundSchema.parse(postApiV1CreateResponse),
+  );
+}
 export function postApiV1CreateResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<PostApiV1CreateResponse, SDKValidationError> {

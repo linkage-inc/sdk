@@ -44,6 +44,14 @@ export type PostApiV1RunsRunIdEventsResponse = {
 };
 
 /** @internal */
+export const PostApiV1RunsRunIdEventsRequest$inboundSchema: z.ZodType<
+  PostApiV1RunsRunIdEventsRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  runId: z.string(),
+});
+/** @internal */
 export type PostApiV1RunsRunIdEventsRequest$Outbound = {
   runId: string;
 };
@@ -66,11 +74,24 @@ export function postApiV1RunsRunIdEventsRequestToJSON(
     ),
   );
 }
+export function postApiV1RunsRunIdEventsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<PostApiV1RunsRunIdEventsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PostApiV1RunsRunIdEventsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostApiV1RunsRunIdEventsRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const PostApiV1RunsRunIdEventsMessage$inboundSchema: z.ZodNativeEnum<
   typeof PostApiV1RunsRunIdEventsMessage
 > = z.nativeEnum(PostApiV1RunsRunIdEventsMessage);
+/** @internal */
+export const PostApiV1RunsRunIdEventsMessage$outboundSchema: z.ZodNativeEnum<
+  typeof PostApiV1RunsRunIdEventsMessage
+> = PostApiV1RunsRunIdEventsMessage$inboundSchema;
 
 /** @internal */
 export const PostApiV1RunsRunIdEventsError$inboundSchema: z.ZodType<
@@ -81,7 +102,31 @@ export const PostApiV1RunsRunIdEventsError$inboundSchema: z.ZodType<
   message: PostApiV1RunsRunIdEventsMessage$inboundSchema.optional(),
   details: z.any().optional(),
 });
+/** @internal */
+export type PostApiV1RunsRunIdEventsError$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const PostApiV1RunsRunIdEventsError$outboundSchema: z.ZodType<
+  PostApiV1RunsRunIdEventsError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1RunsRunIdEventsError
+> = z.object({
+  message: PostApiV1RunsRunIdEventsMessage$outboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function postApiV1RunsRunIdEventsErrorToJSON(
+  postApiV1RunsRunIdEventsError: PostApiV1RunsRunIdEventsError,
+): string {
+  return JSON.stringify(
+    PostApiV1RunsRunIdEventsError$outboundSchema.parse(
+      postApiV1RunsRunIdEventsError,
+    ),
+  );
+}
 export function postApiV1RunsRunIdEventsErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<PostApiV1RunsRunIdEventsError, SDKValidationError> {
@@ -102,7 +147,33 @@ export const PostApiV1RunsRunIdEventsResponse$inboundSchema: z.ZodType<
   events: z.any().optional(),
   nextCursor: z.any().optional(),
 });
+/** @internal */
+export type PostApiV1RunsRunIdEventsResponse$Outbound = {
+  accepted?: any | undefined;
+  events?: any | undefined;
+  nextCursor?: any | undefined;
+};
 
+/** @internal */
+export const PostApiV1RunsRunIdEventsResponse$outboundSchema: z.ZodType<
+  PostApiV1RunsRunIdEventsResponse$Outbound,
+  z.ZodTypeDef,
+  PostApiV1RunsRunIdEventsResponse
+> = z.object({
+  accepted: z.any().optional(),
+  events: z.any().optional(),
+  nextCursor: z.any().optional(),
+});
+
+export function postApiV1RunsRunIdEventsResponseToJSON(
+  postApiV1RunsRunIdEventsResponse: PostApiV1RunsRunIdEventsResponse,
+): string {
+  return JSON.stringify(
+    PostApiV1RunsRunIdEventsResponse$outboundSchema.parse(
+      postApiV1RunsRunIdEventsResponse,
+    ),
+  );
+}
 export function postApiV1RunsRunIdEventsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<PostApiV1RunsRunIdEventsResponse, SDKValidationError> {

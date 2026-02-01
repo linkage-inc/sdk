@@ -55,3 +55,19 @@ export const GetApiV1RunsRunIdEventsBadRequestError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
+
+/** @internal */
+export type GetApiV1RunsRunIdEventsBadRequestError$Outbound = {
+  error: operations.GetApiV1RunsRunIdEventsError$Outbound;
+};
+
+/** @internal */
+export const GetApiV1RunsRunIdEventsBadRequestError$outboundSchema: z.ZodType<
+  GetApiV1RunsRunIdEventsBadRequestError$Outbound,
+  z.ZodTypeDef,
+  GetApiV1RunsRunIdEventsBadRequestError
+> = z.instanceof(GetApiV1RunsRunIdEventsBadRequestError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() => operations.GetApiV1RunsRunIdEventsError$outboundSchema),
+  }));

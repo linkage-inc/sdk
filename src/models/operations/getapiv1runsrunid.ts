@@ -47,6 +47,14 @@ export type GetApiV1RunsRunIdResponse = {
 };
 
 /** @internal */
+export const GetApiV1RunsRunIdRequest$inboundSchema: z.ZodType<
+  GetApiV1RunsRunIdRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  runId: z.string(),
+});
+/** @internal */
 export type GetApiV1RunsRunIdRequest$Outbound = {
   runId: string;
 };
@@ -67,6 +75,15 @@ export function getApiV1RunsRunIdRequestToJSON(
     GetApiV1RunsRunIdRequest$outboundSchema.parse(getApiV1RunsRunIdRequest),
   );
 }
+export function getApiV1RunsRunIdRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetApiV1RunsRunIdRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetApiV1RunsRunIdRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetApiV1RunsRunIdRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const GetApiV1RunsRunIdResponse$inboundSchema: z.ZodType<
@@ -83,7 +100,41 @@ export const GetApiV1RunsRunIdResponse$inboundSchema: z.ZodType<
   metadata: z.any().optional(),
   lastEventId: z.any().optional(),
 });
+/** @internal */
+export type GetApiV1RunsRunIdResponse$Outbound = {
+  runId?: any | undefined;
+  workflowId?: any | undefined;
+  status?: any | undefined;
+  nodeStatuses?: any | undefined;
+  startedAt?: any | undefined;
+  finishedAt?: any | undefined;
+  metadata?: any | undefined;
+  lastEventId?: any | undefined;
+};
 
+/** @internal */
+export const GetApiV1RunsRunIdResponse$outboundSchema: z.ZodType<
+  GetApiV1RunsRunIdResponse$Outbound,
+  z.ZodTypeDef,
+  GetApiV1RunsRunIdResponse
+> = z.object({
+  runId: z.any().optional(),
+  workflowId: z.any().optional(),
+  status: z.any().optional(),
+  nodeStatuses: z.any().optional(),
+  startedAt: z.any().optional(),
+  finishedAt: z.any().optional(),
+  metadata: z.any().optional(),
+  lastEventId: z.any().optional(),
+});
+
+export function getApiV1RunsRunIdResponseToJSON(
+  getApiV1RunsRunIdResponse: GetApiV1RunsRunIdResponse,
+): string {
+  return JSON.stringify(
+    GetApiV1RunsRunIdResponse$outboundSchema.parse(getApiV1RunsRunIdResponse),
+  );
+}
 export function getApiV1RunsRunIdResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<GetApiV1RunsRunIdResponse, SDKValidationError> {

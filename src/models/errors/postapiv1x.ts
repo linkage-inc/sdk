@@ -121,6 +121,24 @@ export const PostApiV1XInternalServerError$inboundSchema: z.ZodType<
   });
 
 /** @internal */
+export type PostApiV1XInternalServerError$Outbound = {
+  error: operations.PostApiV1XInternalServerErrorError$Outbound;
+};
+
+/** @internal */
+export const PostApiV1XInternalServerError$outboundSchema: z.ZodType<
+  PostApiV1XInternalServerError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1XInternalServerError
+> = z.instanceof(PostApiV1XInternalServerError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() =>
+      operations.PostApiV1XInternalServerErrorError$outboundSchema
+    ),
+  }));
+
+/** @internal */
 export const TooManyRequestsError$inboundSchema: z.ZodType<
   TooManyRequestsError,
   z.ZodTypeDef,
@@ -140,6 +158,22 @@ export const TooManyRequestsError$inboundSchema: z.ZodType<
   });
 
 /** @internal */
+export type TooManyRequestsError$Outbound = {
+  error: operations.TooManyRequestsError$Outbound;
+};
+
+/** @internal */
+export const TooManyRequestsError$outboundSchema: z.ZodType<
+  TooManyRequestsError$Outbound,
+  z.ZodTypeDef,
+  TooManyRequestsError
+> = z.instanceof(TooManyRequestsError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() => operations.TooManyRequestsError$outboundSchema),
+  }));
+
+/** @internal */
 export const PostApiV1XUnauthorizedError$inboundSchema: z.ZodType<
   PostApiV1XUnauthorizedError,
   z.ZodTypeDef,
@@ -157,3 +191,19 @@ export const PostApiV1XUnauthorizedError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
+
+/** @internal */
+export type PostApiV1XUnauthorizedError$Outbound = {
+  error: operations.PostApiV1XUnauthorizedError$Outbound;
+};
+
+/** @internal */
+export const PostApiV1XUnauthorizedError$outboundSchema: z.ZodType<
+  PostApiV1XUnauthorizedError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1XUnauthorizedError
+> = z.instanceof(PostApiV1XUnauthorizedError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() => operations.PostApiV1XUnauthorizedError$outboundSchema),
+  }));

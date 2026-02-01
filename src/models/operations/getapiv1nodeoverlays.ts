@@ -21,6 +21,20 @@ export type GetApiV1NodeOverlaysResponse = {
 };
 
 /** @internal */
+export const GetApiV1NodeOverlaysRequest$inboundSchema: z.ZodType<
+  GetApiV1NodeOverlaysRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "x-client-id": z.string().optional(),
+  "x-client-secret": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "x-client-id": "xClientId",
+    "x-client-secret": "xClientSecret",
+  });
+});
+/** @internal */
 export type GetApiV1NodeOverlaysRequest$Outbound = {
   "x-client-id"?: string | undefined;
   "x-client-secret"?: string | undefined;
@@ -50,6 +64,15 @@ export function getApiV1NodeOverlaysRequestToJSON(
     ),
   );
 }
+export function getApiV1NodeOverlaysRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetApiV1NodeOverlaysRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetApiV1NodeOverlaysRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetApiV1NodeOverlaysRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const GetApiV1NodeOverlaysResponse$inboundSchema: z.ZodType<
@@ -59,7 +82,29 @@ export const GetApiV1NodeOverlaysResponse$inboundSchema: z.ZodType<
 > = z.object({
   overlays: z.any().optional(),
 });
+/** @internal */
+export type GetApiV1NodeOverlaysResponse$Outbound = {
+  overlays?: any | undefined;
+};
 
+/** @internal */
+export const GetApiV1NodeOverlaysResponse$outboundSchema: z.ZodType<
+  GetApiV1NodeOverlaysResponse$Outbound,
+  z.ZodTypeDef,
+  GetApiV1NodeOverlaysResponse
+> = z.object({
+  overlays: z.any().optional(),
+});
+
+export function getApiV1NodeOverlaysResponseToJSON(
+  getApiV1NodeOverlaysResponse: GetApiV1NodeOverlaysResponse,
+): string {
+  return JSON.stringify(
+    GetApiV1NodeOverlaysResponse$outboundSchema.parse(
+      getApiV1NodeOverlaysResponse,
+    ),
+  );
+}
 export function getApiV1NodeOverlaysResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<GetApiV1NodeOverlaysResponse, SDKValidationError> {

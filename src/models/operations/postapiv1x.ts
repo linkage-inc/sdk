@@ -66,6 +66,22 @@ export type PostApiV1XResponse = {
 };
 
 /** @internal */
+export const PostApiV1XRequest$inboundSchema: z.ZodType<
+  PostApiV1XRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "x-client-id": z.string().optional(),
+  "x-client-secret": z.string().optional(),
+  "x-schema-version": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "x-client-id": "xClientId",
+    "x-client-secret": "xClientSecret",
+    "x-schema-version": "xSchemaVersion",
+  });
+});
+/** @internal */
 export type PostApiV1XRequest$Outbound = {
   "x-client-id"?: string | undefined;
   "x-client-secret"?: string | undefined;
@@ -96,12 +112,25 @@ export function postApiV1XRequestToJSON(
     PostApiV1XRequest$outboundSchema.parse(postApiV1XRequest),
   );
 }
+export function postApiV1XRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<PostApiV1XRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PostApiV1XRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostApiV1XRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const PostApiV1XInternalServerErrorMessage$inboundSchema:
   z.ZodNativeEnum<typeof PostApiV1XInternalServerErrorMessage> = z.nativeEnum(
     PostApiV1XInternalServerErrorMessage,
   );
+/** @internal */
+export const PostApiV1XInternalServerErrorMessage$outboundSchema:
+  z.ZodNativeEnum<typeof PostApiV1XInternalServerErrorMessage> =
+    PostApiV1XInternalServerErrorMessage$inboundSchema;
 
 /** @internal */
 export const PostApiV1XInternalServerErrorError$inboundSchema: z.ZodType<
@@ -112,7 +141,31 @@ export const PostApiV1XInternalServerErrorError$inboundSchema: z.ZodType<
   message: PostApiV1XInternalServerErrorMessage$inboundSchema.optional(),
   details: z.any().optional(),
 });
+/** @internal */
+export type PostApiV1XInternalServerErrorError$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const PostApiV1XInternalServerErrorError$outboundSchema: z.ZodType<
+  PostApiV1XInternalServerErrorError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1XInternalServerErrorError
+> = z.object({
+  message: PostApiV1XInternalServerErrorMessage$outboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function postApiV1XInternalServerErrorErrorToJSON(
+  postApiV1XInternalServerErrorError: PostApiV1XInternalServerErrorError,
+): string {
+  return JSON.stringify(
+    PostApiV1XInternalServerErrorError$outboundSchema.parse(
+      postApiV1XInternalServerErrorError,
+    ),
+  );
+}
 export function postApiV1XInternalServerErrorErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<PostApiV1XInternalServerErrorError, SDKValidationError> {
@@ -128,6 +181,10 @@ export function postApiV1XInternalServerErrorErrorFromJSON(
 export const TooManyRequestsMessage$inboundSchema: z.ZodNativeEnum<
   typeof TooManyRequestsMessage
 > = z.nativeEnum(TooManyRequestsMessage);
+/** @internal */
+export const TooManyRequestsMessage$outboundSchema: z.ZodNativeEnum<
+  typeof TooManyRequestsMessage
+> = TooManyRequestsMessage$inboundSchema;
 
 /** @internal */
 export const TooManyRequestsError$inboundSchema: z.ZodType<
@@ -138,7 +195,29 @@ export const TooManyRequestsError$inboundSchema: z.ZodType<
   message: TooManyRequestsMessage$inboundSchema.optional(),
   details: z.any().optional(),
 });
+/** @internal */
+export type TooManyRequestsError$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const TooManyRequestsError$outboundSchema: z.ZodType<
+  TooManyRequestsError$Outbound,
+  z.ZodTypeDef,
+  TooManyRequestsError
+> = z.object({
+  message: TooManyRequestsMessage$outboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function tooManyRequestsErrorToJSON(
+  tooManyRequestsError: TooManyRequestsError,
+): string {
+  return JSON.stringify(
+    TooManyRequestsError$outboundSchema.parse(tooManyRequestsError),
+  );
+}
 export function tooManyRequestsErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<TooManyRequestsError, SDKValidationError> {
@@ -153,6 +232,10 @@ export function tooManyRequestsErrorFromJSON(
 export const PostApiV1XUnauthorizedMessage$inboundSchema: z.ZodNativeEnum<
   typeof PostApiV1XUnauthorizedMessage
 > = z.nativeEnum(PostApiV1XUnauthorizedMessage);
+/** @internal */
+export const PostApiV1XUnauthorizedMessage$outboundSchema: z.ZodNativeEnum<
+  typeof PostApiV1XUnauthorizedMessage
+> = PostApiV1XUnauthorizedMessage$inboundSchema;
 
 /** @internal */
 export const PostApiV1XUnauthorizedError$inboundSchema: z.ZodType<
@@ -163,7 +246,31 @@ export const PostApiV1XUnauthorizedError$inboundSchema: z.ZodType<
   message: PostApiV1XUnauthorizedMessage$inboundSchema.optional(),
   details: z.any().optional(),
 });
+/** @internal */
+export type PostApiV1XUnauthorizedError$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const PostApiV1XUnauthorizedError$outboundSchema: z.ZodType<
+  PostApiV1XUnauthorizedError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1XUnauthorizedError
+> = z.object({
+  message: PostApiV1XUnauthorizedMessage$outboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function postApiV1XUnauthorizedErrorToJSON(
+  postApiV1XUnauthorizedError: PostApiV1XUnauthorizedError,
+): string {
+  return JSON.stringify(
+    PostApiV1XUnauthorizedError$outboundSchema.parse(
+      postApiV1XUnauthorizedError,
+    ),
+  );
+}
 export function postApiV1XUnauthorizedErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<PostApiV1XUnauthorizedError, SDKValidationError> {
@@ -182,7 +289,27 @@ export const PostApiV1XResponse$inboundSchema: z.ZodType<
 > = z.object({
   executionId: z.any().optional(),
 });
+/** @internal */
+export type PostApiV1XResponse$Outbound = {
+  executionId?: any | undefined;
+};
 
+/** @internal */
+export const PostApiV1XResponse$outboundSchema: z.ZodType<
+  PostApiV1XResponse$Outbound,
+  z.ZodTypeDef,
+  PostApiV1XResponse
+> = z.object({
+  executionId: z.any().optional(),
+});
+
+export function postApiV1XResponseToJSON(
+  postApiV1XResponse: PostApiV1XResponse,
+): string {
+  return JSON.stringify(
+    PostApiV1XResponse$outboundSchema.parse(postApiV1XResponse),
+  );
+}
 export function postApiV1XResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<PostApiV1XResponse, SDKValidationError> {

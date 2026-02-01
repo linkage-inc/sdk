@@ -65,6 +65,14 @@ export type GetApiV1TriggerTriggerIdResponse = {
 };
 
 /** @internal */
+export const GetApiV1TriggerTriggerIdRequest$inboundSchema: z.ZodType<
+  GetApiV1TriggerTriggerIdRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  triggerId: z.string(),
+});
+/** @internal */
 export type GetApiV1TriggerTriggerIdRequest$Outbound = {
   triggerId: string;
 };
@@ -87,11 +95,24 @@ export function getApiV1TriggerTriggerIdRequestToJSON(
     ),
   );
 }
+export function getApiV1TriggerTriggerIdRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetApiV1TriggerTriggerIdRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetApiV1TriggerTriggerIdRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetApiV1TriggerTriggerIdRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const MessageTriggerNotFound$inboundSchema: z.ZodNativeEnum<
   typeof MessageTriggerNotFound
 > = z.nativeEnum(MessageTriggerNotFound);
+/** @internal */
+export const MessageTriggerNotFound$outboundSchema: z.ZodNativeEnum<
+  typeof MessageTriggerNotFound
+> = MessageTriggerNotFound$inboundSchema;
 
 /** @internal */
 export const ErrorTriggerNotFound$inboundSchema: z.ZodType<
@@ -102,7 +123,29 @@ export const ErrorTriggerNotFound$inboundSchema: z.ZodType<
   message: MessageTriggerNotFound$inboundSchema.optional(),
   details: z.any().optional(),
 });
+/** @internal */
+export type ErrorTriggerNotFound$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const ErrorTriggerNotFound$outboundSchema: z.ZodType<
+  ErrorTriggerNotFound$Outbound,
+  z.ZodTypeDef,
+  ErrorTriggerNotFound
+> = z.object({
+  message: MessageTriggerNotFound$outboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function errorTriggerNotFoundToJSON(
+  errorTriggerNotFound: ErrorTriggerNotFound,
+): string {
+  return JSON.stringify(
+    ErrorTriggerNotFound$outboundSchema.parse(errorTriggerNotFound),
+  );
+}
 export function errorTriggerNotFoundFromJSON(
   jsonString: string,
 ): SafeParseResult<ErrorTriggerNotFound, SDKValidationError> {
@@ -117,6 +160,10 @@ export function errorTriggerNotFoundFromJSON(
 export const MessageTriggerIDIsRequired$inboundSchema: z.ZodNativeEnum<
   typeof MessageTriggerIDIsRequired
 > = z.nativeEnum(MessageTriggerIDIsRequired);
+/** @internal */
+export const MessageTriggerIDIsRequired$outboundSchema: z.ZodNativeEnum<
+  typeof MessageTriggerIDIsRequired
+> = MessageTriggerIDIsRequired$inboundSchema;
 
 /** @internal */
 export const ErrorTriggerIDIsRequired$inboundSchema: z.ZodType<
@@ -127,7 +174,29 @@ export const ErrorTriggerIDIsRequired$inboundSchema: z.ZodType<
   message: MessageTriggerIDIsRequired$inboundSchema.optional(),
   details: z.any().optional(),
 });
+/** @internal */
+export type ErrorTriggerIDIsRequired$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const ErrorTriggerIDIsRequired$outboundSchema: z.ZodType<
+  ErrorTriggerIDIsRequired$Outbound,
+  z.ZodTypeDef,
+  ErrorTriggerIDIsRequired
+> = z.object({
+  message: MessageTriggerIDIsRequired$outboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function errorTriggerIDIsRequiredToJSON(
+  errorTriggerIDIsRequired: ErrorTriggerIDIsRequired,
+): string {
+  return JSON.stringify(
+    ErrorTriggerIDIsRequired$outboundSchema.parse(errorTriggerIDIsRequired),
+  );
+}
 export function errorTriggerIDIsRequiredFromJSON(
   jsonString: string,
 ): SafeParseResult<ErrorTriggerIDIsRequired, SDKValidationError> {
@@ -151,7 +220,39 @@ export const GetApiV1TriggerTriggerIdResponse$inboundSchema: z.ZodType<
   workflowId: z.any().optional(),
   workflowName: z.any().optional(),
 });
+/** @internal */
+export type GetApiV1TriggerTriggerIdResponse$Outbound = {
+  id?: any | undefined;
+  name?: any | undefined;
+  type?: any | undefined;
+  enabled?: any | undefined;
+  workflowId?: any | undefined;
+  workflowName?: any | undefined;
+};
 
+/** @internal */
+export const GetApiV1TriggerTriggerIdResponse$outboundSchema: z.ZodType<
+  GetApiV1TriggerTriggerIdResponse$Outbound,
+  z.ZodTypeDef,
+  GetApiV1TriggerTriggerIdResponse
+> = z.object({
+  id: z.any().optional(),
+  name: z.any().optional(),
+  type: z.any().optional(),
+  enabled: z.any().optional(),
+  workflowId: z.any().optional(),
+  workflowName: z.any().optional(),
+});
+
+export function getApiV1TriggerTriggerIdResponseToJSON(
+  getApiV1TriggerTriggerIdResponse: GetApiV1TriggerTriggerIdResponse,
+): string {
+  return JSON.stringify(
+    GetApiV1TriggerTriggerIdResponse$outboundSchema.parse(
+      getApiV1TriggerTriggerIdResponse,
+    ),
+  );
+}
 export function getApiV1TriggerTriggerIdResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<GetApiV1TriggerTriggerIdResponse, SDKValidationError> {

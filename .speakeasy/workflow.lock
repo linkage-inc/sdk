@@ -21,7 +21,7 @@ targets:
         sourceRevisionDigest: sha256:52ca764cd7cabdfccbb79a741491803c98e1ce0d6801992768738cfcf7f2be87
         sourceBlobDigest: sha256:cb9775895afa88d66a05404d0e5a01d98c75e45a08250a342a14d6db02b14c8a
         codeSamplesNamespace: undefined---next-js-open-api-spec-by-scalar-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:ad8adeb3933ddc358649147f4a05188868941e2c7114c2529dcec0746f633491
+        codeSamplesRevisionDigest: sha256:7c3981732c0d371b6910233ecd21dcfa052ab5733491f595b7b476368bd6e911
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

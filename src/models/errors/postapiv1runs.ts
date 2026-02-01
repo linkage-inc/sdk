@@ -88,6 +88,22 @@ export const PostApiV1RunsInternalServerError$inboundSchema: z.ZodType<
   });
 
 /** @internal */
+export type PostApiV1RunsInternalServerError$Outbound = {
+  error: operations.ErrorFailedToCreateRun$Outbound;
+};
+
+/** @internal */
+export const PostApiV1RunsInternalServerError$outboundSchema: z.ZodType<
+  PostApiV1RunsInternalServerError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1RunsInternalServerError
+> = z.instanceof(PostApiV1RunsInternalServerError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() => operations.ErrorFailedToCreateRun$outboundSchema),
+  }));
+
+/** @internal */
 export const PostApiV1RunsBadRequestError$inboundSchema: z.ZodType<
   PostApiV1RunsBadRequestError,
   z.ZodTypeDef,
@@ -105,3 +121,19 @@ export const PostApiV1RunsBadRequestError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
+
+/** @internal */
+export type PostApiV1RunsBadRequestError$Outbound = {
+  error: operations.ErrorInvalidRunPayload$Outbound;
+};
+
+/** @internal */
+export const PostApiV1RunsBadRequestError$outboundSchema: z.ZodType<
+  PostApiV1RunsBadRequestError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1RunsBadRequestError
+> = z.instanceof(PostApiV1RunsBadRequestError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() => operations.ErrorInvalidRunPayload$outboundSchema),
+  }));

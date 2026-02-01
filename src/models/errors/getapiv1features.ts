@@ -122,6 +122,26 @@ export const GetApiV1FeaturesInternalServerError$inboundSchema: z.ZodType<
   });
 
 /** @internal */
+export type GetApiV1FeaturesInternalServerError$Outbound = {
+  error:
+    operations.GetApiV1FeaturesErrorProjectHasAnInvalidConfiguration$Outbound;
+};
+
+/** @internal */
+export const GetApiV1FeaturesInternalServerError$outboundSchema: z.ZodType<
+  GetApiV1FeaturesInternalServerError$Outbound,
+  z.ZodTypeDef,
+  GetApiV1FeaturesInternalServerError
+> = z.instanceof(GetApiV1FeaturesInternalServerError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() =>
+      operations
+        .GetApiV1FeaturesErrorProjectHasAnInvalidConfiguration$outboundSchema
+    ),
+  }));
+
+/** @internal */
 export const GetApiV1FeaturesUnauthorizedError$inboundSchema: z.ZodType<
   GetApiV1FeaturesUnauthorizedError,
   z.ZodTypeDef,
@@ -143,6 +163,24 @@ export const GetApiV1FeaturesUnauthorizedError$inboundSchema: z.ZodType<
   });
 
 /** @internal */
+export type GetApiV1FeaturesUnauthorizedError$Outbound = {
+  error: operations.GetApiV1FeaturesUnauthorizedError$Outbound;
+};
+
+/** @internal */
+export const GetApiV1FeaturesUnauthorizedError$outboundSchema: z.ZodType<
+  GetApiV1FeaturesUnauthorizedError$Outbound,
+  z.ZodTypeDef,
+  GetApiV1FeaturesUnauthorizedError
+> = z.instanceof(GetApiV1FeaturesUnauthorizedError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() =>
+      operations.GetApiV1FeaturesUnauthorizedError$outboundSchema
+    ),
+  }));
+
+/** @internal */
 export const GetApiV1NodeTypesNotFoundError$inboundSchema: z.ZodType<
   GetApiV1NodeTypesNotFoundError,
   z.ZodTypeDef,
@@ -160,3 +198,19 @@ export const GetApiV1NodeTypesNotFoundError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
+
+/** @internal */
+export type GetApiV1NodeTypesNotFoundError$Outbound = {
+  error: operations.ErrorSchemaVersionNotFound$Outbound;
+};
+
+/** @internal */
+export const GetApiV1NodeTypesNotFoundError$outboundSchema: z.ZodType<
+  GetApiV1NodeTypesNotFoundError$Outbound,
+  z.ZodTypeDef,
+  GetApiV1NodeTypesNotFoundError
+> = z.instanceof(GetApiV1NodeTypesNotFoundError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() => operations.ErrorSchemaVersionNotFound$outboundSchema),
+  }));

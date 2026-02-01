@@ -129,6 +129,14 @@ export type PostApiV1TriggerManualResponse = {
 };
 
 /** @internal */
+export const PostApiV1TriggerTriggerIdRequest$inboundSchema: z.ZodType<
+  PostApiV1TriggerTriggerIdRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  triggerId: z.string(),
+});
+/** @internal */
 export type PostApiV1TriggerTriggerIdRequest$Outbound = {
   triggerId: string;
 };
@@ -151,11 +159,24 @@ export function postApiV1TriggerTriggerIdRequestToJSON(
     ),
   );
 }
+export function postApiV1TriggerTriggerIdRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<PostApiV1TriggerTriggerIdRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PostApiV1TriggerTriggerIdRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostApiV1TriggerTriggerIdRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const PostApiV1TriggerTriggerIdNotFoundMessage$inboundSchema:
   z.ZodNativeEnum<typeof PostApiV1TriggerTriggerIdNotFoundMessage> = z
     .nativeEnum(PostApiV1TriggerTriggerIdNotFoundMessage);
+/** @internal */
+export const PostApiV1TriggerTriggerIdNotFoundMessage$outboundSchema:
+  z.ZodNativeEnum<typeof PostApiV1TriggerTriggerIdNotFoundMessage> =
+    PostApiV1TriggerTriggerIdNotFoundMessage$inboundSchema;
 
 /** @internal */
 export const PostApiV1TriggerTriggerIdNotFoundError$inboundSchema: z.ZodType<
@@ -166,7 +187,32 @@ export const PostApiV1TriggerTriggerIdNotFoundError$inboundSchema: z.ZodType<
   message: PostApiV1TriggerTriggerIdNotFoundMessage$inboundSchema.optional(),
   details: z.any().optional(),
 });
+/** @internal */
+export type PostApiV1TriggerTriggerIdNotFoundError$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const PostApiV1TriggerTriggerIdNotFoundError$outboundSchema: z.ZodType<
+  PostApiV1TriggerTriggerIdNotFoundError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1TriggerTriggerIdNotFoundError
+> = z.object({
+  message: PostApiV1TriggerTriggerIdNotFoundMessage$outboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function postApiV1TriggerTriggerIdNotFoundErrorToJSON(
+  postApiV1TriggerTriggerIdNotFoundError:
+    PostApiV1TriggerTriggerIdNotFoundError,
+): string {
+  return JSON.stringify(
+    PostApiV1TriggerTriggerIdNotFoundError$outboundSchema.parse(
+      postApiV1TriggerTriggerIdNotFoundError,
+    ),
+  );
+}
 export function postApiV1TriggerTriggerIdNotFoundErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<PostApiV1TriggerTriggerIdNotFoundError, SDKValidationError> {
@@ -182,6 +228,10 @@ export function postApiV1TriggerTriggerIdNotFoundErrorFromJSON(
 export const PostApiV1TriggerTriggerIdForbiddenMessage$inboundSchema:
   z.ZodNativeEnum<typeof PostApiV1TriggerTriggerIdForbiddenMessage> = z
     .nativeEnum(PostApiV1TriggerTriggerIdForbiddenMessage);
+/** @internal */
+export const PostApiV1TriggerTriggerIdForbiddenMessage$outboundSchema:
+  z.ZodNativeEnum<typeof PostApiV1TriggerTriggerIdForbiddenMessage> =
+    PostApiV1TriggerTriggerIdForbiddenMessage$inboundSchema;
 
 /** @internal */
 export const PostApiV1TriggerTriggerIdForbiddenError$inboundSchema: z.ZodType<
@@ -192,7 +242,32 @@ export const PostApiV1TriggerTriggerIdForbiddenError$inboundSchema: z.ZodType<
   message: PostApiV1TriggerTriggerIdForbiddenMessage$inboundSchema.optional(),
   details: z.any().optional(),
 });
+/** @internal */
+export type PostApiV1TriggerTriggerIdForbiddenError$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const PostApiV1TriggerTriggerIdForbiddenError$outboundSchema: z.ZodType<
+  PostApiV1TriggerTriggerIdForbiddenError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1TriggerTriggerIdForbiddenError
+> = z.object({
+  message: PostApiV1TriggerTriggerIdForbiddenMessage$outboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function postApiV1TriggerTriggerIdForbiddenErrorToJSON(
+  postApiV1TriggerTriggerIdForbiddenError:
+    PostApiV1TriggerTriggerIdForbiddenError,
+): string {
+  return JSON.stringify(
+    PostApiV1TriggerTriggerIdForbiddenError$outboundSchema.parse(
+      postApiV1TriggerTriggerIdForbiddenError,
+    ),
+  );
+}
 export function postApiV1TriggerTriggerIdForbiddenErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -213,6 +288,10 @@ export function postApiV1TriggerTriggerIdForbiddenErrorFromJSON(
 export const PostApiV1TriggerTriggerIdUnauthorizedMessage$inboundSchema:
   z.ZodNativeEnum<typeof PostApiV1TriggerTriggerIdUnauthorizedMessage> = z
     .nativeEnum(PostApiV1TriggerTriggerIdUnauthorizedMessage);
+/** @internal */
+export const PostApiV1TriggerTriggerIdUnauthorizedMessage$outboundSchema:
+  z.ZodNativeEnum<typeof PostApiV1TriggerTriggerIdUnauthorizedMessage> =
+    PostApiV1TriggerTriggerIdUnauthorizedMessage$inboundSchema;
 
 /** @internal */
 export const PostApiV1TriggerTriggerIdUnauthorizedError$inboundSchema:
@@ -222,7 +301,34 @@ export const PostApiV1TriggerTriggerIdUnauthorizedError$inboundSchema:
         .optional(),
       details: z.any().optional(),
     });
+/** @internal */
+export type PostApiV1TriggerTriggerIdUnauthorizedError$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const PostApiV1TriggerTriggerIdUnauthorizedError$outboundSchema:
+  z.ZodType<
+    PostApiV1TriggerTriggerIdUnauthorizedError$Outbound,
+    z.ZodTypeDef,
+    PostApiV1TriggerTriggerIdUnauthorizedError
+  > = z.object({
+    message: PostApiV1TriggerTriggerIdUnauthorizedMessage$outboundSchema
+      .optional(),
+    details: z.any().optional(),
+  });
+
+export function postApiV1TriggerTriggerIdUnauthorizedErrorToJSON(
+  postApiV1TriggerTriggerIdUnauthorizedError:
+    PostApiV1TriggerTriggerIdUnauthorizedError,
+): string {
+  return JSON.stringify(
+    PostApiV1TriggerTriggerIdUnauthorizedError$outboundSchema.parse(
+      postApiV1TriggerTriggerIdUnauthorizedError,
+    ),
+  );
+}
 export function postApiV1TriggerTriggerIdUnauthorizedErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -243,6 +349,10 @@ export function postApiV1TriggerTriggerIdUnauthorizedErrorFromJSON(
 export const PostApiV1TriggerTriggerIdBadRequestMessage$inboundSchema:
   z.ZodNativeEnum<typeof PostApiV1TriggerTriggerIdBadRequestMessage> = z
     .nativeEnum(PostApiV1TriggerTriggerIdBadRequestMessage);
+/** @internal */
+export const PostApiV1TriggerTriggerIdBadRequestMessage$outboundSchema:
+  z.ZodNativeEnum<typeof PostApiV1TriggerTriggerIdBadRequestMessage> =
+    PostApiV1TriggerTriggerIdBadRequestMessage$inboundSchema;
 
 /** @internal */
 export const PostApiV1TriggerTriggerIdBadRequestError$inboundSchema: z.ZodType<
@@ -253,7 +363,32 @@ export const PostApiV1TriggerTriggerIdBadRequestError$inboundSchema: z.ZodType<
   message: PostApiV1TriggerTriggerIdBadRequestMessage$inboundSchema.optional(),
   details: z.any().optional(),
 });
+/** @internal */
+export type PostApiV1TriggerTriggerIdBadRequestError$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const PostApiV1TriggerTriggerIdBadRequestError$outboundSchema: z.ZodType<
+  PostApiV1TriggerTriggerIdBadRequestError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1TriggerTriggerIdBadRequestError
+> = z.object({
+  message: PostApiV1TriggerTriggerIdBadRequestMessage$outboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function postApiV1TriggerTriggerIdBadRequestErrorToJSON(
+  postApiV1TriggerTriggerIdBadRequestError:
+    PostApiV1TriggerTriggerIdBadRequestError,
+): string {
+  return JSON.stringify(
+    PostApiV1TriggerTriggerIdBadRequestError$outboundSchema.parse(
+      postApiV1TriggerTriggerIdBadRequestError,
+    ),
+  );
+}
 export function postApiV1TriggerTriggerIdBadRequestErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -280,7 +415,33 @@ export const PostApiV1TriggerTriggerIdResponse$inboundSchema: z.ZodType<
   executionId: z.any().optional(),
   triggerExecutionId: z.any().optional(),
 });
+/** @internal */
+export type PostApiV1TriggerTriggerIdResponse$Outbound = {
+  success?: boolean | undefined;
+  executionId?: any | undefined;
+  triggerExecutionId?: any | undefined;
+};
 
+/** @internal */
+export const PostApiV1TriggerTriggerIdResponse$outboundSchema: z.ZodType<
+  PostApiV1TriggerTriggerIdResponse$Outbound,
+  z.ZodTypeDef,
+  PostApiV1TriggerTriggerIdResponse
+> = z.object({
+  success: z.boolean().optional(),
+  executionId: z.any().optional(),
+  triggerExecutionId: z.any().optional(),
+});
+
+export function postApiV1TriggerTriggerIdResponseToJSON(
+  postApiV1TriggerTriggerIdResponse: PostApiV1TriggerTriggerIdResponse,
+): string {
+  return JSON.stringify(
+    PostApiV1TriggerTriggerIdResponse$outboundSchema.parse(
+      postApiV1TriggerTriggerIdResponse,
+    ),
+  );
+}
 export function postApiV1TriggerTriggerIdResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<PostApiV1TriggerTriggerIdResponse, SDKValidationError> {
@@ -291,6 +452,20 @@ export function postApiV1TriggerTriggerIdResponseFromJSON(
   );
 }
 
+/** @internal */
+export const PostApiV1TriggerManualRequest$inboundSchema: z.ZodType<
+  PostApiV1TriggerManualRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  "x-client-id": z.string().optional(),
+  "x-client-secret": z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "x-client-id": "xClientId",
+    "x-client-secret": "xClientSecret",
+  });
+});
 /** @internal */
 export type PostApiV1TriggerManualRequest$Outbound = {
   "x-client-id"?: string | undefined;
@@ -321,11 +496,24 @@ export function postApiV1TriggerManualRequestToJSON(
     ),
   );
 }
+export function postApiV1TriggerManualRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<PostApiV1TriggerManualRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PostApiV1TriggerManualRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostApiV1TriggerManualRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const PostApiV1TriggerManualUnauthorizedMessage$inboundSchema:
   z.ZodNativeEnum<typeof PostApiV1TriggerManualUnauthorizedMessage> = z
     .nativeEnum(PostApiV1TriggerManualUnauthorizedMessage);
+/** @internal */
+export const PostApiV1TriggerManualUnauthorizedMessage$outboundSchema:
+  z.ZodNativeEnum<typeof PostApiV1TriggerManualUnauthorizedMessage> =
+    PostApiV1TriggerManualUnauthorizedMessage$inboundSchema;
 
 /** @internal */
 export const PostApiV1TriggerManualUnauthorizedError$inboundSchema: z.ZodType<
@@ -336,7 +524,32 @@ export const PostApiV1TriggerManualUnauthorizedError$inboundSchema: z.ZodType<
   message: PostApiV1TriggerManualUnauthorizedMessage$inboundSchema.optional(),
   details: z.any().optional(),
 });
+/** @internal */
+export type PostApiV1TriggerManualUnauthorizedError$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const PostApiV1TriggerManualUnauthorizedError$outboundSchema: z.ZodType<
+  PostApiV1TriggerManualUnauthorizedError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1TriggerManualUnauthorizedError
+> = z.object({
+  message: PostApiV1TriggerManualUnauthorizedMessage$outboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function postApiV1TriggerManualUnauthorizedErrorToJSON(
+  postApiV1TriggerManualUnauthorizedError:
+    PostApiV1TriggerManualUnauthorizedError,
+): string {
+  return JSON.stringify(
+    PostApiV1TriggerManualUnauthorizedError$outboundSchema.parse(
+      postApiV1TriggerManualUnauthorizedError,
+    ),
+  );
+}
 export function postApiV1TriggerManualUnauthorizedErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -357,6 +570,10 @@ export function postApiV1TriggerManualUnauthorizedErrorFromJSON(
 export const PostApiV1TriggerManualBadRequestMessage$inboundSchema:
   z.ZodNativeEnum<typeof PostApiV1TriggerManualBadRequestMessage> = z
     .nativeEnum(PostApiV1TriggerManualBadRequestMessage);
+/** @internal */
+export const PostApiV1TriggerManualBadRequestMessage$outboundSchema:
+  z.ZodNativeEnum<typeof PostApiV1TriggerManualBadRequestMessage> =
+    PostApiV1TriggerManualBadRequestMessage$inboundSchema;
 
 /** @internal */
 export const PostApiV1TriggerManualBadRequestError$inboundSchema: z.ZodType<
@@ -367,7 +584,31 @@ export const PostApiV1TriggerManualBadRequestError$inboundSchema: z.ZodType<
   message: PostApiV1TriggerManualBadRequestMessage$inboundSchema.optional(),
   details: z.any().optional(),
 });
+/** @internal */
+export type PostApiV1TriggerManualBadRequestError$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const PostApiV1TriggerManualBadRequestError$outboundSchema: z.ZodType<
+  PostApiV1TriggerManualBadRequestError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1TriggerManualBadRequestError
+> = z.object({
+  message: PostApiV1TriggerManualBadRequestMessage$outboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function postApiV1TriggerManualBadRequestErrorToJSON(
+  postApiV1TriggerManualBadRequestError: PostApiV1TriggerManualBadRequestError,
+): string {
+  return JSON.stringify(
+    PostApiV1TriggerManualBadRequestError$outboundSchema.parse(
+      postApiV1TriggerManualBadRequestError,
+    ),
+  );
+}
 export function postApiV1TriggerManualBadRequestErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<PostApiV1TriggerManualBadRequestError, SDKValidationError> {
@@ -390,7 +631,35 @@ export const PostApiV1TriggerManualResponse$inboundSchema: z.ZodType<
   triggerExecutionId: z.any().optional(),
   message: z.string().optional(),
 });
+/** @internal */
+export type PostApiV1TriggerManualResponse$Outbound = {
+  success?: boolean | undefined;
+  executionId?: any | undefined;
+  triggerExecutionId?: any | undefined;
+  message?: string | undefined;
+};
 
+/** @internal */
+export const PostApiV1TriggerManualResponse$outboundSchema: z.ZodType<
+  PostApiV1TriggerManualResponse$Outbound,
+  z.ZodTypeDef,
+  PostApiV1TriggerManualResponse
+> = z.object({
+  success: z.boolean().optional(),
+  executionId: z.any().optional(),
+  triggerExecutionId: z.any().optional(),
+  message: z.string().optional(),
+});
+
+export function postApiV1TriggerManualResponseToJSON(
+  postApiV1TriggerManualResponse: PostApiV1TriggerManualResponse,
+): string {
+  return JSON.stringify(
+    PostApiV1TriggerManualResponse$outboundSchema.parse(
+      postApiV1TriggerManualResponse,
+    ),
+  );
+}
 export function postApiV1TriggerManualResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<PostApiV1TriggerManualResponse, SDKValidationError> {

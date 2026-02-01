@@ -254,6 +254,25 @@ export const PostApiV1TriggerTriggerIdInternalServerError$inboundSchema:
     });
 
 /** @internal */
+export type PostApiV1TriggerTriggerIdInternalServerError$Outbound = {
+  error?: string | undefined;
+  details?: any | undefined;
+};
+
+/** @internal */
+export const PostApiV1TriggerTriggerIdInternalServerError$outboundSchema:
+  z.ZodType<
+    PostApiV1TriggerTriggerIdInternalServerError$Outbound,
+    z.ZodTypeDef,
+    PostApiV1TriggerTriggerIdInternalServerError
+  > = z.instanceof(PostApiV1TriggerTriggerIdInternalServerError)
+    .transform(v => v.data$)
+    .pipe(z.object({
+      error: z.string().optional(),
+      details: z.any().optional(),
+    }));
+
+/** @internal */
 export const PostApiV1TriggerTriggerIdNotFoundError$inboundSchema: z.ZodType<
   PostApiV1TriggerTriggerIdNotFoundError,
   z.ZodTypeDef,
@@ -273,6 +292,24 @@ export const PostApiV1TriggerTriggerIdNotFoundError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
+
+/** @internal */
+export type PostApiV1TriggerTriggerIdNotFoundError$Outbound = {
+  error: operations.PostApiV1TriggerTriggerIdNotFoundError$Outbound;
+};
+
+/** @internal */
+export const PostApiV1TriggerTriggerIdNotFoundError$outboundSchema: z.ZodType<
+  PostApiV1TriggerTriggerIdNotFoundError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1TriggerTriggerIdNotFoundError
+> = z.instanceof(PostApiV1TriggerTriggerIdNotFoundError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() =>
+      operations.PostApiV1TriggerTriggerIdNotFoundError$outboundSchema
+    ),
+  }));
 
 /** @internal */
 export const ForbiddenError$inboundSchema: z.ZodType<
@@ -296,6 +333,24 @@ export const ForbiddenError$inboundSchema: z.ZodType<
   });
 
 /** @internal */
+export type ForbiddenError$Outbound = {
+  error: operations.PostApiV1TriggerTriggerIdForbiddenError$Outbound;
+};
+
+/** @internal */
+export const ForbiddenError$outboundSchema: z.ZodType<
+  ForbiddenError$Outbound,
+  z.ZodTypeDef,
+  ForbiddenError
+> = z.instanceof(ForbiddenError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() =>
+      operations.PostApiV1TriggerTriggerIdForbiddenError$outboundSchema
+    ),
+  }));
+
+/** @internal */
 export const PostApiV1TriggerTriggerIdUnauthorizedError$inboundSchema:
   z.ZodType<PostApiV1TriggerTriggerIdUnauthorizedError, z.ZodTypeDef, unknown> =
     z.object({
@@ -313,6 +368,25 @@ export const PostApiV1TriggerTriggerIdUnauthorizedError$inboundSchema:
           body: v.body$,
         });
       });
+
+/** @internal */
+export type PostApiV1TriggerTriggerIdUnauthorizedError$Outbound = {
+  error: operations.PostApiV1TriggerTriggerIdUnauthorizedError$Outbound;
+};
+
+/** @internal */
+export const PostApiV1TriggerTriggerIdUnauthorizedError$outboundSchema:
+  z.ZodType<
+    PostApiV1TriggerTriggerIdUnauthorizedError$Outbound,
+    z.ZodTypeDef,
+    PostApiV1TriggerTriggerIdUnauthorizedError
+  > = z.instanceof(PostApiV1TriggerTriggerIdUnauthorizedError)
+    .transform(v => v.data$)
+    .pipe(z.object({
+      error: z.lazy(() =>
+        operations.PostApiV1TriggerTriggerIdUnauthorizedError$outboundSchema
+      ),
+    }));
 
 /** @internal */
 export const PostApiV1TriggerTriggerIdBadRequestError$inboundSchema: z.ZodType<
@@ -336,6 +410,24 @@ export const PostApiV1TriggerTriggerIdBadRequestError$inboundSchema: z.ZodType<
   });
 
 /** @internal */
+export type PostApiV1TriggerTriggerIdBadRequestError$Outbound = {
+  error: operations.PostApiV1TriggerTriggerIdBadRequestError$Outbound;
+};
+
+/** @internal */
+export const PostApiV1TriggerTriggerIdBadRequestError$outboundSchema: z.ZodType<
+  PostApiV1TriggerTriggerIdBadRequestError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1TriggerTriggerIdBadRequestError
+> = z.instanceof(PostApiV1TriggerTriggerIdBadRequestError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() =>
+      operations.PostApiV1TriggerTriggerIdBadRequestError$outboundSchema
+    ),
+  }));
+
+/** @internal */
 export const PostApiV1TriggerManualUnauthorizedError$inboundSchema: z.ZodType<
   PostApiV1TriggerManualUnauthorizedError,
   z.ZodTypeDef,
@@ -357,6 +449,24 @@ export const PostApiV1TriggerManualUnauthorizedError$inboundSchema: z.ZodType<
   });
 
 /** @internal */
+export type PostApiV1TriggerManualUnauthorizedError$Outbound = {
+  error: operations.PostApiV1TriggerManualUnauthorizedError$Outbound;
+};
+
+/** @internal */
+export const PostApiV1TriggerManualUnauthorizedError$outboundSchema: z.ZodType<
+  PostApiV1TriggerManualUnauthorizedError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1TriggerManualUnauthorizedError
+> = z.instanceof(PostApiV1TriggerManualUnauthorizedError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() =>
+      operations.PostApiV1TriggerManualUnauthorizedError$outboundSchema
+    ),
+  }));
+
+/** @internal */
 export const PostApiV1TriggerManualBadRequestError$inboundSchema: z.ZodType<
   PostApiV1TriggerManualBadRequestError,
   z.ZodTypeDef,
@@ -376,3 +486,21 @@ export const PostApiV1TriggerManualBadRequestError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
+
+/** @internal */
+export type PostApiV1TriggerManualBadRequestError$Outbound = {
+  error: operations.PostApiV1TriggerManualBadRequestError$Outbound;
+};
+
+/** @internal */
+export const PostApiV1TriggerManualBadRequestError$outboundSchema: z.ZodType<
+  PostApiV1TriggerManualBadRequestError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1TriggerManualBadRequestError
+> = z.instanceof(PostApiV1TriggerManualBadRequestError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() =>
+      operations.PostApiV1TriggerManualBadRequestError$outboundSchema
+    ),
+  }));

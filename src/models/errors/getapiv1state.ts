@@ -119,6 +119,22 @@ export const GetApiV1StateNotFoundError$inboundSchema: z.ZodType<
   });
 
 /** @internal */
+export type GetApiV1StateNotFoundError$Outbound = {
+  error: operations.GetApiV1StateNotFoundError$Outbound;
+};
+
+/** @internal */
+export const GetApiV1StateNotFoundError$outboundSchema: z.ZodType<
+  GetApiV1StateNotFoundError$Outbound,
+  z.ZodTypeDef,
+  GetApiV1StateNotFoundError
+> = z.instanceof(GetApiV1StateNotFoundError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() => operations.GetApiV1StateNotFoundError$outboundSchema),
+  }));
+
+/** @internal */
 export const GetApiV1StateBadRequestError$inboundSchema: z.ZodType<
   GetApiV1StateBadRequestError,
   z.ZodTypeDef,
@@ -138,6 +154,22 @@ export const GetApiV1StateBadRequestError$inboundSchema: z.ZodType<
   });
 
 /** @internal */
+export type GetApiV1StateBadRequestError$Outbound = {
+  error: operations.GetApiV1StateBadRequestError$Outbound;
+};
+
+/** @internal */
+export const GetApiV1StateBadRequestError$outboundSchema: z.ZodType<
+  GetApiV1StateBadRequestError$Outbound,
+  z.ZodTypeDef,
+  GetApiV1StateBadRequestError
+> = z.instanceof(GetApiV1StateBadRequestError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() => operations.GetApiV1StateBadRequestError$outboundSchema),
+  }));
+
+/** @internal */
 export const PostApiV1StateBadRequestError$inboundSchema: z.ZodType<
   PostApiV1StateBadRequestError,
   z.ZodTypeDef,
@@ -155,3 +187,21 @@ export const PostApiV1StateBadRequestError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
+
+/** @internal */
+export type PostApiV1StateBadRequestError$Outbound = {
+  error: operations.PostApiV1StateBadRequestError$Outbound;
+};
+
+/** @internal */
+export const PostApiV1StateBadRequestError$outboundSchema: z.ZodType<
+  PostApiV1StateBadRequestError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1StateBadRequestError
+> = z.instanceof(PostApiV1StateBadRequestError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() =>
+      operations.PostApiV1StateBadRequestError$outboundSchema
+    ),
+  }));

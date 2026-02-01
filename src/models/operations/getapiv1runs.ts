@@ -31,6 +31,15 @@ export type GetApiV1RunsResponse = {
 };
 
 /** @internal */
+export const GetApiV1RunsRequest$inboundSchema: z.ZodType<
+  GetApiV1RunsRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  workflowId: z.string().optional(),
+  limit: z.string().optional(),
+});
+/** @internal */
 export type GetApiV1RunsRequest$Outbound = {
   workflowId?: string | undefined;
   limit?: string | undefined;
@@ -53,11 +62,24 @@ export function getApiV1RunsRequestToJSON(
     GetApiV1RunsRequest$outboundSchema.parse(getApiV1RunsRequest),
   );
 }
+export function getApiV1RunsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetApiV1RunsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetApiV1RunsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetApiV1RunsRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const GetApiV1RunsMessage$inboundSchema: z.ZodNativeEnum<
   typeof GetApiV1RunsMessage
 > = z.nativeEnum(GetApiV1RunsMessage);
+/** @internal */
+export const GetApiV1RunsMessage$outboundSchema: z.ZodNativeEnum<
+  typeof GetApiV1RunsMessage
+> = GetApiV1RunsMessage$inboundSchema;
 
 /** @internal */
 export const GetApiV1RunsError$inboundSchema: z.ZodType<
@@ -68,7 +90,29 @@ export const GetApiV1RunsError$inboundSchema: z.ZodType<
   message: GetApiV1RunsMessage$inboundSchema.optional(),
   details: z.any().optional(),
 });
+/** @internal */
+export type GetApiV1RunsError$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const GetApiV1RunsError$outboundSchema: z.ZodType<
+  GetApiV1RunsError$Outbound,
+  z.ZodTypeDef,
+  GetApiV1RunsError
+> = z.object({
+  message: GetApiV1RunsMessage$outboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function getApiV1RunsErrorToJSON(
+  getApiV1RunsError: GetApiV1RunsError,
+): string {
+  return JSON.stringify(
+    GetApiV1RunsError$outboundSchema.parse(getApiV1RunsError),
+  );
+}
 export function getApiV1RunsErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<GetApiV1RunsError, SDKValidationError> {
@@ -87,7 +131,27 @@ export const GetApiV1RunsResponse$inboundSchema: z.ZodType<
 > = z.object({
   runs: z.any().optional(),
 });
+/** @internal */
+export type GetApiV1RunsResponse$Outbound = {
+  runs?: any | undefined;
+};
 
+/** @internal */
+export const GetApiV1RunsResponse$outboundSchema: z.ZodType<
+  GetApiV1RunsResponse$Outbound,
+  z.ZodTypeDef,
+  GetApiV1RunsResponse
+> = z.object({
+  runs: z.any().optional(),
+});
+
+export function getApiV1RunsResponseToJSON(
+  getApiV1RunsResponse: GetApiV1RunsResponse,
+): string {
+  return JSON.stringify(
+    GetApiV1RunsResponse$outboundSchema.parse(getApiV1RunsResponse),
+  );
+}
 export function getApiV1RunsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<GetApiV1RunsResponse, SDKValidationError> {

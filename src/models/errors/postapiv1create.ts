@@ -119,6 +119,22 @@ export const PostApiV1CreateInternalServerError$inboundSchema: z.ZodType<
   });
 
 /** @internal */
+export type PostApiV1CreateInternalServerError$Outbound = {
+  error: operations.ErrorFailedToCreateWorkflow$Outbound;
+};
+
+/** @internal */
+export const PostApiV1CreateInternalServerError$outboundSchema: z.ZodType<
+  PostApiV1CreateInternalServerError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1CreateInternalServerError
+> = z.instanceof(PostApiV1CreateInternalServerError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() => operations.ErrorFailedToCreateWorkflow$outboundSchema),
+  }));
+
+/** @internal */
 export const PostApiV1CreateNotFoundError$inboundSchema: z.ZodType<
   PostApiV1CreateNotFoundError,
   z.ZodTypeDef,
@@ -138,6 +154,22 @@ export const PostApiV1CreateNotFoundError$inboundSchema: z.ZodType<
   });
 
 /** @internal */
+export type PostApiV1CreateNotFoundError$Outbound = {
+  error: operations.ErrorProjectNotFound$Outbound;
+};
+
+/** @internal */
+export const PostApiV1CreateNotFoundError$outboundSchema: z.ZodType<
+  PostApiV1CreateNotFoundError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1CreateNotFoundError
+> = z.instanceof(PostApiV1CreateNotFoundError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() => operations.ErrorProjectNotFound$outboundSchema),
+  }));
+
+/** @internal */
 export const PostApiV1CreateBadRequestError$inboundSchema: z.ZodType<
   PostApiV1CreateBadRequestError,
   z.ZodTypeDef,
@@ -155,3 +187,21 @@ export const PostApiV1CreateBadRequestError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
+
+/** @internal */
+export type PostApiV1CreateBadRequestError$Outbound = {
+  error: operations.PostApiV1CreateBadRequestError$Outbound;
+};
+
+/** @internal */
+export const PostApiV1CreateBadRequestError$outboundSchema: z.ZodType<
+  PostApiV1CreateBadRequestError$Outbound,
+  z.ZodTypeDef,
+  PostApiV1CreateBadRequestError
+> = z.instanceof(PostApiV1CreateBadRequestError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() =>
+      operations.PostApiV1CreateBadRequestError$outboundSchema
+    ),
+  }));

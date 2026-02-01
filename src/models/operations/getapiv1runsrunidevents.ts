@@ -28,6 +28,17 @@ export type GetApiV1RunsRunIdEventsError = {
 };
 
 /** @internal */
+export const GetApiV1RunsRunIdEventsRequest$inboundSchema: z.ZodType<
+  GetApiV1RunsRunIdEventsRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  cursor: z.string().optional(),
+  limit: z.string().optional(),
+  stream: z.string().optional(),
+  runId: z.string(),
+});
+/** @internal */
 export type GetApiV1RunsRunIdEventsRequest$Outbound = {
   cursor?: string | undefined;
   limit?: string | undefined;
@@ -56,11 +67,24 @@ export function getApiV1RunsRunIdEventsRequestToJSON(
     ),
   );
 }
+export function getApiV1RunsRunIdEventsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetApiV1RunsRunIdEventsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetApiV1RunsRunIdEventsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetApiV1RunsRunIdEventsRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const GetApiV1RunsRunIdEventsMessage$inboundSchema: z.ZodNativeEnum<
   typeof GetApiV1RunsRunIdEventsMessage
 > = z.nativeEnum(GetApiV1RunsRunIdEventsMessage);
+/** @internal */
+export const GetApiV1RunsRunIdEventsMessage$outboundSchema: z.ZodNativeEnum<
+  typeof GetApiV1RunsRunIdEventsMessage
+> = GetApiV1RunsRunIdEventsMessage$inboundSchema;
 
 /** @internal */
 export const GetApiV1RunsRunIdEventsError$inboundSchema: z.ZodType<
@@ -71,7 +95,31 @@ export const GetApiV1RunsRunIdEventsError$inboundSchema: z.ZodType<
   message: GetApiV1RunsRunIdEventsMessage$inboundSchema.optional(),
   details: z.any().optional(),
 });
+/** @internal */
+export type GetApiV1RunsRunIdEventsError$Outbound = {
+  message?: string | undefined;
+  details?: any | undefined;
+};
 
+/** @internal */
+export const GetApiV1RunsRunIdEventsError$outboundSchema: z.ZodType<
+  GetApiV1RunsRunIdEventsError$Outbound,
+  z.ZodTypeDef,
+  GetApiV1RunsRunIdEventsError
+> = z.object({
+  message: GetApiV1RunsRunIdEventsMessage$outboundSchema.optional(),
+  details: z.any().optional(),
+});
+
+export function getApiV1RunsRunIdEventsErrorToJSON(
+  getApiV1RunsRunIdEventsError: GetApiV1RunsRunIdEventsError,
+): string {
+  return JSON.stringify(
+    GetApiV1RunsRunIdEventsError$outboundSchema.parse(
+      getApiV1RunsRunIdEventsError,
+    ),
+  );
+}
 export function getApiV1RunsRunIdEventsErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<GetApiV1RunsRunIdEventsError, SDKValidationError> {

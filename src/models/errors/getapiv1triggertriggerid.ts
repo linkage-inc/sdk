@@ -88,6 +88,22 @@ export const GetApiV1TriggerTriggerIdNotFoundError$inboundSchema: z.ZodType<
   });
 
 /** @internal */
+export type GetApiV1TriggerTriggerIdNotFoundError$Outbound = {
+  error: operations.ErrorTriggerNotFound$Outbound;
+};
+
+/** @internal */
+export const GetApiV1TriggerTriggerIdNotFoundError$outboundSchema: z.ZodType<
+  GetApiV1TriggerTriggerIdNotFoundError$Outbound,
+  z.ZodTypeDef,
+  GetApiV1TriggerTriggerIdNotFoundError
+> = z.instanceof(GetApiV1TriggerTriggerIdNotFoundError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() => operations.ErrorTriggerNotFound$outboundSchema),
+  }));
+
+/** @internal */
 export const GetApiV1TriggerTriggerIdBadRequestError$inboundSchema: z.ZodType<
   GetApiV1TriggerTriggerIdBadRequestError,
   z.ZodTypeDef,
@@ -105,3 +121,19 @@ export const GetApiV1TriggerTriggerIdBadRequestError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
+
+/** @internal */
+export type GetApiV1TriggerTriggerIdBadRequestError$Outbound = {
+  error: operations.ErrorTriggerIDIsRequired$Outbound;
+};
+
+/** @internal */
+export const GetApiV1TriggerTriggerIdBadRequestError$outboundSchema: z.ZodType<
+  GetApiV1TriggerTriggerIdBadRequestError$Outbound,
+  z.ZodTypeDef,
+  GetApiV1TriggerTriggerIdBadRequestError
+> = z.instanceof(GetApiV1TriggerTriggerIdBadRequestError)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    error: z.lazy(() => operations.ErrorTriggerIDIsRequired$outboundSchema),
+  }));
