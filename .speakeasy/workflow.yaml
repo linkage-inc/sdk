@@ -1,21 +1,21 @@
 workflowVersion: 1.0.0
 speakeasyVersion: latest
 sources:
-    undefined - Next.js OpenAPI Spec by Scalar:
-        inputs:
-            - location: http://localhost:3000/api/openapi/schema.json
-        overlays:
-            - location: .speakeasy/speakeasy-modifications-overlay.yaml
-        output: .speakeasy/out.openapi.yaml
-        registry:
-            location: registry.speakeasyapi.dev/linkage/open/undefined---next-js-open-api-spec-by-scalar
+  undefined - Next.js OpenAPI Spec by Scalar:
+    inputs:
+      - location: https://linkage.dev/api/openapi/schema.json
+    overlays:
+      - location: .speakeasy/speakeasy-modifications-overlay.yaml
+    output: .speakeasy/out.openapi.yaml
+    registry:
+      location: registry.speakeasyapi.dev/linkage/open/undefined---next-js-open-api-spec-by-scalar
 targets:
-    typescript:
-        target: typescript
-        source: undefined - Next.js OpenAPI Spec by Scalar
-        codeSamples:
-            registry:
-                location: registry.speakeasyapi.dev/linkage/open/undefined---next-js-open-api-spec-by-scalar-typescript-code-samples
-            labelOverride:
-                fixedValue: Typescript (SDK)
-            blocking: false
+  typescript:
+    target: typescript
+    source: undefined - Next.js OpenAPI Spec by Scalar
+    codeSamples:
+      registry:
+        location: registry.speakeasyapi.dev/linkage/open/undefined---next-js-open-api-spec-by-scalar-typescript-code-samples
+      labelOverride:
+        fixedValue: Typescript (SDK)
+      blocking: false
