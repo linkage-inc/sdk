@@ -1,6 +1,6 @@
 {
   "name": "@linkage-open/sdk",
-  "version": "0.5.2",
+  "version": "0.5.4",
   "author": "Speakeasy",
   "type": "module",
   "tshy": {
