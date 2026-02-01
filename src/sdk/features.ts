@@ -15,10 +15,12 @@ export class Features extends ClientSDK {
    * Returns enabled feature flags for the project, including billing-gated features.
    */
   async get(
+    request?: operations.GetApiV1FeaturesRequest | undefined,
     options?: RequestOptions,
   ): Promise<operations.GetApiV1FeaturesResponse> {
     return unwrapAsync(featuresGet(
       this,
+      request,
       options,
     ));
   }

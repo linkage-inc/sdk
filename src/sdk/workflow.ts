@@ -15,10 +15,12 @@ export class Workflow extends ClientSDK {
    * Validates client credentials and schema version, persists execution state, forwards the payload to the deployed app, and returns the execution id.
    */
   async execute(
+    request?: operations.PostApiV1XRequest | undefined,
     options?: RequestOptions,
   ): Promise<operations.PostApiV1XResponse> {
     return unwrapAsync(workflowExecute(
       this,
+      request,
       options,
     ));
   }

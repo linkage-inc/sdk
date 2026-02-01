@@ -3,10 +3,17 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+export type PostApiV1XRequest = {
+  xClientId?: string | undefined;
+  xClientSecret?: string | undefined;
+  xSchemaVersion?: string | undefined;
+};
 
 export const PostApiV1XInternalServerErrorMessage = {
   ProjectHasAnInvalidConfiguration: "Project has an invalid configuration",
@@ -57,6 +64,38 @@ export type PostApiV1XResponse = {
    */
   executionId?: any | undefined;
 };
+
+/** @internal */
+export type PostApiV1XRequest$Outbound = {
+  "x-client-id"?: string | undefined;
+  "x-client-secret"?: string | undefined;
+  "x-schema-version"?: string | undefined;
+};
+
+/** @internal */
+export const PostApiV1XRequest$outboundSchema: z.ZodType<
+  PostApiV1XRequest$Outbound,
+  z.ZodTypeDef,
+  PostApiV1XRequest
+> = z.object({
+  xClientId: z.string().optional(),
+  xClientSecret: z.string().optional(),
+  xSchemaVersion: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xClientId: "x-client-id",
+    xClientSecret: "x-client-secret",
+    xSchemaVersion: "x-schema-version",
+  });
+});
+
+export function postApiV1XRequestToJSON(
+  postApiV1XRequest: PostApiV1XRequest,
+): string {
+  return JSON.stringify(
+    PostApiV1XRequest$outboundSchema.parse(postApiV1XRequest),
+  );
+}
 
 /** @internal */
 export const PostApiV1XInternalServerErrorMessage$inboundSchema:

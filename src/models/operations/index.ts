@@ -3,6 +3,7 @@
  */
 
 export * from "./getapiv1features.js";
+export * from "./getapiv1nodeoverlays.js";
 export * from "./getapiv1runs.js";
 export * from "./getapiv1runsrunid.js";
 export * from "./getapiv1runsrunidevents.js";

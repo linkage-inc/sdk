@@ -15,10 +15,12 @@ export class NodeOverlays extends ClientSDK {
    * Returns node overlay metadata configured for a project.
    */
   async get(
+    request?: operations.GetApiV1NodeOverlaysRequest | undefined,
     options?: RequestOptions,
   ): Promise<operations.GetApiV1NodeOverlaysResponse> {
     return unwrapAsync(nodeOverlaysGet(
       this,
+      request,
       options,
     ));
   }

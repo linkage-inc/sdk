@@ -15,10 +15,12 @@ export class NodeTypes extends ClientSDK {
    * Returns the available node types for the project, optionally narrowed by schema version.
    */
   async get(
+    request?: operations.GetApiV1NodeTypesRequest | undefined,
     options?: RequestOptions,
   ): Promise<operations.GetApiV1NodeTypesResponse> {
     return unwrapAsync(nodeTypesGet(
       this,
+      request,
       options,
     ));
   }

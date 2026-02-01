@@ -49,10 +49,12 @@ export class State extends ClientSDK {
    * Persists workflow nodes/edges when the payload hash changes.
    */
   async update(
+    request?: operations.PostApiV1StateRequest | undefined,
     options?: RequestOptions,
   ): Promise<operations.PostApiV1StateResponse | undefined> {
     return unwrapAsync(stateUpdate(
       this,
+      request,
       options,
     ));
   }

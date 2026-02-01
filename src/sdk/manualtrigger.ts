@@ -15,10 +15,12 @@ export class ManualTrigger extends ClientSDK {
    * Executes a workflow on-demand using client credentials and an optional payload.
    */
   async execute(
+    request?: operations.PostApiV1TriggerManualRequest | undefined,
     options?: RequestOptions,
   ): Promise<operations.PostApiV1TriggerManualResponse> {
     return unwrapAsync(manualTriggerExecute(
       this,
+      request,
       options,
     ));
   }

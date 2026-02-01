@@ -11,5 +11,5 @@ let value: GetApiV1StateBadRequestMessage = "Missing workflow client secret";
 ## Values
 
 ```typescript
-"Missing appId or appSecret or workflowId" | "Missing workflow client secret"
+"Missing app id, app secret, or workflow id" | "Missing workflow client secret"
 ```

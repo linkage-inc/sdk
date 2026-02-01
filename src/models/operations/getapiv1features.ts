@@ -3,10 +3,16 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+export type GetApiV1FeaturesRequest = {
+  xClientId?: string | undefined;
+  xClientSecret?: string | undefined;
+};
 
 export const GetApiV1FeaturesMessageProjectHasAnInvalidConfiguration = {
   ProjectHasAnInvalidConfiguration: "Project has an invalid configuration",
@@ -48,11 +54,10 @@ export type GetApiV1FeaturesResponse = {
   features?: Features | undefined;
 };
 
-/**
- * Returns node overlay metadata configured for a project.
- */
-export type GetApiV1NodeOverlaysResponse = {
-  overlays?: any | undefined;
+export type GetApiV1NodeTypesRequest = {
+  xClientId?: string | undefined;
+  xClientSecret?: string | undefined;
+  xSchemaVersion?: string | undefined;
 };
 
 export const MessageSchemaVersionNotFound = {
@@ -81,6 +86,35 @@ export type GetApiV1NodeTypesResponse = {
    */
   nodes?: any | undefined;
 };
+
+/** @internal */
+export type GetApiV1FeaturesRequest$Outbound = {
+  "x-client-id"?: string | undefined;
+  "x-client-secret"?: string | undefined;
+};
+
+/** @internal */
+export const GetApiV1FeaturesRequest$outboundSchema: z.ZodType<
+  GetApiV1FeaturesRequest$Outbound,
+  z.ZodTypeDef,
+  GetApiV1FeaturesRequest
+> = z.object({
+  xClientId: z.string().optional(),
+  xClientSecret: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xClientId: "x-client-id",
+    xClientSecret: "x-client-secret",
+  });
+});
+
+export function getApiV1FeaturesRequestToJSON(
+  getApiV1FeaturesRequest: GetApiV1FeaturesRequest,
+): string {
+  return JSON.stringify(
+    GetApiV1FeaturesRequest$outboundSchema.parse(getApiV1FeaturesRequest),
+  );
+}
 
 /** @internal */
 export const GetApiV1FeaturesMessageProjectHasAnInvalidConfiguration$inboundSchema:
@@ -182,21 +216,34 @@ export function getApiV1FeaturesResponseFromJSON(
 }
 
 /** @internal */
-export const GetApiV1NodeOverlaysResponse$inboundSchema: z.ZodType<
-  GetApiV1NodeOverlaysResponse,
+export type GetApiV1NodeTypesRequest$Outbound = {
+  "x-client-id"?: string | undefined;
+  "x-client-secret"?: string | undefined;
+  "x-schema-version"?: string | undefined;
+};
+
+/** @internal */
+export const GetApiV1NodeTypesRequest$outboundSchema: z.ZodType<
+  GetApiV1NodeTypesRequest$Outbound,
   z.ZodTypeDef,
-  unknown
+  GetApiV1NodeTypesRequest
 > = z.object({
-  overlays: z.any().optional(),
+  xClientId: z.string().optional(),
+  xClientSecret: z.string().optional(),
+  xSchemaVersion: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xClientId: "x-client-id",
+    xClientSecret: "x-client-secret",
+    xSchemaVersion: "x-schema-version",
+  });
 });
 
-export function getApiV1NodeOverlaysResponseFromJSON(
-  jsonString: string,
-): SafeParseResult<GetApiV1NodeOverlaysResponse, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetApiV1NodeOverlaysResponse$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetApiV1NodeOverlaysResponse' from JSON`,
+export function getApiV1NodeTypesRequestToJSON(
+  getApiV1NodeTypesRequest: GetApiV1NodeTypesRequest,
+): string {
+  return JSON.stringify(
+    GetApiV1NodeTypesRequest$outboundSchema.parse(getApiV1NodeTypesRequest),
   );
 }
 

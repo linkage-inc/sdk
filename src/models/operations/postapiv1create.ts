@@ -3,10 +3,16 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+export type PostApiV1CreateRequest = {
+  xAppId?: string | undefined;
+  xAppSecret?: string | undefined;
+};
 
 export const MessageFailedToCreateWorkflow = {
   FailedToCreateWorkflow: "Failed to create workflow",
@@ -61,6 +67,35 @@ export type PostApiV1CreateResponse = {
    */
   edges?: any | undefined;
 };
+
+/** @internal */
+export type PostApiV1CreateRequest$Outbound = {
+  "x-app-id"?: string | undefined;
+  "x-app-secret"?: string | undefined;
+};
+
+/** @internal */
+export const PostApiV1CreateRequest$outboundSchema: z.ZodType<
+  PostApiV1CreateRequest$Outbound,
+  z.ZodTypeDef,
+  PostApiV1CreateRequest
+> = z.object({
+  xAppId: z.string().optional(),
+  xAppSecret: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xAppId: "x-app-id",
+    xAppSecret: "x-app-secret",
+  });
+});
+
+export function postApiV1CreateRequestToJSON(
+  postApiV1CreateRequest: PostApiV1CreateRequest,
+): string {
+  return JSON.stringify(
+    PostApiV1CreateRequest$outboundSchema.parse(postApiV1CreateRequest),
+  );
+}
 
 /** @internal */
 export const MessageFailedToCreateWorkflow$inboundSchema: z.ZodNativeEnum<

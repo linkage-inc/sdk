@@ -3,8 +3,10 @@
  */
 
 import { LinkageCore } from "../core.js";
+import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { pathToFunc } from "../lib/url.js";
 import {
@@ -14,7 +16,6 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
-import * as errors from "../models/errors/index.js";
 import { LinkageError } from "../models/errors/linkageerror.js";
 import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
@@ -30,11 +31,11 @@ import { Result } from "../types/fp.js";
  */
 export function nodeOverlaysGet(
   client: LinkageCore,
+  request?: operations.GetApiV1NodeOverlaysRequest | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
     operations.GetApiV1NodeOverlaysResponse,
-    | errors.GetApiV1FeaturesUnauthorizedError
     | LinkageError
     | ResponseValidationError
     | ConnectionError
@@ -47,18 +48,19 @@ export function nodeOverlaysGet(
 > {
   return new APIPromise($do(
     client,
+    request,
     options,
   ));
 }
 
 async function $do(
   client: LinkageCore,
+  request?: operations.GetApiV1NodeOverlaysRequest | undefined,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
       operations.GetApiV1NodeOverlaysResponse,
-      | errors.GetApiV1FeaturesUnauthorizedError
       | LinkageError
       | ResponseValidationError
       | ConnectionError
@@ -71,10 +73,33 @@ async function $do(
     APICall,
   ]
 > {
+  const parsed = safeParse(
+    request,
+    (value) =>
+      operations.GetApiV1NodeOverlaysRequest$outboundSchema.optional().parse(
+        value,
+      ),
+    "Input validation failed",
+  );
+  if (!parsed.ok) {
+    return [parsed, { status: "invalid" }];
+  }
+  const payload = parsed.value;
+  const body = null;
+
   const path = pathToFunc("/api/v1/node-overlays")();
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
+    "x-client-id": encodeSimple("x-client-id", payload?.["x-client-id"], {
+      explode: false,
+      charEncoding: "none",
+    }),
+    "x-client-secret": encodeSimple(
+      "x-client-secret",
+      payload?.["x-client-secret"],
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
   const context = {
@@ -97,6 +122,7 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
@@ -116,13 +142,8 @@ async function $do(
   }
   const response = doResult.value;
 
-  const responseFields = {
-    HttpMeta: { Response: response, Request: req },
-  };
-
   const [result] = await M.match<
     operations.GetApiV1NodeOverlaysResponse,
-    | errors.GetApiV1FeaturesUnauthorizedError
     | LinkageError
     | ResponseValidationError
     | ConnectionError
@@ -133,10 +154,9 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, operations.GetApiV1NodeOverlaysResponse$inboundSchema),
-    M.jsonErr(401, errors.GetApiV1FeaturesUnauthorizedError$inboundSchema),
-    M.fail("4XX"),
+    M.fail([401, "4XX"]),
     M.fail("5XX"),
-  )(response, req, { extraFields: responseFields });
+  )(response, req);
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];
   }

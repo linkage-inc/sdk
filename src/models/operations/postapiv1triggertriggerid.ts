@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -76,6 +77,11 @@ export type PostApiV1TriggerTriggerIdResponse = {
    * Unknown type
    */
   triggerExecutionId?: any | undefined;
+};
+
+export type PostApiV1TriggerManualRequest = {
+  xClientId?: string | undefined;
+  xClientSecret?: string | undefined;
 };
 
 export const PostApiV1TriggerManualUnauthorizedMessage = {
@@ -282,6 +288,37 @@ export function postApiV1TriggerTriggerIdResponseFromJSON(
     jsonString,
     (x) => PostApiV1TriggerTriggerIdResponse$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'PostApiV1TriggerTriggerIdResponse' from JSON`,
+  );
+}
+
+/** @internal */
+export type PostApiV1TriggerManualRequest$Outbound = {
+  "x-client-id"?: string | undefined;
+  "x-client-secret"?: string | undefined;
+};
+
+/** @internal */
+export const PostApiV1TriggerManualRequest$outboundSchema: z.ZodType<
+  PostApiV1TriggerManualRequest$Outbound,
+  z.ZodTypeDef,
+  PostApiV1TriggerManualRequest
+> = z.object({
+  xClientId: z.string().optional(),
+  xClientSecret: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xClientId: "x-client-id",
+    xClientSecret: "x-client-secret",
+  });
+});
+
+export function postApiV1TriggerManualRequestToJSON(
+  postApiV1TriggerManualRequest: PostApiV1TriggerManualRequest,
+): string {
+  return JSON.stringify(
+    PostApiV1TriggerManualRequest$outboundSchema.parse(
+      postApiV1TriggerManualRequest,
+    ),
   );
 }
 

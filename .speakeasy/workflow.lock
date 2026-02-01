@@ -2,8 +2,8 @@ speakeasyVersion: 1.700.2
 sources:
     linkage-v1-api:
         sourceNamespace: undefined---next-js-open-api-spec-by-scalar
-        sourceRevisionDigest: sha256:d58295c94269e6a1c4f5a328ca16c7b2f140e19f5e1bdb77787fa44de90afcfd
-        sourceBlobDigest: sha256:67853dd3291a1bcc3dd079138e6f7405416507eeb8d225b465fcadca4e126e2b
+        sourceRevisionDigest: sha256:52ca764cd7cabdfccbb79a741491803c98e1ce0d6801992768738cfcf7f2be87
+        sourceBlobDigest: sha256:cb9775895afa88d66a05404d0e5a01d98c75e45a08250a342a14d6db02b14c8a
         tags:
             - latest
             - 0.1.0
@@ -18,10 +18,10 @@ targets:
     typescript:
         source: linkage-v1-api
         sourceNamespace: undefined---next-js-open-api-spec-by-scalar
-        sourceRevisionDigest: sha256:d58295c94269e6a1c4f5a328ca16c7b2f140e19f5e1bdb77787fa44de90afcfd
-        sourceBlobDigest: sha256:67853dd3291a1bcc3dd079138e6f7405416507eeb8d225b465fcadca4e126e2b
+        sourceRevisionDigest: sha256:52ca764cd7cabdfccbb79a741491803c98e1ce0d6801992768738cfcf7f2be87
+        sourceBlobDigest: sha256:cb9775895afa88d66a05404d0e5a01d98c75e45a08250a342a14d6db02b14c8a
         codeSamplesNamespace: undefined---next-js-open-api-spec-by-scalar-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:aff832c7f8362da71cefd73709d2e5d49be3fe2aa494d81ed6885ddcfad906ed
+        codeSamplesRevisionDigest: sha256:ad8adeb3933ddc358649147f4a05188868941e2c7114c2529dcec0746f633491
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

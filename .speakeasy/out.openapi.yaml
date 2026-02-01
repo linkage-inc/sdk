@@ -8,6 +8,17 @@ paths:
     post:
       summary: "Create a workflow"
       description: "Creates a workflow for a project with the provided nodes and edges."
+      parameters:
+        - name: "x-app-id"
+          schema:
+            type: "string"
+          in: "header"
+          required: false
+        - name: "x-app-secret"
+          schema:
+            type: "string"
+          in: "header"
+          required: false
       responses:
         "201":
           description: "Creates a workflow for a project with the provided nodes and edges."
@@ -83,6 +94,17 @@ paths:
     get:
       summary: "Get project features"
       description: "Returns enabled feature flags for the project, including billing-gated features."
+      parameters:
+        - name: "x-client-id"
+          schema:
+            type: "string"
+          in: "header"
+          required: false
+        - name: "x-client-secret"
+          schema:
+            type: "string"
+          in: "header"
+          required: false
       responses:
         "200":
           description: "Returns enabled feature flags for the project, including billing-gated features."
@@ -140,6 +162,17 @@ paths:
     get:
       summary: "Get node overlays"
       description: "Returns node overlay metadata configured for a project."
+      parameters:
+        - name: "x-client-id"
+          schema:
+            type: "string"
+          in: "header"
+          required: false
+        - name: "x-client-secret"
+          schema:
+            type: "string"
+          in: "header"
+          required: false
       responses:
         "200":
           description: "Returns node overlay metadata configured for a project."
@@ -150,30 +183,31 @@ paths:
                 properties:
                   "overlays": {}
         "401":
-          description: "HTTP 401 response"
+          description: "Returns node overlay metadata configured for a project."
           content:
-            "application/json":
-              schema:
-                type: "object"
-                properties:
-                  "error":
-                    type: "object"
-                    properties:
-                      "message":
-                        type: "string"
-                        enum:
-                          - "Requires valid client id and client secret"
-                          - "Invalid client id or secret"
-                      "details": {}
-                    additionalProperties: false
-                required:
-                  - "error"
+            "application/json": {}
       x-speakeasy-group: "nodeOverlays"
       x-speakeasy-name-override: "get"
   "/api/v1/node-types":
     get:
       summary: "Get node types"
       description: "Returns the available node types for the project, optionally narrowed by schema version."
+      parameters:
+        - name: "x-client-id"
+          schema:
+            type: "string"
+          in: "header"
+          required: false
+        - name: "x-client-secret"
+          schema:
+            type: "string"
+          in: "header"
+          required: false
+        - name: "x-schema-version"
+          schema:
+            type: "string"
+          in: "header"
+          required: false
       responses:
         "200":
           description: "Returns the available node types for the project, optionally narrowed by schema version."
@@ -367,30 +401,25 @@ paths:
       summary: "Get workflow state"
       description: "Fetches workflow nodes/edges and hashes for a workflow."
       parameters:
-        - name: "appId"
-          schema:
-            type: "string"
-          in: "query"
-          required: false
-        - name: "appSecret"
-          schema:
-            type: "string"
-          in: "query"
-          required: false
         - name: "workflowId"
           schema:
             type: "string"
           in: "query"
           required: false
-        - name: "apiKey"
+        - name: "x-app-id"
           schema:
             type: "string"
-          in: "query"
+          in: "header"
           required: false
-        - name: "appClientSecret"
+        - name: "x-app-secret"
           schema:
             type: "string"
-          in: "query"
+          in: "header"
+          required: false
+        - name: "x-app-client-secret"
+          schema:
+            type: "string"
+          in: "header"
           required: false
       responses:
         "200":
@@ -424,7 +453,7 @@ paths:
                       "message":
                         type: "string"
                         enum:
-                          - "Missing appId or appSecret or workflowId"
+                          - "Missing app id, app secret, or workflow id"
                           - "Missing workflow client secret"
                       "details": {}
                     additionalProperties: false
@@ -454,6 +483,22 @@ paths:
     post:
       summary: "Update workflow state"
       description: "Persists workflow nodes/edges when the payload hash changes."
+      parameters:
+        - name: "x-app-id"
+          schema:
+            type: "string"
+          in: "header"
+          required: false
+        - name: "x-app-secret"
+          schema:
+            type: "string"
+          in: "header"
+          required: false
+        - name: "x-app-client-secret"
+          schema:
+            type: "string"
+          in: "header"
+          required: false
       responses:
         "200":
           description: "Persists workflow nodes/edges when the payload hash changes."
@@ -522,6 +567,27 @@ paths:
     post:
       summary: "Execute a workflow run"
       description: "Validates client credentials and schema version, persists execution state, forwards the payload to the deployed app, and returns the execution id."
+      parameters:
+        - name: "x-client-id"
+          schema:
+            type: "string"
+          in: "header"
+          required: false
+        - name: "x-client-secret"
+          schema:
+            type: "string"
+          in: "header"
+          required: false
+        - name: "x-schema-version"
+          schema:
+            type: "string"
+          in: "header"
+          required: false
+        - name: "Authorization"
+          schema:
+            type: "string"
+          in: "header"
+          required: false
       responses:
         "200":
           description: "Validates client credentials and schema version, persists execution state, forwards the payload to the deployed app, and returns the execution id."
@@ -632,6 +698,11 @@ paths:
       summary: "Execute a webhook trigger"
       description: "Validates the webhook trigger and starts a workflow execution."
       parameters:
+        - name: "Authorization"
+          schema:
+            type: "string"
+          in: "header"
+          required: false
         - name: "triggerId"
           in: "path"
           required: true
@@ -812,6 +883,17 @@ paths:
     post:
       summary: "Execute a manual trigger"
       description: "Executes a workflow on-demand using client credentials and an optional payload."
+      parameters:
+        - name: "x-client-id"
+          schema:
+            type: "string"
+          in: "header"
+          required: false
+        - name: "x-client-secret"
+          schema:
+            type: "string"
+          in: "header"
+          required: false
       responses:
         "200":
           description: "Executes a workflow on-demand using client credentials and an optional payload."
@@ -939,6 +1021,11 @@ paths:
           schema:
             type: "string"
           in: "query"
+          required: false
+        - name: "accept"
+          schema:
+            type: "string"
+          in: "header"
           required: false
         - name: "runId"
           in: "path"

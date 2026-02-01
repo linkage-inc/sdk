@@ -1,18 +1,17 @@
-# GetApiV1StateRequest
+# PostApiV1StateRequest
 
 ## Example Usage
 
 ```typescript
-import { GetApiV1StateRequest } from "@linkage-open/sdk/models/operations";
+import { PostApiV1StateRequest } from "@linkage-open/sdk/models/operations";
 
-let value: GetApiV1StateRequest = {};
+let value: PostApiV1StateRequest = {};
 ```
 
 ## Fields
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `workflowId`       | *string*           | :heavy_minus_sign: | N/A                |
 | `xAppId`           | *string*           | :heavy_minus_sign: | N/A                |
 | `xAppSecret`       | *string*           | :heavy_minus_sign: | N/A                |
 | `xAppClientSecret` | *string*           | :heavy_minus_sign: | N/A                |

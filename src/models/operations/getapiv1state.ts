@@ -3,17 +3,17 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetApiV1StateRequest = {
-  appId?: string | undefined;
-  appSecret?: string | undefined;
   workflowId?: string | undefined;
-  apiKey?: string | undefined;
-  appClientSecret?: string | undefined;
+  xAppId?: string | undefined;
+  xAppSecret?: string | undefined;
+  xAppClientSecret?: string | undefined;
 };
 
 export const GetApiV1StateNotFoundMessage = {
@@ -30,8 +30,8 @@ export type GetApiV1StateNotFoundError = {
 };
 
 export const GetApiV1StateBadRequestMessage = {
-  MissingAppIdOrAppSecretOrWorkflowId:
-    "Missing appId or appSecret or workflowId",
+  MissingAppIdAppSecretOrWorkflowId:
+    "Missing app id, app secret, or workflow id",
   MissingWorkflowClientSecret: "Missing workflow client secret",
 } as const;
 export type GetApiV1StateBadRequestMessage = ClosedEnum<
@@ -67,6 +67,12 @@ export type GetApiV1StateResponse = {
   edgesHash?: any | undefined;
 };
 
+export type PostApiV1StateRequest = {
+  xAppId?: string | undefined;
+  xAppSecret?: string | undefined;
+  xAppClientSecret?: string | undefined;
+};
+
 export const PostApiV1StateBadRequestMessage = {
   MissingPreliminaryConfig: "Missing preliminary config",
   MissingWorkflowClientSecret: "Missing workflow client secret",
@@ -97,11 +103,10 @@ export type PostApiV1StateResponse = {
 
 /** @internal */
 export type GetApiV1StateRequest$Outbound = {
-  appId?: string | undefined;
-  appSecret?: string | undefined;
   workflowId?: string | undefined;
-  apiKey?: string | undefined;
-  appClientSecret?: string | undefined;
+  "x-app-id"?: string | undefined;
+  "x-app-secret"?: string | undefined;
+  "x-app-client-secret"?: string | undefined;
 };
 
 /** @internal */
@@ -110,11 +115,16 @@ export const GetApiV1StateRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetApiV1StateRequest
 > = z.object({
-  appId: z.string().optional(),
-  appSecret: z.string().optional(),
   workflowId: z.string().optional(),
-  apiKey: z.string().optional(),
-  appClientSecret: z.string().optional(),
+  xAppId: z.string().optional(),
+  xAppSecret: z.string().optional(),
+  xAppClientSecret: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xAppId: "x-app-id",
+    xAppSecret: "x-app-secret",
+    xAppClientSecret: "x-app-client-secret",
+  });
 });
 
 export function getApiV1StateRequestToJSON(
@@ -196,6 +206,38 @@ export function getApiV1StateResponseFromJSON(
     jsonString,
     (x) => GetApiV1StateResponse$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'GetApiV1StateResponse' from JSON`,
+  );
+}
+
+/** @internal */
+export type PostApiV1StateRequest$Outbound = {
+  "x-app-id"?: string | undefined;
+  "x-app-secret"?: string | undefined;
+  "x-app-client-secret"?: string | undefined;
+};
+
+/** @internal */
+export const PostApiV1StateRequest$outboundSchema: z.ZodType<
+  PostApiV1StateRequest$Outbound,
+  z.ZodTypeDef,
+  PostApiV1StateRequest
+> = z.object({
+  xAppId: z.string().optional(),
+  xAppSecret: z.string().optional(),
+  xAppClientSecret: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    xAppId: "x-app-id",
+    xAppSecret: "x-app-secret",
+    xAppClientSecret: "x-app-client-secret",
+  });
+});
+
+export function postApiV1StateRequestToJSON(
+  postApiV1StateRequest: PostApiV1StateRequest,
+): string {
+  return JSON.stringify(
+    PostApiV1StateRequest$outboundSchema.parse(postApiV1StateRequest),
   );
 }
 

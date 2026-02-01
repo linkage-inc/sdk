@@ -3,7 +3,7 @@
  */
 
 import { LinkageCore } from "../core.js";
-import { encodeFormQuery } from "../lib/encodings.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -93,15 +93,24 @@ async function $do(
   const path = pathToFunc("/api/v1/state")();
 
   const query = encodeFormQuery({
-    "apiKey": payload?.apiKey,
-    "appClientSecret": payload?.appClientSecret,
-    "appId": payload?.appId,
-    "appSecret": payload?.appSecret,
     "workflowId": payload?.workflowId,
   });
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
+    "x-app-client-secret": encodeSimple(
+      "x-app-client-secret",
+      payload?.["x-app-client-secret"],
+      { explode: false, charEncoding: "none" },
+    ),
+    "x-app-id": encodeSimple("x-app-id", payload?.["x-app-id"], {
+      explode: false,
+      charEncoding: "none",
+    }),
+    "x-app-secret": encodeSimple("x-app-secret", payload?.["x-app-secret"], {
+      explode: false,
+      charEncoding: "none",
+    }),
   }));
 
   const context = {

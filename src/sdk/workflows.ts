@@ -15,10 +15,12 @@ export class Workflows extends ClientSDK {
    * Creates a workflow for a project with the provided nodes and edges.
    */
   async create(
+    request?: operations.PostApiV1CreateRequest | undefined,
     options?: RequestOptions,
   ): Promise<operations.PostApiV1CreateResponse> {
     return unwrapAsync(workflowsCreate(
       this,
+      request,
       options,
     ));
   }

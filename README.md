@@ -310,7 +310,7 @@ run();
 
 
 **Inherit from [`LinkageError`](./src/models/errors/linkageerror.ts)**:
-* [`GetApiV1FeaturesUnauthorizedError`](./src/models/errors/getapiv1featuresunauthorizederror.ts): HTTP 401 response. Status code `401`. Applicable to 3 of 16 methods.*
+* [`GetApiV1FeaturesUnauthorizedError`](./src/models/errors/getapiv1featuresunauthorizederror.ts): HTTP 401 response. Status code `401`. Applicable to 2 of 16 methods.*
 * [`ForbiddenError`](./src/models/errors/forbiddenerror.ts): HTTP 403 response. Status code `403`. Applicable to 2 of 16 methods.*
 * [`GetApiV1StateNotFoundError`](./src/models/errors/getapiv1statenotfounderror.ts): HTTP 404 response. Status code `404`. Applicable to 2 of 16 methods.*
 * [`PostApiV1TriggerTriggerIdNotFoundError`](./src/models/errors/postapiv1triggertriggeridnotfounderror.ts): HTTP 404 response. Status code `404`. Applicable to 2 of 16 methods.*
